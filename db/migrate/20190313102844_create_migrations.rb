@@ -23,7 +23,7 @@ class CreateMigrations < ActiveRecord::Migration[5.2]
     create_table :companies do |t|
       t.string :name
       t.string :email
-      t.boolean :active
+      t.boolean :active, default: :true
 
       t.timestamps
     end
