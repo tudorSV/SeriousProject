@@ -9,8 +9,11 @@
       <%= f.label :email %>
       <%= f.text_field :email %>
 
+      <%= f.label :sctive %>
+      <%= f.text_field :active %>
+
       <%= f.submit "Save changes", class: "btn btn-primary" %>
     <% end %>
   </div>
-
+  <%= link_to "back", @company  %>
 </div>

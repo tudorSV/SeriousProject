@@ -1,3 +1,6 @@
-
-<%= @company.name %>, <%= @company.email %>
+<%= @company.id %>, <%= @company.name %>, <%= @company.email %>, <%= @company.active %>
+<%= link_to "delete", @company, method: :delete %>
+<%= link_to "edit",  edit_company_path(@company) %>
+<%= link_to "back", companies_path %>
+</br><%= link_to "Create a new shop", new_company_shop_path(@company) %>
 
