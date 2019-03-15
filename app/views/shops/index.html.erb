@@ -1,0 +1,10 @@
+<h1>All the shops from the current company</h1>
+
+<% @shops.each do |shop| %>
+  <li>
+    <%= link_to shop.name, company_shop_path(@company, shop) %>
+  </li>
+<% end %>
+</br>
+<%= link_to "Create" , new_company_shop_path%>
+</br><%= link_to "Back to the company", companies_path %>

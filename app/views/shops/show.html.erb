@@ -1,0 +1,7 @@
+<%= @shop.id %>, <%= @shop.name %>, <%= @shop.email %>, <%= @shop.active %>, <%= @company.id %>
+</br>
+<%= @shop.address.short_address %>, <%= @shop.address.full_address %>, <%= @shop.address.city %>, <%= @shop.address.zipcode %>
+, <%= @shop.address.country %>
+<%= link_to "Edit shop", edit_company_shop_path(@company, @shop) %>
+<%= link_to "Delete shop", company_shop_path(@company, @shop), method: :delete %>
+<%= link_to "Back to shops" , company_shops_path%>

@@ -3,7 +3,7 @@ class CreateMigrations < ActiveRecord::Migration[5.2]
     create_table :shops do |t|
       t.string :name
       t.string :email
-      t.boolean :active
+      t.boolean :active, default: :true
 
       t.references :company
       t.references :address

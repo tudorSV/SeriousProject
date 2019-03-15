@@ -1,3 +1,3 @@
 class Address < ApplicationRecord
-  has_one :shops
+  has_one :shops, inverse_of: :address
 end
