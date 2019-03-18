@@ -12,6 +12,7 @@ default: &default
 development:
   <<: *default
   database: my_database_development
+  username: tudor.haba
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -19,7 +20,7 @@ development:
 test:
   <<: *default
   database: my_database_test
-
+  username: tudor.haba
 production:
   <<: *default
   database: my_database_production
