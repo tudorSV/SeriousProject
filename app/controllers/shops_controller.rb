@@ -19,8 +19,8 @@ class ShopsController < ApplicationController
 
 
   def show
-    @shop = Shop.find(params[:id])
     @company = Company.find(params[:company_id])
+    @shop = Shop.find(params[:id])
   end
 
   def edit

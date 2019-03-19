@@ -2,30 +2,29 @@ require 'rails_helper'
 
 describe "Companies" do
 
- describe "index" do
-     it "should have content" do
-       visit companies_path
-       expect(page).to have_selector('h1',   text:  'All the companies from the database')
-       expect(page).to have_link('Create')
-       expect(page).to have_link('Home page' )
-     end
-   end
+  let(:company) { FactoryBot.create(:company) }
+  describe "index" do
+    it "should have content" do
+      visit companies_path
+      expect(page).to have_selector('h1',   text:  'All the companies from the database')
+      expect(page).to have_link('Create')
+      expect(page).to have_link('Home page' )
+    end
+  end
 
   describe "create" do
-      let(:company) { FactoryBot.create(:company) }
-      it "should have content" do
-        visit new_company_path
-        expect(page).to have_selector('h1',   text: 'Sign up')
-        expect(page).to have_field("Name")
-        expect(page).to have_field("Email")
-        click_button "Save changes"
-        visit company_path(company)
-      end
+    it "should have content" do
+      visit new_company_path
+      expect(page).to have_selector('h1',   text: 'Sign up')
+      expect(page).to have_field("Name")
+      expect(page).to have_field("Email")
+      click_button "Save changes"
+      visit company_path(company)
+    end
   end
 
 
   describe "show" do
-    let(:company) { FactoryBot.create(:company) }
     it "should have content" do
       visit company_path(company)
       expect(page).to have_selector('h1', text:  "Information about the company with the ID of #{company.id}")
@@ -36,7 +35,6 @@ describe "Companies" do
   end
 
   describe "delete" do
-    let(:company) { FactoryBot.create(:company) }
     it "should have content" do
       visit company_path(company)
       click_link "delete"
@@ -45,7 +43,6 @@ describe "Companies" do
   end
 
   describe "edit" do
-    let(:company) { FactoryBot.create(:company) }
     let(:new_name) { "Company 3 edit" }
     let(:new_email) { "Company_3@example.com" }
     let(:new_active) { false }

@@ -1,8 +1,10 @@
-<h1>All the shops from the current company</h1>
-
+<h1>All the shops for the companies with the ID of: <%= @company.id %></h1>
+</h2>
 <% @shops.each do |shop| %>
+    <% if @company.id === shop.company_id %>
   <li>
-    <%= link_to shop.name, company_shop_path(@company, shop) %>
+      <%= link_to shop.name, company_shop_path(@company, shop) %>
+    <% end %>
   </li>
 <% end %>
 </br>

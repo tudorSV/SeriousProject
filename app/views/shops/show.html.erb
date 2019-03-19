@@ -1,7 +1,19 @@
-<%= @shop.id %>, <%= @shop.name %>, <%= @shop.email %>, <%= @shop.active %>, <%= @company.id %>
-</br>
-<%= @shop.address.short_address %>, <%= @shop.address.full_address %>, <%= @shop.address.city %>, <%= @shop.address.zipcode %>
-, <%= @shop.address.country %>
-<%= link_to "Edit shop", edit_company_shop_path(@company, @shop) %>
-<%= link_to "Delete shop", company_shop_path(@company, @shop), method: :delete %>
-<%= link_to "Back to shops" , company_shops_path%>
+<% if @company.id === @shop.company_id  %>
+  <h1>The information for the shop with the id of <%= @shop.id %> is:</h1>
+  <li><%= @shop.id %></li>
+  <li><%= @shop.name %></li>
+  <li><%= @shop.email %></li>
+  <li><%= @shop.active %></li>
+  <li><%= @company.id %></li>
+  <li><%= @shop.address.short_address %></li>
+  <li><%= @shop.address.full_address %></li>
+  <li><%= @shop.address.city %></li>
+  <li><%= @shop.address.zipcode %></li>
+  <li><%= @shop.address.country %></li>
+
+  <%= link_to "Edit shop", edit_company_shop_path(@company, @shop) %>
+  <%= link_to "Delete shop", company_shop_path(@company, @shop), method: :delete %>
+  <%= link_to "Back to shops" , company_shops_path%>
+<%  else %>
+ Oops, that's not your shop!
+<% end %>
