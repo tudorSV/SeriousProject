@@ -1,5 +1,7 @@
 <h1>All the shops for the companies with the ID of: <%= @company.id %></h1>
-</h2>
+</h1>
+<div class="show">
+  <ul>
 <% @shops.each do |shop| %>
     <% if @company.id === shop.company_id %>
   <li>
@@ -7,6 +9,9 @@
     <% end %>
   </li>
 <% end %>
-</br>
-<%= link_to "Create" , new_company_shop_path%>
-</br><%= link_to "Back to the company", companies_path %>
+  <div class="showbtn">
+    <%= link_to "Create a new shop" , new_company_shop_path, class: "btn btn-primary"%>
+    <%= link_to "Back to the company", companies_path, class: "btn btn-primary" %>
+  </div>
+</div>
+</ul>

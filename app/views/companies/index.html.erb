@@ -1,10 +1,14 @@
-<h1>All the companies from the database</h1>
+<h1>Companies we have in the system</h1>
 
-<% @companies.each do |company| %>
-  <li>
-    <%= link_to company.name, company_path(company) %>
-  </li>
-<% end %>
-</br>
-<%= link_to "Create" , new_company_path%>
-</br><%= link_to "Home page", root_url %>
+<div class="show">
+  <ul>
+    <% @companies.each do |company| %>
+      <li>
+        <a> <%= link_to company.name, company_path(company) %></a>
+      </li>
+    <% end %>
+    <div class="showbtn">
+      <%= link_to "Create a new company" , new_company_path, class: "btn btn-primary" %>
+    </div>
+  </ul>
+</div>

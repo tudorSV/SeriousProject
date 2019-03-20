@@ -1,21 +1,17 @@
 <h1>Edit the shop</h1>
 
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
+<div class="form">
     <%= form_for [@company, @shop] do |shop_form | %>
       <%= render 'shared/error_messages', object: shop_form.object %>
-      <div>
         <%= shop_form.label :name %>
         <%= shop_form.text_field :name %>
 
         <%= shop_form.label :email %>
         <%= shop_form.text_field :email %>
-
-        <%= shop_form.label :active %>
-        <%= shop_form.text_field :active %>
-      </div>
-      </br>
-      <div>
+        <div id="active">
+       <div> <%= shop_form.label :active %> </div>
+       <div> <%= shop_form.check_box :active %></div>
+        </div>
        <%= shop_form.fields_for @shop.address do |address_form| %>
          <%= address_form.label :short_address %>
          <%= address_form.text_field :short_address %>
@@ -32,9 +28,10 @@
          <%= address_form.label :country %>
          <%= address_form.text_field :country %>
       <% end %>
-      </div>
 
-      <%= shop_form.submit "Update the shop", class: "btn btn-primary" %>
-    <% end %>
-  </div>
+    <div id="container">
+        <div style="width:400px;"><%= shop_form.submit "Save changes", class: "btn btn-primary" %></div>
+      <% end %>
+        <div style="width:100px;"><%= link_to "Back", company_shop_path(@company, @shop), class: "btn btn-primary"  %></div>
+    </div>
 </div>

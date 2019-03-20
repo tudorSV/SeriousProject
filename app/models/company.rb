@@ -7,4 +7,6 @@ class Company < ApplicationRecord
   validates :email, presence:true,
             format: { with: EMAIL_REGEX },
             uniqueness: { case_sensitive: false }
+
+  validates :active,  inclusion: { in: [ true, false ] }
 end

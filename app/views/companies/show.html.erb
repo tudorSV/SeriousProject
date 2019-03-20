@@ -1,10 +1,23 @@
-<h1>
-  Information about the company with the ID of <%= @company.id %>
-</h1>
-<li><%= @company.name %></li>
-<li><%= @company.email %></li>
-<li><%= @company.active %></li>
-<%= link_to "delete", @company, method: :delete %>
-<%= link_to "edit",  edit_company_path(@company) %>
-</br></br><%= link_to "Create a new shop", new_company_shop_path(@company) %>
-<%= link_to "Show all shops", company_shops_path(@company) %>
+<h2 class="h2-comp">
+  Information about <%= @company.name %>
+</h2>
+<div class="show">
+  <ul>
+    <li>Name: <%= @company.name %></li>
+    <li>Email: <%= @company.email %></li>
+    <li>
+      <% if @company.active %>
+        Active
+      <% else %>
+        Inactive
+      <% end %>
+    </li>
+    <div class="showbtn">
+    <%= link_to "Create a new shop", new_company_shop_path(@company), class: "btn btn-primary" %>
+    <%= link_to "Delete the company", @company, method: :delete, class: "btn btn-primary" %>
+    <%= link_to "Edit the company profile",  edit_company_path(@company), class: "btn btn-primary" %>
+    <%= link_to "Show all shops", company_shops_path(@company) , class: "btn btn-primary"%>
+    <%= link_to "Back", companies_path , class: "btn btn-primary"%>
+    </div>
+  </ul>
+</div>
