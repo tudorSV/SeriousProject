@@ -33,6 +33,20 @@ ActiveRecord::Schema.define(version: 2019_03_13_102844) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "employees", force: :cascade do |t|
+    t.string "role"
+    t.bigint "user_id"
+    t.bigint "company_id"
+    t.bigint "shop_id"
+    t.bigint "address_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["address_id"], name: "index_employees_on_address_id"
+    t.index ["company_id"], name: "index_employees_on_company_id"
+    t.index ["shop_id"], name: "index_employees_on_shop_id"
+    t.index ["user_id"], name: "index_employees_on_user_id"
+  end
+
   create_table "shops", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -43,6 +57,19 @@ ActiveRecord::Schema.define(version: 2019_03_13_102844) do
     t.datetime "updated_at", null: false
     t.index ["address_id"], name: "index_shops_on_address_id"
     t.index ["company_id"], name: "index_shops_on_company_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.string "username"
+    t.string "password_digest"
+    t.boolean "admin", default: true
+    t.string "email"
+    t.string "phone_number"
+    t.bigint "address_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["address_id"], name: "index_users_on_address_id"
   end
 
 end
