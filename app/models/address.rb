@@ -1,7 +1,6 @@
 class Address < ApplicationRecord
   has_one :shops, inverse_of: :address
   has_one :users, inverse_of: :address
-  has_one :employees, inverse_of: :address
 
   validates :short_address, presence: true, length: { maximum: 15 }
   validates :full_address, presence: true, length: { maximum: 25 }

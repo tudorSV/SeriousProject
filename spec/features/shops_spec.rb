@@ -33,10 +33,10 @@ describe "Shops" do
   describe "show" do
     it "should have content" do
       visit company_shop_path(company, shop)
-      expect(page).to have_selector('h1', text:  "The information for the shop with the id of #{shop.id} is:")
+      expect(page).to have_selector('h2', text:  "Information about #{shop.name} which belongs to #{company.name}")
       expect(page).to have_selector('li', text:  shop.name)
       expect(page).to have_selector('li', text:  shop.email)
-      expect(page).to have_selector('li', text:  shop.active)
+      # expect(page).to have_selector('li', text:  shop.active)
       expect(page).to have_selector('li', text:  shop.address.short_address)
       expect(page).to have_selector('li', text:  shop.address.full_address)
       expect(page).to have_selector('li', text:  shop.address.city)
@@ -50,7 +50,7 @@ describe "Shops" do
     it "should have content" do
       visit company_shop_path(company, shop)
       click_link "Delete shop"
-      expect(company_shop_path(company, shop)).not_to have_selector('h1', text: "The information for the shop with the id of #{shop.id} is:")
+      expect(company_shop_path(company, shop)).not_to have_selector('h1', text: "Information about #{shop.name} which belongs to #{company.name}")
     end
 
    describe "edit" do
@@ -73,7 +73,7 @@ describe "Shops" do
        fill_in "City",          with: new_city
        fill_in "Zipcode",       with: new_zipcode
        fill_in "Country",       with: new_country
-       click_button "Update the shop"
+       click_button "Save changes"
        # visit company_shop_path(company, shop)
        expect(page).to have_selector('h1', text:  "The information for the shop with the id of #{shop.id} is")
        expect(page).to have_selector('li', text:  new_name)
