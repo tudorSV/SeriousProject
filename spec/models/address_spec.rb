@@ -63,6 +63,4 @@ describe "Address model"  do
       expect(@address).to_not be_valid
     end
   end
-
-
 end

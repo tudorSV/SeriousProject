@@ -2,7 +2,7 @@
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-    <%= form_for [@company, @shop], url:company_shops_path(@company), method: :post  do |shop_form | %>
+    <%= form_for [@company, @shop], url:company_shops_path(@company), method: :post do |shop_form | %>
       <%= render 'shared/error_messages', object: shop_form.object %>
       <div>
         <%= shop_form.label :name %>

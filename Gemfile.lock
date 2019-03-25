@@ -251,8 +251,8 @@ DEPENDENCIES
   capybara (>= 2.15)
   chromedriver-helper
   coffee-rails (~> 4.2)
-  factory_bot_rails
-  guard-rspec
+  factory_bot_rails (= 5.0.1)
+  guard-rspec (= 4.7.3)
   jbuilder (~> 2.5)
   listen (>= 3.0.5, < 3.2)
   pg (= 1.1.3)

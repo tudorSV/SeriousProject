@@ -2,10 +2,7 @@ require 'rails_helper'
 
 describe "Shop model" do
 
-  before {
-    @shop = Shop.new(name:"Example Shop", email: "exampleshop@email.com" )
-    @shop.save
-  }
+  let(:shop) { FactoryBot.create(:shop) }
 
   describe "when the name is not present" do
     before { @shop.name = "" }

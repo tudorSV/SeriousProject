@@ -1,4 +1,4 @@
-<h1>All the companies from the database</h1>
+<h1>All the registered companies</h1>
 
 <% @companies.each do |company| %>
   <li>
@@ -7,4 +7,3 @@
 <% end %>
 </br>
 <%= link_to "Create" , new_company_path%>
-</br><%= link_to "Home page", root_url %>

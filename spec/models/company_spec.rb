@@ -8,8 +8,6 @@ describe "Company model" do
     @company2 = Company.new(name:"Example Company", email: "example2@email.com" )
   }
 
-#  subject { @company }
-
   describe "when the name is not present" do
     before { @company.name = "" }
     it "should require a name" do

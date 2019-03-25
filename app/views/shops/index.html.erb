@@ -1,12 +1,12 @@
-<h1>All the shops for the companies with the ID of: <%= @company.id %></h1>
-</h2>
+<h1>All the shops that belong to the company: <%= @company.name %></h1>
 <% @shops.each do |shop| %>
-    <% if @company.id === shop.company_id %>
-  <li>
+  <ul>
+    <li>
       <%= link_to shop.name, company_shop_path(@company, shop) %>
-    <% end %>
-  </li>
+    </li>
+  </ul>
 <% end %>
 </br>
 <%= link_to "Create" , new_company_shop_path%>
-</br><%= link_to "Back to the company", companies_path %>
+</br>
+<%= link_to "Back to the company", companies_path %>

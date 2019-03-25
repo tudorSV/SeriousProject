@@ -1,19 +1,14 @@
-<% if @company.id === @shop.company_id  %>
-  <h1>The information for the shop with the id of <%= @shop.id %> is:</h1>
-  <li><%= @shop.id %></li>
+<h1>The information for the shop: </h1>
+<ul>
   <li><%= @shop.name %></li>
   <li><%= @shop.email %></li>
   <li><%= @shop.active %></li>
-  <li><%= @company.id %></li>
   <li><%= @shop.address.short_address %></li>
   <li><%= @shop.address.full_address %></li>
   <li><%= @shop.address.city %></li>
   <li><%= @shop.address.zipcode %></li>
   <li><%= @shop.address.country %></li>
-
-  <%= link_to "Edit shop", edit_company_shop_path(@company, @shop) %>
-  <%= link_to "Delete shop", company_shop_path(@company, @shop), method: :delete %>
-  <%= link_to "Back to shops" , company_shops_path%>
-<%  else %>
- Oops, that's not your shop!
-<% end %>
+</ul>
+<%= link_to "Edit shop", edit_company_shop_path(@company, @shop) %>
+<%= link_to "Delete shop", company_shop_path(@company, @shop), method: :delete %>
+<%= link_to "Back to shops" , company_shops_path %>
