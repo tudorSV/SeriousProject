@@ -18,6 +18,7 @@ class EmployeesController < ApplicationController
                               address_id: @user.address.id))
     if @employee.save
       redirect_to company_shop_employee_path(@company, @shop, @employee)
+      flash[:success] = "Employee has been created!"
     else
       render 'new'
     end
@@ -36,9 +37,34 @@ class EmployeesController < ApplicationController
     @shop = Company.find(params[:shop_id])
     @employee = Employee.find(params[:id])
     @employee.destroy
+    flash[:success] = "Employee has been deleted!"
     redirect_to company_shop_path(@company, @shop)
   end
 
+  def index
+    @company = Shop.find(params[:company_id])
+    @shop = Shop.find(params[:shop_id])
+    @employees = Employee.all
+  end
+
+  def edit
+    @company = Company.find(params[:company_id])
+    @shop = Shop.find(params[:shop_id])
+    @employee = Employee.find(params[:id])
+  end
+
+  def update
+    @company = Company.find(params[:company_id])
+    @shop = Shop.find(params[:shop_id])
+    @employee = Employee.find(params[:id])
+
+    if @employee.update_attributes(employee_params)
+      flash[:success] = "Employee has been edited!"
+      redirect_to company_shop_employee_path(@company, @shop, @employee)
+    else
+      render 'edit'
+    end
+  end
 
   private
   def employee_params

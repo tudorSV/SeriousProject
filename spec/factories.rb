@@ -12,6 +12,12 @@ FactoryBot.define do
     sequence(:country) { |n| "Country #{n}" }
   end
 
+  factory :user do
+    sequence(:name) { |n| "User #{n}" }
+    sequence(:email) { |n| "User_#{n}@example.com" }
+    address
+  end
+
   factory :shop do
     sequence(:name) { |n| "Shop #{n}" }
     sequence(:email) { |n| "Shop_#{n}@example.com"}

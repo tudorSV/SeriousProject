@@ -11,6 +11,7 @@ class ShopsController < ApplicationController
     @shop = Shop.new(shop_params.merge(company_id: @company.id))
     @shop.address = @address
     if @shop.save
+      flash[:success] = "The shop has been created!"
       redirect_to company_shop_path(@company, @shop)
     else
       render 'new'
@@ -33,6 +34,7 @@ class ShopsController < ApplicationController
     @company = Company.find(params[:company_id])
     @shop.address.update_attributes(address_params)
     if @shop.update_attributes(shop_params)
+      flash[:success] = "The company has been updated!"
       redirect_to company_shop_path(@company, @shop)
     else
       render 'edit'
@@ -44,6 +46,7 @@ class ShopsController < ApplicationController
     @shop.destroy
     @shop.address.destroy
     @company = Company.find(params[:company_id])
+    flash[:success] = "The company has been deleted!"
     redirect_to company_shops_path(@company)
   end
 
