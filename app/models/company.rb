@@ -1,11 +1,7 @@
 class Company < ApplicationRecord
   EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
-  has_many :shops do
-    def by_id
-      where(id: :shop.company_id)
-    end
-  end
+  has_many :shops
 
   validates :name, presence: true, length: { maximum: 20 },
                    uniqueness: true

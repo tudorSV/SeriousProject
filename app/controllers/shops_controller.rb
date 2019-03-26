@@ -1,15 +1,13 @@
 class ShopsController < ApplicationController
   def new
     @company = Company.find(params[:company_id])
-    @address = Address.new
     @shop = Shop.new
+    @address = @shop.build_address
   end
 
   def create
     @company = Company.find(params[:company_id])
-    @address = Address.new(address_params)
-    @shop = Shop.new(shop_params.merge(company_id: @company.id))
-    @shop.address = @address
+    @shop = Shop.new(shop_params.merge(address_params).merge(company_id: @company.id))
     if @shop.save
       flash[:success] = 'The shop has been created!'
       redirect_to company_shop_path(@company, @shop)
@@ -34,21 +32,18 @@ class ShopsController < ApplicationController
   def update
     @company = Company.find(params[:company_id])
     @shop = Shop.find_by(id: params[:id], company_id: params[:company_id])
-    ActiveRecord::Base.transaction do
-      @shop.address.update!(address_params)
-      @shop.update!(shop_params)
-      flash[:success] = 'The shop has been updated!'
-      redirect_to company_shop_path(@company, @shop)
+    if @shop.update(shop_params.merge(address_params))
+      flash[:success] = "The shop has been updated!"
+      return redirect_to company_shop_path(@company, @shop)
+    else
+      flash[:failure] = "The shop couldn't be updated!"
+      render 'edit'
     end
-  rescue ActiveRecord::RecordInvalid
-    flash[:failure] = "The couldn't be updated!"
-    render 'edit'
   end
 
   def destroy
     @shop = Shop.find(params[:id])
     @shop.destroy
-    @shop.address.destroy
     @company = Company.find(params[:company_id])
     flash[:success] = 'The shop has been deleted!'
     redirect_to company_shops_path(@company)
@@ -66,10 +61,6 @@ class ShopsController < ApplicationController
   end
 
   def address_params
-    params.require(:shop).require(:address).permit(:short_address, :full_address, :city, :zipcode, :country)
-  end
-
-  def company_params
-    params.require(:shop).require(:company).permit(:company_id)
+    params.require(:shop).permit(address_attributes: [:short_address, :full_address, :city, :zipcode, :country] )
   end
 end

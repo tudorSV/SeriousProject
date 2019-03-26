@@ -22,10 +22,9 @@ describe 'Companies' do
       fill_in 'Name',  with: 'User 1'
       fill_in 'Email', with: 'example1@email.com'
       click_button 'Save changes'
-      visit company_path(company)
       expect(page).to have_selector('h1', text:  'Information about the current company')
-      expect(page).to have_selector('li', text:  company.name)
-      expect(page).to have_selector('li', text:  company.email)
+      expect(page).to have_selector('li', text:  'User 1')
+      expect(page).to have_selector('li', text:  'example1@email.com')
       expect(page).to have_selector('li', text:  company.active)
     end
   end

@@ -1,9 +1,11 @@
 <h1>
   Information about the current company
 </h1>
-<li><%= @company.name %></li>
-<li><%= @company.email %></li>
-<li><%= @company.active %></li>
+<ul>
+  <li><%= @company.name %></li>
+  <li><%= @company.email %></li>
+  <li><%= @company.active %></li>
+</ul>
 <%= link_to "Delete", @company, method: :delete, data: { confirm: "You sure you want to delete the company?" }  %>
 <%= link_to "Edit",  edit_company_path(@company) %>
 </br>
