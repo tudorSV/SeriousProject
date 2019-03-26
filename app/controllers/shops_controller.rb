@@ -1,7 +1,7 @@
 class ShopsController < ApplicationController
   def new
     @company = Company.find(params[:company_id])
-    @address = Address.new()
+    @address = Address.new
     @shop = Shop.new
   end
 
@@ -11,7 +11,7 @@ class ShopsController < ApplicationController
     @shop = Shop.new(shop_params.merge(company_id: @company.id))
     @shop.address = @address
     if @shop.save
-      flash[:success] = "The shop has been created!"
+      flash[:success] = 'The shop has been created!'
       redirect_to company_shop_path(@company, @shop)
     else
       flash[:failure] = "The couldn't be created!"
@@ -22,17 +22,13 @@ class ShopsController < ApplicationController
   def show
     @company = Company.find(params[:company_id])
     @shop = Shop.find_by(id: params[:id], company_id: params[:company_id])
-    if @shop.blank?
-      redirect_to company_shops_path
-    end
+    return redirect_to company_shops_path if @shop.blank?
   end
 
   def edit
     @company = Company.find(params[:company_id])
     @shop = Shop.find_by(id: params[:id], company_id: params[:company_id])
-    if @shop.blank?
-      redirect_to company_shops_path
-    end
+    return redirect_to company_shops_path if @shop.blank?
   end
 
   def update
@@ -41,12 +37,12 @@ class ShopsController < ApplicationController
     ActiveRecord::Base.transaction do
       @shop.address.update!(address_params)
       @shop.update!(shop_params)
-      flash[:success] = "The shop has been updated!"
+      flash[:success] = 'The shop has been updated!'
       redirect_to company_shop_path(@company, @shop)
     end
-    rescue Exception
-      flash[:failure] = "The couldn't be updated!"
-      render 'edit'
+  rescue ActiveRecord::RecordInvalid
+    flash[:failure] = "The couldn't be updated!"
+    render 'edit'
   end
 
   def destroy
@@ -54,7 +50,7 @@ class ShopsController < ApplicationController
     @shop.destroy
     @shop.address.destroy
     @company = Company.find(params[:company_id])
-    flash[:success] = "The shop has been deleted!"
+    flash[:success] = 'The shop has been deleted!'
     redirect_to company_shops_path(@company)
   end
 
@@ -64,8 +60,9 @@ class ShopsController < ApplicationController
   end
 
   private
+
   def shop_params
-   params.require(:shop).permit(:name, :email)
+    params.require(:shop).permit(:name, :email)
   end
 
   def address_params

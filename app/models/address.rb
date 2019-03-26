@@ -6,6 +6,6 @@ class Address < ApplicationRecord
   validates :city, presence: true, length: { maximum: 10 }
   validates :zipcode, presence: true,
                       length: { minimum: 5, maximum: 6 },
-                      numericality: { only_integer: true}
-  validates :country, presence:true
+                      numericality: { only_integer: true }
+  validates :country, presence: true
 end

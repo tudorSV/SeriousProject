@@ -11,38 +11,36 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 2019_03_13_102844) do
-
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension 'plpgsql'
 
-  create_table "addresses", force: :cascade do |t|
-    t.string "short_address"
-    t.string "full_address"
-    t.string "city"
-    t.string "zipcode"
-    t.string "country"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table 'addresses', force: :cascade do |t|
+    t.string 'short_address'
+    t.string 'full_address'
+    t.string 'city'
+    t.string 'zipcode'
+    t.string 'country'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 
-  create_table "companies", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
-    t.boolean "active", default: true
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table 'companies', force: :cascade do |t|
+    t.string 'name'
+    t.string 'email'
+    t.boolean 'active', default: true
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 
-  create_table "shops", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
-    t.boolean "active", default: true
-    t.bigint "company_id"
-    t.bigint "address_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["address_id"], name: "index_shops_on_address_id"
-    t.index ["company_id"], name: "index_shops_on_company_id"
+  create_table 'shops', force: :cascade do |t|
+    t.string 'name'
+    t.string 'email'
+    t.boolean 'active', default: true
+    t.bigint 'company_id'
+    t.bigint 'address_id'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['address_id'], name: 'index_shops_on_address_id'
+    t.index ['company_id'], name: 'index_shops_on_company_id'
   end
-
 end

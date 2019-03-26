@@ -10,5 +10,5 @@
   <li><%= @shop.address.country %></li>
 </ul>
 <%= link_to "Edit shop", edit_company_shop_path(@company, @shop) %>
-<%= link_to "Delete shop", company_shop_path(@company, @shop), method: :delete %>
+<%= link_to "Delete shop", company_shop_path(@company, @shop), method: :delete, data: { confirm: "Are you sure want to delete the shop?" } %>
 <%= link_to "Back to shops" , company_shops_path %>
