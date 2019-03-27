@@ -1,0 +1,14 @@
+<h1>The information for the shop: </h1>
+<ul>
+  <li><%= @shop.name %></li>
+  <li><%= @shop.email %></li>
+  <li><%= @shop.active %></li>
+  <li><%= @shop.address.short_address %></li>
+  <li><%= @shop.address.full_address %></li>
+  <li><%= @shop.address.city %></li>
+  <li><%= @shop.address.zipcode %></li>
+  <li><%= @shop.address.country %></li>
+</ul>
+<%= link_to "Edit shop", edit_company_shop_path(@company, @shop) %>
+<%= link_to "Delete shop", company_shop_path(@company, @shop), method: :delete, data: { confirm: "Are you sure you want to delete the shop?" } %>
+<%= link_to "Back to shops" , company_shops_path %>

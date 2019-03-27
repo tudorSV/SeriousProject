@@ -1,3 +1,5 @@
 Rails.application.routes.draw do
-   get 'test', to: 'test#show'
+  resources :companies do
+    resources :shops
+  end
 end

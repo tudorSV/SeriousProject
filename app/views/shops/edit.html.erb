@@ -1,0 +1,38 @@
+<h1>Edit <%= @shop.name %></h1>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for [@company, @shop] do |shop_form| %>
+      <%= render 'shared/error_messages', object: shop_form.object %>
+        <div>
+          <%= shop_form.label :name %>
+          <%= shop_form.text_field :name %>
+
+          <%= shop_form.label :email %>
+          <%= shop_form.text_field :email %>
+
+          <%= shop_form.label :active %>
+          <%= shop_form.text_field :active %>
+        </div>
+        </br>
+        <div>
+          <%= shop_form.fields_for :address do |address_form| %>
+            <%= address_form.label :short_address %>
+            <%= address_form.text_field :short_address %>
+
+            <%= address_form.label :full_address %>
+            <%= address_form.text_field :full_address %>
+
+            <%= address_form.label :city %>
+            <%= address_form.text_field :city %>
+
+            <%= address_form.label :zipcode %>
+            <%= address_form.text_field :zipcode %>
+
+            <%= address_form.label :country %>
+            <%= address_form.text_field :country %>
+          <% end %>
+        </div>
+        <%= shop_form.submit "Update the shop", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+</div>
