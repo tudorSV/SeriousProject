@@ -20,7 +20,7 @@
     <li>Country:<%= @shop.address.country %></li>
   <div class="showbtn">
     <%= link_to "Edit shop", edit_company_shop_path(@company, @shop) , class: "btn btn-primary" %>
-    <%= link_to "Delete shop", company_shop_path(@company, @shop), method: :delete , class: "btn btn-primary" %>
+    <%= link_to "Delete shop", company_shop_path(@company, @shop), method: :delete , class: "btn btn-primary", data: { confirm: "Are you sure you want to delete the shop?" } %>
     <%= link_to "Back to shops" , company_shops_path, class: "btn btn-primary" %>
 <%  else %>
  Oops, that's not your shop!

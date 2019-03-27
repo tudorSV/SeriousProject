@@ -12,7 +12,7 @@
        <div> <%= shop_form.label :active %> </div>
        <div> <%= shop_form.check_box :active %></div>
         </div>
-       <%= shop_form.fields_for @shop.address do |address_form| %>
+       <%= shop_form.fields_for :address do |address_form| %>
          <%= address_form.label :short_address %>
          <%= address_form.text_field :short_address %>
 

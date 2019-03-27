@@ -1,17 +1,12 @@
-<h1>All the shops for the companies with the ID of: <%= @company.id %></h1>
-</h1>
-<div class="show">
-  <ul>
-<% @shops.each do |shop| %>
-    <% if @company.id === shop.company_id %>
-  <li>
+<h1>All the shops that belong to the company: <%= @company.name %></h1>
+<ul>
+  <% @shops.each do |shop| %>
+    <li>
       <%= link_to shop.name, company_shop_path(@company, shop) %>
-    <% end %>
-  </li>
-<% end %>
-  <div class="showbtn">
-    <%= link_to "Create a new shop" , new_company_shop_path, class: "btn btn-primary"%>
-    <%= link_to "Back to the company", companies_path, class: "btn btn-primary" %>
-  </div>
-</div>
+      <% end %>
+  	</li>
 </ul>
+<div class="showbtn">
+  <%= link_to "Create a new shop" , new_company_shop_path, class: "btn btn-primary"%>
+  <%= link_to "Back to the company", companies_path, class: "btn btn-primary" %>
+</div>
