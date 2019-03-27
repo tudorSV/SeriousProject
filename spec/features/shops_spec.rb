@@ -1,9 +1,9 @@
 require 'rails_helper'
-require 'pry'
 
 describe 'Shops' do
   let(:company) { FactoryBot.create(:company) }
   let(:shop) { FactoryBot.create(:shop, company: company) }
+  let(:shop2) { FactoryBot.create(:shop, company: company) }
 
   describe 'index' do
     it 'should have content' do
@@ -71,45 +71,45 @@ describe 'Shops' do
     end
   end
 
-  describe 'delete', js: true do
+  describe 'delete' do
     it 'should have content' do
+      shop
+      shop2
       visit company_shop_path(company, shop)
       click_link('Delete shop')
-      page.accept_alert
-      # binding.pry
-      # expect(delete_link['data-confirm']).to eq 'Are you sure you want to delete the shop?'
-      # expect { click_link 'Delete shop' }.to change(Shop, :count).by(-1)
+      expect(page).to_not have_selector('li', text: shop.name)
+      expect(page).to have_selector('li', text: shop2.name)
     end
+  end
 
-    describe 'edit' do
-      let(:new_name) { 'Shop edit' }
-      let(:new_email) { 'Shopedit@example.com' }
-      let(:new_short_address) { 'edit' }
-      let(:new_full_address) { 'edit' }
-      let(:new_city) { 'City edit' }
-      let(:new_zipcode) { '01234' }
-      let(:new_country) { 'Country' }
-      it 'should have content' do
-        visit edit_company_shop_path(company, shop)
-        expect(page).to have_selector('h1', text: "Edit #{shop.name}")
-        fill_in 'Name',          with: new_name
-        fill_in 'Email',         with: new_email
-        fill_in 'Short address', with: new_short_address
-        fill_in 'Full address',  with: new_full_address
-        fill_in 'City',          with: new_city
-        fill_in 'Zipcode',       with: new_zipcode
-        fill_in 'Country',       with: new_country
-        click_button 'Update the shop'
-        expect(page).to have_selector('h1', text:  'The information for the shop:')
-        expect(page).to have_selector('li', text:  new_name)
-        expect(page).to have_selector('li', text:  new_email)
-        expect(page).to have_selector('li', text:  new_short_address)
-        expect(page).to have_selector('li', text:  new_full_address)
-        expect(page).to have_selector('li', text:  new_city)
-        expect(page).to have_selector('li', text:  new_name)
-        expect(page).to have_selector('li', text:  new_zipcode)
-        expect(page).to have_selector('li', text:  new_country)
-      end
+  describe 'edit' do
+    let(:new_name) { 'Shop edit' }
+    let(:new_email) { 'Shopedit@example.com' }
+    let(:new_short_address) { 'edit' }
+    let(:new_full_address) { 'edit' }
+    let(:new_city) { 'City edit' }
+    let(:new_zipcode) { '01234' }
+    let(:new_country) { 'Country' }
+    it 'should have content' do
+      visit edit_company_shop_path(company, shop)
+      expect(page).to have_selector('h1', text: "Edit #{shop.name}")
+      fill_in 'Name',          with: new_name
+      fill_in 'Email',         with: new_email
+      fill_in 'Short address', with: new_short_address
+      fill_in 'Full address',  with: new_full_address
+      fill_in 'City',          with: new_city
+      fill_in 'Zipcode',       with: new_zipcode
+      fill_in 'Country',       with: new_country
+      click_button 'Update the shop'
+      expect(page).to have_selector('h1', text:  'The information for the shop:')
+      expect(page).to have_selector('li', text:  new_name)
+      expect(page).to have_selector('li', text:  new_email)
+      expect(page).to have_selector('li', text:  new_short_address)
+      expect(page).to have_selector('li', text:  new_full_address)
+      expect(page).to have_selector('li', text:  new_city)
+      expect(page).to have_selector('li', text:  new_name)
+      expect(page).to have_selector('li', text:  new_zipcode)
+      expect(page).to have_selector('li', text:  new_country)
     end
   end
 end

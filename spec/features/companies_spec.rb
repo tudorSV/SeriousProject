@@ -2,6 +2,7 @@ require 'rails_helper'
 
 describe 'Companies' do
   let(:company) { FactoryBot.create(:company) }
+  let(:company2) { FactoryBot.create(:company) }
 
   describe 'index' do
     it 'should have content' do
@@ -41,8 +42,12 @@ describe 'Companies' do
 
   describe 'delete' do
     it 'should have content' do
+      company
+      company2
       visit company_path(company)
-      expect { click_link 'Delete' }.to change(Company, :count).by(-1)
+      click_link('Delete')
+      expect(page).to_not have_selector('li', text: company.name)
+      expect(page).to have_selector('li', text: company2.name)
     end
   end
 
