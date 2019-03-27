@@ -4,7 +4,7 @@
   <ul>
     <% @companies.each do |company| %>
       <li>
-        <a> <%= link_to company.name, company_path(company) %></a>
+        <%= link_to company.name, company_path(company) %>
       </li>
     <% end %>
     <div class="showbtn">

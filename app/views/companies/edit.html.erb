@@ -3,22 +3,22 @@
 </h2>
 
 <div class="form">
-    <%= form_for(@company) do |f| %>
-      <%= render 'shared/error_messages', object: f.object %>
-      <%= f.label :name %>
-      <%= f.text_field :name %>
+  <%= form_for(@company) do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
 
-      <%= f.label :email %>
-      <%= f.text_field :email %>
-  <div id="active">
-    <div><%= f.label :active %></div>
-    <div><%= f.check_box :active %></div>
-  </div>
-  <div class="more">
-   <div id="container">
-      <div style="width:400px;"><%= f.submit "Save changes", class: "btn btn-primary" %></div>
-    <% end %>
-      <div style="width:100px;"><%= link_to "Back", @company, class: "btn btn-primary"  %></div>
-  </div>
-  <%= link_to "Back", @company  %>
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+    <div id="active">
+      <div><%= f.label :active %></div>
+      <div><%= f.check_box :active %></div>
+    </div>
+    <div class="more">
+      <div id="container">
+        <div style="width:400px;"><%= f.submit "Save changes", class: "btn btn-primary" %></div>
+        <div style="width:100px;"><%= link_to "Back", @company, class: "btn btn-primary"  %></div>
+      </div>
+    </div>
+  <% end %>
 </div>
