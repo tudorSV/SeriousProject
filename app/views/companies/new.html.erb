@@ -10,8 +10,12 @@
 
       <%= f.label :email %>
       <%= f.text_field :email %>
-
-      <%= f.submit "Save changes", class: "btn btn-primary" %>
+      <div class="more">
+        <div id="container">
+          <div id="submit"><%= f.submit "Create a new company", class: "btn btn-primary" %></div>
+          <div id="back"><%= link_to "Back", companies_path, class: "btn btn-primary"  %></div>
+        </div>
+      </div>
     <% end %>
   </div>
 </div>

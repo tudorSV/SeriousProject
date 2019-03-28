@@ -1,9 +1,14 @@
 <h1>All the registered companies</h1>
 
-<% @companies.each do |company| %>
-  <li>
-    <%= link_to company.name, company_path(company) %>
-  </li>
-<% end %>
-</br>
-<%= link_to "Create" , new_company_path%>
+<div class="show">
+  <ul>
+    <% @companies.each do |company| %>
+      <li>
+        <%= link_to company.name, company_path(company) %>
+      </li>
+    <% end %>
+    <div class="showbtn">
+      <%= link_to "Create a new company" , new_company_path, class: "btn btn-primary" %>
+    </div>
+  </ul>
+</div>

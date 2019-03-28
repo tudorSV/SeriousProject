@@ -1,19 +1,24 @@
-<h1>Update your companies profile</h1>
+<h2 align="center">
+  Update your company profile
+</h2>
 
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <%= form_for(@company) do |f| %>
-      <%= f.label :name %>
-      <%= f.text_field :name %>
+<div class="form">
+  <%= form_for(@company) do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
 
-      <%= f.label :email %>
-      <%= f.text_field :email %>
-
-      <%= f.label :active %>
-      <%= f.text_field :active %>
-
-      <%= f.submit "Save changes", class: "btn btn-primary" %>
-    <% end %>
-  </div>
-  <%= link_to "Back", @company  %>
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+    <div id="active">
+      <div><%= f.label :active %></div>
+      <div><%= f.check_box :active %></div>
+    </div>
+    <div class="more">
+      <div id="container">
+        <div id="submit"><%= f.submit "Save changes", class: "btn btn-primary" %></div>
+        <div id="back"><%= link_to "Back", @company, class: "btn btn-primary"  %></div>
+      </div>
+    </div>
+  <% end %>
 </div>

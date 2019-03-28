@@ -33,7 +33,7 @@ class ShopsController < ApplicationController
     @company = Company.find(params[:company_id])
     @shop = Shop.find_by(id: params[:id], company_id: params[:company_id])
     if @shop.update(shop_params.merge(address_params))
-      flash[:success] = "The shop has been updated!"
+      flash[:success] = 'The shop has been updated!'
       return redirect_to company_shop_path(@company, @shop)
     else
       flash[:failure] = "The shop couldn't be updated!"
@@ -57,7 +57,7 @@ class ShopsController < ApplicationController
   private
 
   def shop_params
-    params.require(:shop).permit(:name, :email)
+    params.require(:shop).permit(:name, :email, :active)
   end
 
   def address_params
