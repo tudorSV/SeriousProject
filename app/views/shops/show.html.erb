@@ -6,7 +6,7 @@
    <ul>
     <li>Shop name:<%= @shop.name %></li>
     <li>Shop email:<%= @shop.email %></li>
-    <%= render 'shared/active_or_no' %>
+    <%= render 'shared/active_or_no', active: @shop.active %>
     <li>Short address:<%= @shop.address.short_address %></li>
     <li>Long address:<%= @shop.address.full_address %></li>
     <li>City:<%= @shop.address.city %></li>

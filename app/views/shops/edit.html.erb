@@ -30,8 +30,8 @@
     <% end %>
     <div class="more">
       <div id="container">
-        <div style="width:400px;"><%= shop_form.submit "Save changes", class: "btn btn-primary" %></div>
-        <div style="width:100px;"><%= link_to "Back", company_shop_path(@company, @shop), class: "btn btn-primary"  %></div>
+        <div id="submit"><%= shop_form.submit "Save changes", class: "btn btn-primary" %></div>
+        <div id="back"><%= link_to "Back", company_shop_path(@company, @shop), class: "btn btn-primary"  %></div>
       </div>
     </div>
   <% end %>

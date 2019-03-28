@@ -5,7 +5,7 @@
   <ul>
     <li>Name: <%= @company.name %></li>
     <li>Email: <%= @company.email %></li>
-    <%= render 'shared/active_or_no'  %>
+    <%= render 'shared/active_or_no', active: @company.active  %>
   </ul>
   <div class="showbtn">
     <%= link_to "Edit the company profile",  edit_company_path(@company), class: "btn btn-primary" %>
