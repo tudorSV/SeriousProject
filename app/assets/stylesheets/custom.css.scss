@@ -48,8 +48,6 @@ body {
   width: 50%;
 }
 
-
-
 #active div{
   display:inline-block;
   width:50px;
@@ -57,10 +55,18 @@ body {
 
 #container div {
   display: inline-block;
+  }
+
+#submit div {
+  width: 400px;
+}
+
+#back div {
+  width: 100px;
 }
 
 .more div {
-  margin-left: 10%;
+  margin-left: 15%;
 }
 
 .cont {
@@ -85,7 +91,6 @@ h1 {
   text-align: center;
 }
 
-
 input, textarea, select, .uneditable-input{
   border: 1px solid #bbb;
   width: 100%;
@@ -95,8 +100,6 @@ input, textarea, select, .uneditable-input{
 }
 
 /* Style for lists */
-
-
 
 h2 {
   font: 400 40px/1.5 Helvetica, Verdana, sans-serif;

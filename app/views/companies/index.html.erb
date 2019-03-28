@@ -1,10 +1,10 @@
-<h1>Companies we have in the system</h1>
+<h1>All the registered companies</h1>
 
 <div class="show">
   <ul>
     <% @companies.each do |company| %>
       <li>
-        <a> <%= link_to company.name, company_path(company) %></a>
+        <%= link_to company.name, company_path(company) %>
       </li>
     <% end %>
     <div class="showbtn">

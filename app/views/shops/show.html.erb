@@ -1,33 +1,21 @@
-<% if @company.id === @shop.company_id  %>
-  <h2 class="h2-comp">
-    Information about <%= @shop.name %> which belongs to <%= @company.name %>
-  </h2>
+<h2 class="h2-comp">
+  Information about <b> <%= @shop.name %> </b> which belongs to <b> <%= @company.name %></b>
+</h2>
 
  <div class="show">
    <ul>
     <li>Shop name:<%= @shop.name %></li>
     <li>Shop email:<%= @shop.email %></li>
-    <li>
-      <% if @company.active %>
-        Active
-      <% else %>
-        Inactive
-      <% end %>
+    <%= render 'shared/active_or_no', active: @shop.active %>
     <li>Short address:<%= @shop.address.short_address %></li>
     <li>Long address:<%= @shop.address.full_address %></li>
     <li>City:<%= @shop.address.city %></li>
     <li>Zipcode:<%= @shop.address.zipcode %></li>
     <li>Country:<%= @shop.address.country %></li>
+  </ul>
   <div class="showbtn">
     <%= link_to "Edit shop", edit_company_shop_path(@company, @shop) , class: "btn btn-primary" %>
-    <%= link_to "Delete shop", company_shop_path(@company, @shop), method: :delete , class: "btn btn-primary" %>
+    <%= link_to "Delete shop", company_shop_path(@company, @shop), method: :delete , class: "btn btn-primary", data: { confirm: "Are you sure you want to delete the shop?" } %>
     <%= link_to "Back to shops" , company_shops_path, class: "btn btn-primary" %>
-    <%= link_to "Add employee" , new_company_shop_employee_path(@company,@shop), class: "btn btn-primary" %>
-    <%= link_to "View all employees" , company_shop_employees_path(@company,@shop), class: "btn btn-primary" %>
-
-<%  else %>
- Oops, that's not your shop!
-<% end %>
-</div>
-</ul>
+  </div>
 </div>

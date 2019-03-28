@@ -5,19 +5,13 @@
   <ul>
     <li>Name: <%= @company.name %></li>
     <li>Email: <%= @company.email %></li>
-    <li>
-      <% if @company.active %>
-        Active
-      <% else %>
-        Inactive
-      <% end %>
-    </li>
-    <div class="showbtn">
-    <%= link_to "Create a new shop", new_company_shop_path(@company), class: "btn btn-primary" %>
-    <%= link_to "Delete the company", @company, method: :delete, class: "btn btn-primary" %>
+    <%= render 'shared/active_or_no', active: @company.active  %>
+  </ul>
+  <div class="showbtn">
     <%= link_to "Edit the company profile",  edit_company_path(@company), class: "btn btn-primary" %>
+    <%= link_to "Delete the company", @company, method: :delete, class: "btn btn-primary", data: { confirm: "Are you sure you want to delete the shop?" } %>
+    <%= link_to "Create a new shop", new_company_shop_path(@company), class: "btn btn-primary" %>
     <%= link_to "Show all shops", company_shops_path(@company) , class: "btn btn-primary"%>
     <%= link_to "Back", companies_path , class: "btn btn-primary"%>
-    </div>
-  </ul>
+  </div>
 </div>
