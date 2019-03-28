@@ -30,7 +30,12 @@
             <%= address_form.text_field :country %>
           <% end %>
         </div>
-        <%= shop_form.submit "Create a new shop", class: "btn btn-primary" %>
+        <div class="more">
+          <div id="container">
+            <div id="submit"><%= shop_form.submit "Save changes", class: "btn btn-primary" %></div>
+            <div id="back"><%= link_to "Back", company_shops_path(@company), class: "btn btn-primary"  %></div>
+          </div>
+        </div>
       <% end %>
     </div>
   </div>

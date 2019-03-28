@@ -12,8 +12,8 @@
       <%= f.text_field :email %>
       <div class="more">
         <div id="container">
-          <div style="width:400px;"><%= f.submit "Create a new company", class: "btn btn-primary" %></div>
-          <div style="width:100px;"><%= link_to "Back", companies_path, class: "btn btn-primary"  %></div>
+          <div id="submit"><%= f.submit "Create a new company", class: "btn btn-primary" %></div>
+          <div id="back"><%= link_to "Back", companies_path, class: "btn btn-primary"  %></div>
         </div>
       </div>
     <% end %>
