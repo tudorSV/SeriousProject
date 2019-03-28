@@ -15,25 +15,27 @@ describe 'Companies' do
   end
 
   describe 'create' do
+    let(:new_name) { 'Company 3 edit' }
+    let(:new_email) { 'Company_3@example.com' }
     it 'should have content' do
       visit new_company_path
       expect(page).to have_selector('h1', text: 'Create a new company')
       expect(page).to have_field('Name')
       expect(page).to have_field('Email')
-      fill_in 'Name',  with: 'User 1'
-      fill_in 'Email', with: 'example1@email.com'
-      click_button 'Save changes'
-      expect(page).to have_selector('h1', text:  'Information about the current company')
-      expect(page).to have_selector('li', text:  'User 1')
-      expect(page).to have_selector('li', text:  'example1@email.com')
-      expect(page).to have_selector('li', text:  company.active)
+      fill_in 'Name',  with: new_name
+      fill_in 'Email', with: new_email
+      click_button 'Create a new company'
+      expect(page).to have_selector('h2', text:  "Information about #{new_name}")
+      expect(page).to have_selector('li', text:  new_name)
+      expect(page).to have_selector('li', text:  new_email)
+      expect(page).to have_selector('li', text:  'Active')
     end
   end
 
   describe 'show' do
     it 'should have content' do
       visit company_path(company)
-      expect(page).to have_selector('h1', text:  'Information about the current company')
+      expect(page).to have_selector('h2', text:  "Information about #{company.name}")
       expect(page).to have_selector('li', text:  company.name)
       expect(page).to have_selector('li', text:  company.email)
     end
@@ -56,16 +58,17 @@ describe 'Companies' do
     let(:new_active) { false }
     before do
       visit edit_company_path(company)
-      expect(page).to have_selector('h1', text: 'Update your companies profile')
+      expect(page).to have_selector('h2', text: 'Update your company profile')
       fill_in 'Name',       with: new_name
       fill_in 'Email',      with: new_email
-      fill_in 'Active',     with: new_active
+      page.uncheck('Active')
       click_button 'Save changes'
     end
     it 'should have content' do
       visit company_path(company)
       expect(page).to have_selector('li', text:  new_name)
       expect(page).to have_selector('li', text:  new_email)
+      expect(page).to have_selector('li', text:  'Inactive')
     end
   end
 end

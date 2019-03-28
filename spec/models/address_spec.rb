@@ -37,7 +37,7 @@ describe 'Address model' do
     end
 
     describe 'when the city name is too long' do
-      before { address.city = 'a' * 16 }
+      before { address.city = 'a' * 21 }
       it 'should require a shorter city name' do
         expect(address).to_not be_valid
       end

@@ -28,7 +28,7 @@ describe 'Shops' do
     it 'should have content' do
       company
       visit new_company_shop_path(company)
-      expect(page).to have_selector('h1', text: 'Input information for a new shop')
+      expect(page).to have_selector('h1', text: 'Create a new shop. Input information for a new shop')
       expect(page).to have_field('Name')
       expect(page).to have_field('Email')
       expect(page).to have_field('Short address')
@@ -44,10 +44,10 @@ describe 'Shops' do
       fill_in 'Zipcode',       with: new_zipcode
       fill_in 'Country',       with: new_country
       click_button 'Create a new shop'
-      expect(page).to have_selector('h1', text: 'The information for the shop:')
+      expect(page).to have_selector('h2', text: "Information about #{new_name} which belongs to #{company.name}")
       expect(page).to have_selector('li', text: new_name)
       expect(page).to have_selector('li', text: new_email)
-      expect(page).to have_selector('li', text: shop.active)
+      expect(page).to have_selector('li', text: 'Active')
       expect(page).to have_selector('li', text: new_short_address)
       expect(page).to have_selector('li', text: new_full_address)
       expect(page).to have_selector('li', text: new_city)
@@ -59,10 +59,10 @@ describe 'Shops' do
   describe 'show' do
     it 'should have content' do
       visit company_shop_path(company, shop)
-      expect(page).to have_selector('h1', text: 'The information for the shop:')
+      expect(page).to have_selector('h2', text: "Information about #{shop.name} which belongs to #{company.name}")
       expect(page).to have_selector('li', text: shop.name)
       expect(page).to have_selector('li', text: shop.email)
-      expect(page).to have_selector('li', text: shop.active)
+      expect(page).to have_selector('li', text: 'Active')
       expect(page).to have_selector('li', text: shop.address.short_address)
       expect(page).to have_selector('li', text: shop.address.full_address)
       expect(page).to have_selector('li', text: shop.address.city)
@@ -100,8 +100,8 @@ describe 'Shops' do
       fill_in 'City',          with: new_city
       fill_in 'Zipcode',       with: new_zipcode
       fill_in 'Country',       with: new_country
-      click_button 'Update the shop'
-      expect(page).to have_selector('h1', text:  'The information for the shop:')
+      click_button 'Save changes'
+      expect(page).to have_selector('h2', text:  "Information about #{new_name} which belongs to #{company.name}")
       expect(page).to have_selector('li', text:  new_name)
       expect(page).to have_selector('li', text:  new_email)
       expect(page).to have_selector('li', text:  new_short_address)

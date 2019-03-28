@@ -1,6 +1,6 @@
 class Address < ApplicationRecord
-  has_one :shops, inverse_of: :address
-  has_one :users, inverse_of: :address
+  # has_one :shops, inverse_of: :address
+  # has_one :users, inverse_of: :address
 
   validates :short_address, presence: true, length: { maximum: 15 }
   validates :full_address, presence: true, length: { maximum: 25 }
@@ -8,5 +8,4 @@ class Address < ApplicationRecord
   validates :zipcode, presence: true,
                       length: { minimum: 5, maximum: 6 },
                       numericality: { only_integer: true }
-  validates :country, presence: true
 end

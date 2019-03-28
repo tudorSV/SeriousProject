@@ -42,7 +42,7 @@ class EmployeesController < ApplicationController
   end
 
   def index
-    @company = Shop.find(params[:company_id])
+    @company = Company.find(params[:company_id])
     @shop = Shop.find(params[:shop_id])
     @employees = Employee.all
   end

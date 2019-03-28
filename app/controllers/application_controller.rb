@@ -8,4 +8,8 @@ class ApplicationController < ActionController::Base
       @current_user = nil
     end
   end
+
+  rescue_from CanCan::AccessDenied do |exception|
+     render :file => "#{Rails.root}/public/403.html", :status => 403, :layout => false
+   end
 end

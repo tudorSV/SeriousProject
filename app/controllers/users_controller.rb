@@ -1,8 +1,7 @@
 class UsersController < ApplicationController
-
   def new
     @user = User.new
-    @address = Address.new()
+    @address = Address.new
   end
 
   def create
@@ -19,14 +18,17 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    authorize! :show, @user, message: "Not authorized to read #{@user.name}"
   end
 
   def edit
     @user = User.find(params[:id])
+    authorize! :edit, @user
   end
 
   def update
     @user = User.find(params[:id])
+    authorize! :update, @user
     @user.address.update_attributes(address_params)
     if @user.update_attributes(user_params)
       flash[:success] = "The user has been updated!"
@@ -37,6 +39,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    authorize! :destroy, @user
     @user = User.find(params[:id])
     @user.destroy
     @user.address.destroy
@@ -45,15 +48,17 @@ class UsersController < ApplicationController
   end
 
   def index
+    authorize! :read, @user
     @user = User.all
   end
 
   private
-    def user_params
-      params.require(:user).permit(:name, :username, :email, :password, :password_confirmation)
-    end
 
-    def address_params
-      params.require(:user).require(:address).permit(:short_address, :full_address, :city, :zipcode, :country)
-    end
+  def user_params
+    params.require(:user).permit(:name, :username, :email, :password, :password_confirmation)
+  end
+
+  def address_params
+    params.require(:user).require(:address).permit(:short_address, :full_address, :city, :zipcode, :country)
+  end
 end
