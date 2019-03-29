@@ -1,7 +1,4 @@
 class EmployeesController < ApplicationController
-
-  # scope :same_id
-
   def new
     # @user = User.find(params[:user_id])
     @employee = Employee.new
@@ -13,31 +10,32 @@ class EmployeesController < ApplicationController
     @company = Company.find(params[:company_id])
     @shop = Shop.find(params[:shop_id])
     @user = User.find(params[:employee][:user_id])
-    @employee = Employee.new(employee_params.merge( user_id: @user.id,
-                              shop_id: @shop.id, company_id: @company.id,
-                              address_id: @user.address.id))
+    @employee = Employee.new(employee_params.merge(user_id: @user.id,
+                             shop_id: @shop.id, company_id: @company.id,
+                             address_id: @user.address.id))
     if @employee.save
       redirect_to company_shop_employee_path(@company, @shop, @employee)
-      flash[:success] = "Employee has been created!"
+      flash[:success] = 'Employee has been created!'
     else
       render 'new'
     end
   end
 
-
   def show
     @company = Company.find(params[:company_id])
-    @shop = Shop.find(params[:shop_id])
     @employee = Employee.find(params[:id])
+    @shop = Shop.find(params[:shop_id])
+    if current_user.id != @employee.user_id
+      authorize! :show, current_user
+    end
   end
-
 
   def destroy
     @company = Company.find(params[:company_id])
     @shop = Company.find(params[:shop_id])
     @employee = Employee.find(params[:id])
     @employee.destroy
-    flash[:success] = "Employee has been deleted!"
+    flash[:success] = 'Employee has been deleted!'
     redirect_to company_shop_path(@company, @shop)
   end
 
@@ -59,7 +57,7 @@ class EmployeesController < ApplicationController
     @employee = Employee.find(params[:id])
 
     if @employee.update_attributes(employee_params)
-      flash[:success] = "Employee has been edited!"
+      flash[:success] = 'Employee has been edited'
       redirect_to company_shop_employee_path(@company, @shop, @employee)
     else
       render 'edit'
@@ -67,6 +65,7 @@ class EmployeesController < ApplicationController
   end
 
   private
+
   def employee_params
     params.require(:employee).permit(:role, :user_id)
   end
@@ -74,5 +73,4 @@ class EmployeesController < ApplicationController
   def user_params
     params.require(:user).permit(:user_id)
   end
-
 end

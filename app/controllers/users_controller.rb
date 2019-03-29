@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     @address = Address.new(address_params)
     @user.address = @address
     if @user.save
-      flash[:success] = "The user has been created!"
+      flash[:success] = 'The user has been created!'
       redirect_to @user
     else
       render 'new'
@@ -18,44 +18,52 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    authorize! :show, @user, message: "Not authorized to read #{@user.name}"
+    authorize! :show, current_user
   end
 
   def edit
     @user = User.find(params[:id])
-    authorize! :edit, @user
+    if @user.id != current_user.id
+      authorize! :edit, current_user
+    end
   end
 
   def update
     @user = User.find(params[:id])
-    authorize! :update, @user
-    @user.address.update_attributes(address_params)
-    if @user.update_attributes(user_params)
-      flash[:success] = "The user has been updated!"
-      redirect_to user_path(@user)
+    if @user.id != current_user.id
+      authorize! :update, current_user
     else
-      render 'edit'
+      @user.address.update_attributes(address_params)
+      if @user.update_attributes(user_params)
+        flash[:success] = 'The user has been updated!'
+        redirect_to user_path(@user)
+      else
+        render 'edit'
+      end
     end
   end
 
   def destroy
-    authorize! :destroy, @user
     @user = User.find(params[:id])
-    @user.destroy
-    @user.address.destroy
-    flash[:success] = "The user has been deleted!"
-    redirect_to root_path
+    if @user.id != current_user.id
+      authorize! :destroy, current_user
+    else
+      @user.destroy
+      @user.address.destroy
+      flash[:success] = 'The user has been deleted!'
+      redirect_to root_path
+    end
   end
 
   def index
-    authorize! :read, @user
+    authorize! :read, current_user
     @user = User.all
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:name, :username, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :username, :email, :admin, :password, :password_confirmation)
   end
 
   def address_params

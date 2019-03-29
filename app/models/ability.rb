@@ -5,6 +5,8 @@ class Ability
     if current_user
       if current_user.admin
         admin
+      else
+        employee
       end
     else
       guest
@@ -14,13 +16,17 @@ class Ability
   private
 
   def admin
-    can :manage, :all
+    can :manage, User
+    can :manage, Company
+    can :manage, Shop
   end
 
   def employee
+    can :read, User
+    can :read, Shop   #, employees: { user_id: current_user.id }
+    can :read, Company
   end
 
   def guest
-    can :read, :all
   end
 end

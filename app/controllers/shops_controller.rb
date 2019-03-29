@@ -18,20 +18,23 @@ class ShopsController < ApplicationController
   end
 
   def show
-    @company = Company.find(params[:company_id])
-    @shop = Shop.find_by(id: params[:id], company_id: params[:company_id])
-    return redirect_to company_shops_path if @shop.blank?
+      @company = Company.find(params[:company_id])
+      @shop = Shop.find_by(id: params[:id], company_id: params[:company_id])
+      return redirect_to company_shops_path if @shop.blank?
   end
 
   def edit
+    authorize! :edit, current_user
     @company = Company.find(params[:company_id])
     @shop = Shop.find_by(id: params[:id], company_id: params[:company_id])
     return redirect_to company_shops_path if @shop.blank?
   end
 
   def update
+    authorize! :update, current_user
     @company = Company.find(params[:company_id])
     @shop = Shop.find_by(id: params[:id], company_id: params[:company_id])
+    # if current_user.id != @shop.
     if @shop.update(shop_params.merge(address_params))
       flash[:success] = 'The shop has been updated!'
       return redirect_to company_shop_path(@company, @shop)
@@ -42,6 +45,7 @@ class ShopsController < ApplicationController
   end
 
   def destroy
+    authorize! :destroy, current_user
     @shop = Shop.find(params[:id])
     @shop.destroy
     @company = Company.find(params[:company_id])

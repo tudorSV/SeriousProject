@@ -2,19 +2,16 @@ class SessionsController < ApplicationController
   def new; end
 
   def create
-    if current_user
-      flash[:fail] = "A user is already logged on"
-      redirect_to users_path
-    else
     user = User.find_by_username(params[:username])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
+      flash[:success] = 'The user logged in!'
       redirect_to users_path
     else
+      flash[:danger] = "The user couldn't log in!"
       render 'new'
     end
   end
-end
 
   def destroy
     session[:user_id] = nil
