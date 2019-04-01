@@ -4,29 +4,32 @@ class Ability
   def initialize(current_user)
     if current_user
       if current_user.admin
-        admin
+        admin(current_user)
       else
-        employee
+        employee(current_user)
       end
     else
-      guest
+      guest(current_user)
     end
   end
 
   private
 
-  def admin
-    can :manage, User
-    can :manage, Company
-    can :manage, Shop
+  def admin(current_user)
+    can :manage, :all
   end
 
-  def employee
-    can :read, User
-    can :read, Shop   #, employees: { user_id: current_user.id }
-    can :read, Company
+  def employee(current_user)
+    cannot :manage, User
+    can :manage, Company, employees: { user_id: current_user.id }
+    can :manage, Shop, employees: { user_id: current_user.id }
+    can :manage, Employee, user_id: current_user.id
   end
 
-  def guest
+  def guest(current_user)
+    can :create, User
+    cannot :manage, Company
+    cannot :manage, Shop
+    cannot :manage, Employee
   end
 end

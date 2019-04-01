@@ -1,6 +1,7 @@
 class EmployeesController < ApplicationController
+  load_and_authorize_resource
+
   def new
-    # @user = User.find(params[:user_id])
     @employee = Employee.new
     @company = Company.find(params[:company_id])
     @shop = Shop.find(params[:shop_id])
@@ -25,18 +26,15 @@ class EmployeesController < ApplicationController
     @company = Company.find(params[:company_id])
     @employee = Employee.find(params[:id])
     @shop = Shop.find(params[:shop_id])
-    if current_user.id != @employee.user_id
-      authorize! :show, current_user
-    end
   end
 
   def destroy
     @company = Company.find(params[:company_id])
     @shop = Company.find(params[:shop_id])
     @employee = Employee.find(params[:id])
-    @employee.destroy
     flash[:success] = 'Employee has been deleted!'
     redirect_to company_shop_path(@company, @shop)
+    @employee.destroy
   end
 
   def index
@@ -55,7 +53,6 @@ class EmployeesController < ApplicationController
     @company = Company.find(params[:company_id])
     @shop = Shop.find(params[:shop_id])
     @employee = Employee.find(params[:id])
-
     if @employee.update_attributes(employee_params)
       flash[:success] = 'Employee has been edited'
       redirect_to company_shop_employee_path(@company, @shop, @employee)

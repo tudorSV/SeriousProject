@@ -1,7 +1,13 @@
 class UsersController < ApplicationController
+  load_and_authorize_resource
+
   def new
-    @user = User.new
-    @address = Address.new
+    if current_user
+      redirect_to user_path(current_user)
+    else
+      @user = User.new
+      @address = Address.new
+    end
   end
 
   def create
@@ -10,53 +16,42 @@ class UsersController < ApplicationController
     @user.address = @address
     if @user.save
       flash[:success] = 'The user has been created!'
-      redirect_to @user
+      redirect_to login_path
     else
+      flash[:danger] = "The user couldn't be updated!"
       render 'new'
     end
   end
 
   def show
     @user = User.find(params[:id])
-    authorize! :show, current_user
   end
 
   def edit
     @user = User.find(params[:id])
-    if @user.id != current_user.id
-      authorize! :edit, current_user
-    end
   end
 
   def update
     @user = User.find(params[:id])
-    if @user.id != current_user.id
-      authorize! :update, current_user
+    @user.address.update_attributes(address_params)
+    if @user.update_attributes(user_params)
+      flash[:success] = 'The user has been updated!'
+      redirect_to user_path(@user)
     else
-      @user.address.update_attributes(address_params)
-      if @user.update_attributes(user_params)
-        flash[:success] = 'The user has been updated!'
-        redirect_to user_path(@user)
-      else
-        render 'edit'
-      end
+      flash[:danger] = "The user couldn't be created!"
+      render 'edit'
     end
   end
 
   def destroy
     @user = User.find(params[:id])
-    if @user.id != current_user.id
-      authorize! :destroy, current_user
-    else
-      @user.destroy
-      @user.address.destroy
-      flash[:success] = 'The user has been deleted!'
-      redirect_to root_path
-    end
+    @user.destroy
+    @user.address.destroy
+    flash[:success] = 'The user has been deleted!'
+    redirect_to users_path
   end
 
   def index
-    authorize! :read, current_user
     @user = User.all
   end
 

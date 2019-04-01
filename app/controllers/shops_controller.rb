@@ -1,4 +1,7 @@
 class ShopsController < ApplicationController
+  load_and_authorize_resource :company
+  load_and_authorize_resource :shop, through: :company
+
   def new
     @company = Company.find(params[:company_id])
     @shop = Shop.new
@@ -18,23 +21,18 @@ class ShopsController < ApplicationController
   end
 
   def show
-      @company = Company.find(params[:company_id])
-      @shop = Shop.find_by(id: params[:id], company_id: params[:company_id])
-      return redirect_to company_shops_path if @shop.blank?
+    return redirect_to company_shops_path if @shop.blank?
   end
 
   def edit
-    authorize! :edit, current_user
     @company = Company.find(params[:company_id])
     @shop = Shop.find_by(id: params[:id], company_id: params[:company_id])
     return redirect_to company_shops_path if @shop.blank?
   end
 
   def update
-    authorize! :update, current_user
     @company = Company.find(params[:company_id])
     @shop = Shop.find_by(id: params[:id], company_id: params[:company_id])
-    # if current_user.id != @shop.
     if @shop.update(shop_params.merge(address_params))
       flash[:success] = 'The shop has been updated!'
       return redirect_to company_shop_path(@company, @shop)
@@ -45,7 +43,6 @@ class ShopsController < ApplicationController
   end
 
   def destroy
-    authorize! :destroy, current_user
     @shop = Shop.find(params[:id])
     @shop.destroy
     @company = Company.find(params[:company_id])
@@ -54,8 +51,6 @@ class ShopsController < ApplicationController
   end
 
   def index
-    @company = Company.find(params[:company_id])
-    @shops = @company.shops
   end
 
   private
@@ -65,6 +60,6 @@ class ShopsController < ApplicationController
   end
 
   def address_params
-    params.require(:shop).permit(address_attributes: [:short_address, :full_address, :city, :zipcode, :country] )
+    params.require(:shop).permit(address_attributes: [:short_address, :full_address, :city, :zipcode, :country])
   end
 end

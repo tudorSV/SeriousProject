@@ -27,6 +27,20 @@
   }
 }
 
+#user{
+  color: #ffffff;
+  font-size: 20px;
+  margin-right: 10px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+
+.pull-right{
+  padding-top: 9px;
+  text-transform: capitalize;
+}
+
 body {
   // text-align: center;
   margin-top: 50px;
@@ -68,6 +82,7 @@ body {
 
 .more div {
   margin-left: 15%;
+  padding-bottom: 15px;
 }
 
 .cont {
@@ -79,6 +94,11 @@ body {
 
 }
 
+#centerbtn div{
+  border-left: 200px;
+  color: #f14141;
+}
+
 .showbtn {
   padding-top: 20px;
 }
@@ -86,6 +106,7 @@ body {
 /* Typography */
 
 h1 {
+  padding-top: 15px;
   font-size: 3em;
   letter-spacing: -2px;
   margin-bottom: 30px;
@@ -122,6 +143,13 @@ li {
   // width: 15%;
   text-decoration: none;
 }
+p {
+  font: 200 20px/1.5 Helvetica, Verdana, sans-serif;
+  padding-top: 10px;
+  margin-right: 10px;
+  text-decoration: none;
+  text-align: center;
+}
 
 li:last-child {
   border: none;
@@ -133,3 +161,4 @@ li a {
   display: block;
   width: 200px;
 }
+
