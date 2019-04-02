@@ -70,7 +70,11 @@ body {
 
 #container div {
   display: inline-block;
-  }
+}
+
+#center div {
+  position:relative;
+}
 
 #submit div {
   width: 400px;

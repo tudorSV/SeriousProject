@@ -20,7 +20,7 @@ class Ability
   end
 
   def employee(current_user)
-    cannot :manage, User
+    can :manage, User, id: current_user.id
     can :manage, Company, employees: { user_id: current_user.id }
     can :manage, Shop, employees: { user_id: current_user.id }
     can :manage, Employee, user_id: current_user.id

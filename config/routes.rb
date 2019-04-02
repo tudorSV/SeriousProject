@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'recover_password/Index'
   root to: 'welcome#index'
   resources :companies do
     resources :shops do
@@ -9,6 +10,7 @@ Rails.application.routes.draw do
   resources :users
   resources :sessions
   resources :welcome, only: :index
+  resources :recover_password, only: :index
 
   get 'welcome/index'
   get 'signup',  to: 'users#new', as: 'signup'

@@ -9,7 +9,13 @@
      bicycle dealers (IBDs) is also used.
      The local bike shop is a key component of the bicycle industry and, in recognition of the value that local bike shops provide, some manufacturers only sell their bicycles through dealerships.
    </p>
-    <div id="centerbtn">
-      <%= link_to "Sign Up Now!", new_user_path, class: "btn btn-primary" %>
-    </div>
+</div>
+<div class="more">
+  <div id="container">
+  <div style="width:100px;"><%= link_to "Sign in", new_session_path, class: "btn btn-primary" %></div>
+  <div style="width:100px;"><%= link_to "Sign up", new_user_path, class: "btn btn-primary"  %></div>
+  <% if current_user %>
+    <div style="width:100px;"><%= link_to "Show companies", companies_path, class: "btn btn-primary"  %></div>
+  <% end %>
+  </div>
 </div>
