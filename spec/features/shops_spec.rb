@@ -2,8 +2,16 @@ require 'rails_helper'
 
 describe 'Shops' do
   let(:company) { FactoryBot.create(:company) }
+  let(:user) { FactoryBot.create(:user) }
   let(:shop) { FactoryBot.create(:shop, company: company) }
   let(:shop2) { FactoryBot.create(:shop, company: company) }
+
+  before do
+    visit new_session_path
+    fill_in 'Username', with: user.username
+    fill_in 'Password', with: user.password
+    click_button 'Login'
+  end
 
   describe 'index' do
     it 'should have content' do
@@ -26,6 +34,7 @@ describe 'Shops' do
     let(:new_country) { 'Country' }
     let(:shop2) { FactoryBot.create(:shop) }
     it 'should have content' do
+      user
       company
       visit new_company_shop_path(company)
       expect(page).to have_selector('h1', text: 'Create a new shop. Input information for a new shop')

@@ -34,10 +34,10 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 # Reduces boot times through caching; required in config/boot.rb
-gem 'bcrypt'
+gem 'bcrypt', '3.1.12'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap-sass', '3.4.1'
-gem 'cancancan', '~> 2.0'
+gem 'cancancan', '2.3'
 gem 'rubocop', '~> 0.66.0', require: false
 
 group :development, :test do

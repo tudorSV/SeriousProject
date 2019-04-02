@@ -11,6 +11,7 @@
 
         <%= shop_form.label :email %>
         <%= shop_form.text_field :email %>
+
         <%= shop_form.fields_for :address do |address_form| %>
           <%= address_form.label :short_address %>
           <%= address_form.text_field :short_address %>

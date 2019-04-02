@@ -22,7 +22,7 @@
         <%= user_form.label :email %>
         <%= user_form.text_field :email %>
 
-         <%= user_form.fields_for @address do |address_form| %>
+         <%= user_form.fields_for :address do |address_form| %>
            <%= address_form.label :short_address %>
            <%= address_form.text_field :short_address %>
 
@@ -41,7 +41,7 @@
         <div class="more">
           <div id="container">
             <div style="width:400px;"><%= user_form.submit "Sign up", class: "btn btn-primary" %></div>
-            <div style="width:100px;"><%= link_to "Back", welcome_index_path, class: "btn btn-primary"  %></div>
+            <div style="width:100px;"><%= link_to "Back", root_path, class: "btn btn-primary"  %></div>
           </div>
         </div>
       <% end %>

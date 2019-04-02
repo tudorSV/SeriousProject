@@ -12,12 +12,12 @@ class EmployeesController < ApplicationController
     @shop = Shop.find(params[:shop_id])
     @user = User.find(params[:employee][:user_id])
     @employee = Employee.new(employee_params.merge(user_id: @user.id,
-                             shop_id: @shop.id, company_id: @company.id,
-                             address_id: @user.address.id))
+                             shop_id: @shop.id, company_id: @company.id))
     if @employee.save
+      flash[:success] = 'Employee has been added to the shop!'
       redirect_to company_shop_employee_path(@company, @shop, @employee)
-      flash[:success] = 'Employee has been created!'
     else
+      flash[:danger] = "Employee couldn't be added to the shop!"
       render 'new'
     end
   end
@@ -32,9 +32,14 @@ class EmployeesController < ApplicationController
     @company = Company.find(params[:company_id])
     @shop = Company.find(params[:shop_id])
     @employee = Employee.find(params[:id])
-    flash[:success] = 'Employee has been deleted!'
-    redirect_to company_shop_path(@company, @shop)
     @employee.destroy
+    if @employee.destroyed?
+      flash[:success] = 'Employee has been deleted!'
+      redirect_to company_shop_path(@company, @shop)
+    else
+      flash[:danger] = "Employee couldn't be deleted!"
+      render 'show'
+    end
   end
 
   def index
@@ -54,9 +59,10 @@ class EmployeesController < ApplicationController
     @shop = Shop.find(params[:shop_id])
     @employee = Employee.find(params[:id])
     if @employee.update_attributes(employee_params)
-      flash[:success] = 'Employee has been edited'
+      flash[:success] = 'Employee has been updated!'
       redirect_to company_shop_employee_path(@company, @shop, @employee)
     else
+      flash[:danger] = "Employee couldn't be updated!"
       render 'edit'
     end
   end
@@ -65,9 +71,5 @@ class EmployeesController < ApplicationController
 
   def employee_params
     params.require(:employee).permit(:role, :user_id)
-  end
-
-  def user_params
-    params.require(:user).permit(:user_id)
   end
 end

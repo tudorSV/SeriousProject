@@ -3,11 +3,10 @@ class Ability
 
   def initialize(current_user)
     if current_user
-      if current_user.admin
-        admin(current_user)
-      else
-        employee(current_user)
-      end
+    elsif current_user.admin
+      admin(current_user)
+    elsif
+      employee(current_user)
     else
       guest(current_user)
     end
@@ -28,8 +27,5 @@ class Ability
 
   def guest(current_user)
     can :create, User
-    cannot :manage, Company
-    cannot :manage, Shop
-    cannot :manage, Employee
   end
 end

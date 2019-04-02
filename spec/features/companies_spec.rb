@@ -1,8 +1,16 @@
 require 'rails_helper'
 
 describe 'Companies' do
+  let(:user) { FactoryBot.create(:user) }
   let(:company) { FactoryBot.create(:company) }
   let(:company2) { FactoryBot.create(:company) }
+
+  before do
+    visit new_session_path
+    fill_in 'Username', with: user.username
+    fill_in 'Password', with: user.password
+    click_button 'Login'
+  end
 
   describe 'index' do
     it 'should have content' do

@@ -23,7 +23,7 @@
           <div><%= user_form.label :admin %></div>
           <div><%= user_form.check_box :admin %></div>
         </div>
-         <%= user_form.fields_for @user.address do |address_form| %>
+         <%= user_form.fields_for :address do |address_form| %>
            <%= address_form.label :short_address %>
            <%= address_form.text_field :short_address %>
 

@@ -10,6 +10,6 @@ class ApplicationController < ActionController::Base
   end
 
   rescue_from CanCan::AccessDenied do |exception|
-    render file: "#{Rails.root}/public/403.html", status: 403, layout: false
+    render file: '/public/403.html', status: 403
   end
 end

@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+
   belongs_to :address, dependent: :delete
   has_one :employee, inverse_of: :user
 

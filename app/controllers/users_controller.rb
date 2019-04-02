@@ -7,13 +7,12 @@ class UsersController < ApplicationController
     else
       @user = User.new
       @address = Address.new
+      @address = @user.build_address
     end
   end
 
   def create
-    @user = User.new(user_params)
-    @address = Address.new(address_params)
-    @user.address = @address
+    @user = User.new(user_params.merge(address_params))
     if @user.save
       flash[:success] = 'The user has been created!'
       redirect_to login_path
@@ -24,17 +23,16 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
   end
 
   def edit
-    @user = User.find(params[:id])
+    @user = User.find_by(id: params[:id])
+    return redirect_to users_path if @user.blank?
   end
 
   def update
-    @user = User.find(params[:id])
-    @user.address.update_attributes(address_params)
-    if @user.update_attributes(user_params)
+    @user = User.find_by(id: params[:id])
+    if @user.update(user_params.merge(address_params))
       flash[:success] = 'The user has been updated!'
       redirect_to user_path(@user)
     else
@@ -44,16 +42,16 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user = User.find(params[:id])
     @user.destroy
-    @user.address.destroy
     flash[:success] = 'The user has been deleted!'
     redirect_to users_path
   end
 
   def index
-    authorize! :index, @user
     @user = User.all
+  end
+
+  def recoverPassword
   end
 
   private
@@ -63,6 +61,6 @@ class UsersController < ApplicationController
   end
 
   def address_params
-    params.require(:user).require(:address).permit(:short_address, :full_address, :city, :zipcode, :country)
+    params.require(:user).permit(address_attributes: [:short_address, :full_address, :city, :zipcode, :country])
   end
 end
