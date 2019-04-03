@@ -13,11 +13,10 @@
     <li>City: <%= @user.address.city %></li>
     <li>Zipcode: <%= @user.address.zipcode %></li>
     <li>Country: <%= @user.address.country %></li>
-
-    <div class="showbtn">
-      <%= link_to "Edit profile", edit_user_path(@user) , class: "btn btn-primary" %>
-      <%= link_to "Delete user", user_path(@user), method: :delete , class: "btn btn-primary" , data: { confirm: "Are you sure you want to delete the user?" } %>
-      <%= link_to "Back to users page" , users_path, class: "btn btn-primary" %>
-    </div>
   </ul>
+  <div class="showbtn">
+    <%= link_to "Edit profile", edit_user_path(@user) , class: "btn btn-primary" %>
+    <%= link_to "Delete user", user_path(@user), method: :delete , class: "btn btn-primary" , data: { confirm: "Are you sure you want to delete the user?" } %>
+    <%= link_to "Back to users page" , users_path, class: "btn btn-primary" %>
+  </div>
 </div>

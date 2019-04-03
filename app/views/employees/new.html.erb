@@ -10,14 +10,11 @@
       <%= employee_form.text_field :role %>
 
       <%= employee_form.label :user_id %>
-      <% #TODO: update User.all with new scope  %>
       <%= employee_form.collection_select(:user_id, User.all, :id, :name )%>
 
       <div class="more">
-        <div id="container">
-            <div style="width:400px;"><%= employee_form.submit "Add employee", class: "btn btn-primary" %></div>
-            <div style="width:100px;"><%= link_to "Back", company_shop_path(@company,@shop), class: "btn btn-primary"  %></div>
-        </div>
+        <div class="button save"><%= employee_form.submit "Add employee", class: "btn btn-primary" %></div>
+        <div class="button back"><%= link_to "Back", company_shop_path(@company,@shop), class: "btn btn-primary"  %></div>
       </div>
     <% end %>
   </div>

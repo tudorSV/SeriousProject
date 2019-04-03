@@ -8,12 +8,9 @@
       <%= employee_form.text_field :role %>
 
       <div class="more">
-        <div id="container">
-            <div style="width:400px;"><%= employee_form.submit "Update employee", class: "btn btn-primary" %></div>
-            <div style="width:100px;"><%= link_to "Back", company_shop_employee_path(@company,@shop, @employee), class: "btn btn-primary"  %></div>
-        </div>
+        <div class="button save"><%= employee_form.submit "Update employee", class: "btn btn-primary" %></div>
+        <div class="button back"><%= link_to "Back", company_shop_employee_path(@company,@shop, @employee), class: "btn btn-primary"  %></div>
       </div>
     <% end %>
   </div>
-
 </div>

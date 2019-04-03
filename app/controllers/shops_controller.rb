@@ -4,7 +4,6 @@ class ShopsController < ApplicationController
 
   def new
     @company = Company.find(params[:company_id])
-    @shop = Shop.new
     @address = @shop.build_address
   end
 
@@ -25,14 +24,10 @@ class ShopsController < ApplicationController
   end
 
   def edit
-    @company = Company.find(params[:company_id])
-    @shop = Shop.find_by(id: params[:id], company_id: params[:company_id])
     return redirect_to company_shops_path if @shop.blank?
   end
 
   def update
-    @company = Company.find(params[:company_id])
-    @shop = Shop.find_by(id: params[:id], company_id: params[:company_id])
     if @shop.update(shop_params.merge(address_params))
       flash[:success] = 'The shop has been updated!'
       return redirect_to company_shop_path(@company, @shop)
@@ -43,9 +38,7 @@ class ShopsController < ApplicationController
   end
 
   def destroy
-    @shop = Shop.find(params[:id])
     @shop.destroy
-    @company = Company.find(params[:company_id])
     flash[:success] = 'The shop has been deleted!'
     redirect_to company_shops_path(@company)
   end

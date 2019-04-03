@@ -63,29 +63,49 @@ body {
 }
 
 #active div{
-  display:inline-block;
-  width:50px;
-}
-
-#container div {
   display: inline-block;
+  width: 50px;
 }
 
 #center div {
   position: relative;
 }
 
-#submit div {
-  width: 400px;
-}
-
-#back div {
-  width: 100px;
-}
-
-.more div {
-  margin-left: 15%;
+.more {
+  width: 70%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
   padding-bottom: 15px;
+  .button {
+    display: inline-block;
+  }
+  .save {
+    width: 70%;
+  }
+  .back {
+    width: 20%;
+  }
+}
+
+.sign {
+  width: 15%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 15px;
+  text-align: center;
+  display: block;
+  .button {
+    display: inline-block;
+  }
+}
+
+.companies {
+  width: 100%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
 }
 
 .cont {

@@ -1,17 +1,14 @@
 class EmployeesController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource :company
+  load_and_authorize_resource :shop, through: :company
+  load_and_authorize_resource :employee, through: :shop
 
   def new
-    @employee = Employee.new
-    @company = Company.find(params[:company_id])
-    @shop = Shop.find(params[:shop_id])
   end
 
   def create
-    @company = Company.find(params[:company_id])
-    @shop = Shop.find(params[:shop_id])
     @user = User.find(params[:employee][:user_id])
-    @employee = Employee.new(employee_params.merge(user_id: @user.id,
+    @employee = Employee.new(employee_params.merge(user_id: @user.id, address_id: @user.address_id,
                              shop_id: @shop.id, company_id: @company.id))
     if @employee.save
       flash[:success] = 'Employee has been added to the shop!'
@@ -23,15 +20,9 @@ class EmployeesController < ApplicationController
   end
 
   def show
-    @company = Company.find(params[:company_id])
-    @employee = Employee.find(params[:id])
-    @shop = Shop.find(params[:shop_id])
   end
 
   def destroy
-    @company = Company.find(params[:company_id])
-    @shop = Company.find(params[:shop_id])
-    @employee = Employee.find(params[:id])
     @employee.destroy
     if @employee.destroyed?
       flash[:success] = 'Employee has been deleted!'
@@ -43,22 +34,13 @@ class EmployeesController < ApplicationController
   end
 
   def index
-    @company = Company.find(params[:company_id])
-    @shop = Shop.find(params[:shop_id])
-    @employees = Employee.all
   end
 
   def edit
-    @company = Company.find(params[:company_id])
-    @shop = Shop.find(params[:shop_id])
-    @employee = Employee.find(params[:id])
   end
 
   def update
-    @company = Company.find(params[:company_id])
-    @shop = Shop.find(params[:shop_id])
-    @employee = Employee.find(params[:id])
-    if @employee.update_attributes(employee_params)
+    if @employee.update(employee_params)
       flash[:success] = 'Employee has been updated!'
       redirect_to company_shop_employee_path(@company, @shop, @employee)
     else
