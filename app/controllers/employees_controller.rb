@@ -26,7 +26,7 @@ class EmployeesController < ApplicationController
     @employee.destroy
     if @employee.destroyed?
       flash[:success] = 'Employee has been deleted!'
-      redirect_to company_shop_path(@company, @shop)
+      redirect_to company_shop_employees_path(@company, @shop)
     else
       flash[:danger] = "Employee couldn't be deleted!"
       render 'show'

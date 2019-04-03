@@ -20,6 +20,13 @@ FactoryBot.define do
     address
   end
 
+  factory :employee do
+    sequence(:role) { |n| "Employee #{n}" }
+    user
+    shop
+    company
+  end
+
   factory :shop do
     sequence(:name) { |n| "Shop #{n}" }
     sequence(:email) { |n| "Shop_#{n}@example.com" }

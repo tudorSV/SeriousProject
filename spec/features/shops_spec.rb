@@ -32,7 +32,6 @@ describe 'Shops' do
     let(:new_city) { 'City 1' }
     let(:new_zipcode) { '12345' }
     let(:new_country) { 'Country' }
-    let(:shop2) { FactoryBot.create(:shop) }
     it 'should have content' do
       user
       company
