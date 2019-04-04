@@ -3,12 +3,10 @@ class ShopsController < ApplicationController
   load_and_authorize_resource :shop, through: :company
 
   def new
-    @company = Company.find(params[:company_id])
     @address = @shop.build_address
   end
 
   def create
-    @company = Company.find(params[:company_id])
     @shop = Shop.new(shop_params.merge(address_params).merge(company_id: @company.id))
     if @shop.save
       flash[:success] = 'The shop has been created!'

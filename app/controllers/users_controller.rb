@@ -6,7 +6,6 @@ class UsersController < ApplicationController
       redirect_to user_path(current_user)
     else
       @user = User.new
-      @address = Address.new
       @address = @user.build_address
     end
   end
@@ -48,7 +47,6 @@ class UsersController < ApplicationController
   end
 
   def index
-    @user = User.all
   end
 
   def recoverPassword

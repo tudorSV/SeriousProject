@@ -8,7 +8,7 @@ class EmployeesController < ApplicationController
 
   def create
     @user = User.find(params[:employee][:user_id])
-    @employee = Employee.new(employee_params.merge(user_id: @user.id, address_id: @user.address_id,
+    @employee = Employee.new(employee_params.merge(address_id: @user.address_id,
                              shop_id: @shop.id, company_id: @company.id))
     if @employee.save
       flash[:success] = 'Employee has been added to the shop!'
