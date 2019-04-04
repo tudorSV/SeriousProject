@@ -2,41 +2,36 @@
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-    <%= form_for [@company, @shop], url:company_shops_path(@company), method: :post do |shop_form | %>
+    <%= form_for [@company, @shop],
+                  url:company_shops_path(@company),
+                  method: :post  do |shop_form | %>
       <%= render 'shared/error_messages', object: shop_form.object %>
-        <div>
-          <%= shop_form.label :name %>
-          <%= shop_form.text_field :name %>
+        <%= shop_form.label :name %>
+        <%= shop_form.text_field :name %>
 
-          <%= shop_form.label :email %>
-          <%= shop_form.text_field :email %>
-        </div>
-        </br>
-        <div>
-          <%= shop_form.fields_for :address do |address_form| %>
-            <%= address_form.label :short_address %>
-            <%= address_form.text_field :short_address %>
+        <%= shop_form.label :email %>
+        <%= shop_form.text_field :email %>
 
-            <%= address_form.label :full_address %>
-            <%= address_form.text_field :full_address %>
+        <%= shop_form.fields_for :address do |address_form| %>
+          <%= address_form.label :short_address %>
+          <%= address_form.text_field :short_address %>
 
-            <%= address_form.label :city %>
-            <%= address_form.text_field :city %>
+          <%= address_form.label :full_address %>
+          <%= address_form.text_field :full_address %>
 
-            <%= address_form.label :zipcode %>
-            <%= address_form.text_field :zipcode %>
+          <%= address_form.label :city %>
+          <%= address_form.text_field :city %>
 
-            <%= address_form.label :country %>
-            <%= address_form.text_field :country %>
-          <% end %>
-        </div>
-        <div class="more">
-          <div id="container">
-            <div id="submit"><%= shop_form.submit "Save changes", class: "btn btn-primary" %></div>
-            <div id="back"><%= link_to "Back", company_shops_path(@company), class: "btn btn-primary"  %></div>
-          </div>
-        </div>
-      <% end %>
-    </div>
+          <%= address_form.label :zipcode %>
+          <%= address_form.text_field :zipcode %>
+
+          <%= address_form.label :country %>
+          <%= address_form.text_field :country %>
+        <% end %>
+      <div class="more">
+        <div class="button save"><%= shop_form.submit "Create a new shop", class: "btn btn-primary" %></div>
+        <div class="button back"><%= link_to "Back", company_shops_path(@company), class: "btn btn-primary"  %></div>
+      </div>
+    <% end %>
   </div>
 </div>

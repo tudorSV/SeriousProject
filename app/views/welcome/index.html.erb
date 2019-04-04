@@ -1,0 +1,20 @@
+<h1>
+  Welcome to the shop!
+</h1>
+<div class="show">
+  <p>A local bike shop or local bicycle shop is a small business specializing
+     in bicycle sale, maintenance and parts. The expression distinguishes small
+     bicycle shops from large chains and mail-order or online vendors is
+     abbreviated LBS. In the UK and Ireland, the expression independent
+     bicycle dealers (IBDs) is also used.
+     The local bike shop is a key component of the bicycle industry and, in recognition of the value that local bike shops provide, some manufacturers only sell their bicycles through dealerships.
+   </p>
+</div>
+<% if current_user %>
+  <div class="companies"><%= link_to "Show companies", companies_path, class: "btn btn-primary"  %></div>
+<% else %>
+  <div class="sign">
+    <div class="button"><%= link_to "Sign in", new_session_path, class: "btn btn-primary" %></div>
+    <div class="button"><%= link_to "Sign up", new_user_path, class: "btn btn-primary"  %></div>
+  </div>
+<% end %>

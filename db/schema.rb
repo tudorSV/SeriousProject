@@ -10,37 +10,66 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_13_102844) do
+ActiveRecord::Schema.define(version: 2019_04_02_132829) do
+
   # These are extensions that must be enabled in order to support this database
-  enable_extension 'plpgsql'
+  enable_extension "plpgsql"
 
-  create_table 'addresses', force: :cascade do |t|
-    t.string 'short_address'
-    t.string 'full_address'
-    t.string 'city'
-    t.string 'zipcode'
-    t.string 'country'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
+  create_table "addresses", force: :cascade do |t|
+    t.string "short_address"
+    t.string "full_address"
+    t.string "city"
+    t.string "zipcode"
+    t.string "country"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table 'companies', force: :cascade do |t|
-    t.string 'name'
-    t.string 'email'
-    t.boolean 'active', default: true
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
+  create_table "companies", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.boolean "active", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table 'shops', force: :cascade do |t|
-    t.string 'name'
-    t.string 'email'
-    t.boolean 'active', default: true
-    t.bigint 'company_id'
-    t.bigint 'address_id'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.index ['address_id'], name: 'index_shops_on_address_id'
-    t.index ['company_id'], name: 'index_shops_on_company_id'
+  create_table "employees", force: :cascade do |t|
+    t.string "role"
+    t.bigint "user_id"
+    t.bigint "company_id"
+    t.bigint "shop_id"
+    t.bigint "address_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["address_id"], name: "index_employees_on_address_id"
+    t.index ["company_id"], name: "index_employees_on_company_id"
+    t.index ["shop_id"], name: "index_employees_on_shop_id"
+    t.index ["user_id"], name: "index_employees_on_user_id"
   end
+
+  create_table "shops", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.boolean "active", default: true
+    t.bigint "company_id"
+    t.bigint "address_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["address_id"], name: "index_shops_on_address_id"
+    t.index ["company_id"], name: "index_shops_on_company_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.string "username"
+    t.string "password_digest"
+    t.boolean "admin", default: true
+    t.string "email"
+    t.string "phone_number"
+    t.bigint "address_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["address_id"], name: "index_users_on_address_id"
+  end
+
 end

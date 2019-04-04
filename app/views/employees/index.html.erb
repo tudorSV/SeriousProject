@@ -1,0 +1,15 @@
+<h1>
+  All employees that belong to shop: <%= @shop.name %>
+</h1>
+<div class="show">
+  <ul>
+    <% @employees.each do |employee| %>
+      <li>
+        <%= link_to employee.user.name, company_shop_employee_path(@company, @shop, employee) %>
+      </li>
+    <% end %>
+    <div class="showbtn">
+      <%= link_to "Back to the shops", company_shop_path(@company, @shop), class: "btn btn-primary" %>
+    </div>
+  </div>
+</ul>

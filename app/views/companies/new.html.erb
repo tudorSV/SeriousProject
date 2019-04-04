@@ -11,10 +11,8 @@
       <%= f.label :email %>
       <%= f.text_field :email %>
       <div class="more">
-        <div id="container">
-          <div id="submit"><%= f.submit "Create a new company", class: "btn btn-primary" %></div>
-          <div id="back"><%= link_to "Back", companies_path, class: "btn btn-primary"  %></div>
-        </div>
+        <div class="button save"><%= f.submit "Create a new company", class: "btn btn-primary" %></div>
+        <div class="button back"><%= link_to "Back", companies_path, class: "btn btn-primary"  %></div>
       </div>
     <% end %>
   </div>

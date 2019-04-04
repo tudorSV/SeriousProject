@@ -1,14 +1,20 @@
-<h1>All the shops that belong to the company: <%= @company.name %></h1>
-<div class="show">
-  <ul>
-    <% @shops.each do |shop| %>
-      <li>
-        <%= link_to shop.name, company_shop_path(@company, shop) %>
-      </li>
-    <% end %>
-  </ul>
-  <div class="showbtn">
-    <%= link_to "Create a new shop" , new_company_shop_path, class: "btn btn-primary"%>
-    <%= link_to "Back to the company", companies_path, class: "btn btn-primary" %>
+<% if @shops.present? %>
+  <h1>All the shops that belong to the company: <%= @company.name %></h1>
+  <div class="show">
+    <ul>
+      <% @shops.each do |shop| %>
+        <li>
+          <%= link_to shop.name, company_shop_path(@company, shop) %>
+        </li>
+      <% end %>
+    </ul>
+    <div class="showbtn">
+      <%= link_to "Create a new shop" , new_company_shop_path, class: "btn btn-primary" %>
+      <%= link_to "Back to the company", company_path(@company), class: "btn btn-primary" %>
+    </div>
   </div>
-</div>
+<% else %>
+  <h1>
+    This company has no shops
+  </h1>
+<% end %>

@@ -1,4 +1,6 @@
 class CompaniesController < ApplicationController
+  load_and_authorize_resource
+
   def new
     @company = Company.new
   end
@@ -41,7 +43,6 @@ class CompaniesController < ApplicationController
   end
 
   def index
-    @companies = Company.all
   end
 
   private

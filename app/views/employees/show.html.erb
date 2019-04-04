@@ -1,0 +1,17 @@
+<h2 class = "h2-comp">
+  Information about <%= @employee.user.name %>
+</h2>
+
+<div class= "show">
+  <ul>
+    <li>Belongs to company <b><%= @company.name %></b>, shop <b><%= @shop.name %> </b></li>
+    <li>Has the position of <b><%= @employee.role %></b></li>
+  </ul>
+</div>
+
+<div class="showbtn">
+  <%= link_to "Edit the employee role",  edit_company_shop_employee_path(@company, @shop, @employee), class: "btn btn-primary" %>
+  <%= link_to "Delete the employee", company_shop_employee_path(@company, @shop, @employee), method: :delete, class: "btn btn-primary", data: { confirm: "Are you sure you want to delete the employee?" } %>
+  <%= link_to "Show all employees", company_shop_employees_path(@company, @shop, @employee) , class: "btn btn-primary"%>
+  <%= link_to "Back", company_shop_employees_path(@company, @shop, @employee) , class: "btn btn-primary"%>
+</div>

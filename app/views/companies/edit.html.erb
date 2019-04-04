@@ -15,10 +15,8 @@
       <div><%= f.check_box :active %></div>
     </div>
     <div class="more">
-      <div id="container">
-        <div id="submit"><%= f.submit "Save changes", class: "btn btn-primary" %></div>
-        <div id="back"><%= link_to "Back", @company, class: "btn btn-primary"  %></div>
-      </div>
+      <div class="button save"><%= f.submit "Save changes", class: "btn btn-primary" %></div>
+      <div class="button back"><%= link_to "Back", @company, class: "btn btn-primary"  %></div>
     </div>
   <% end %>
 </div>
