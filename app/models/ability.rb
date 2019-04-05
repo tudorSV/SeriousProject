@@ -24,6 +24,7 @@ class Ability
     can :manage, Company, employees: { user_id: current_user.id }
     can :manage, Shop, employees: { user_id: current_user.id }
     can :manage, Employee, user_id: current_user.id
+    can :manage, Appointment, user_id: current_user.id
   end
 
   def guest(current_user)

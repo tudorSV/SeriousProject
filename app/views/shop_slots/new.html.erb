@@ -1,0 +1,27 @@
+<h1>Input info about the shop data slots</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for [@company, @shop, @shop_slot],
+            url:company_shop_shop_slots_path(@company, @shop),
+            method: :post  do |shop_slot_form | %>
+      <%= render 'shared/error_messages', object: shop_slot_form.object %>
+      <%= shop_slot_form.label :day %>
+      <%= shop_slot_form.text_field :day %>
+
+      <%= shop_slot_form.label :max_appointments %>
+      <%= shop_slot_form.text_field :max_appointments %>
+
+      <%= shop_slot_form.label :open %>
+      <%= shop_slot_form.time_select :open, discard_minute: true %>
+
+      <%= shop_slot_form.label :close %>
+      <%= shop_slot_form.time_select :close, discard_minute: true %>
+
+      <div class="more">
+        <div class="button save"><%= shop_slot_form.submit "Add appointment data to shops", class: "btn btn-primary" %></div>
+        <div class="button back"><%= link_to "Back", company_shop_path(@company,@shop), class: "btn btn-primary"  %></div>
+      </div>
+    <% end %>
+  </div>
+</div>

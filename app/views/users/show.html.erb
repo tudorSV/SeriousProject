@@ -14,6 +14,13 @@
     <li>Zipcode: <%= @user.address.zipcode %></li>
     <li>Country: <%= @user.address.country %></li>
   </ul>
+  <h3>User appointments:</h3>
+  <ol>
+    <% @user.appointments.each do |appointment| %>
+      <li>About appointment from <%= appointment.date %>, containing <%= pluralize(appointment.item_number, 'item') %>, with status of <%= appointment.status -%>.
+          </br> Link to: <%= link_to "appointment", user_appointment_path(@user, appointment) %></li>
+    <% end %>
+  </ol>
   <div class="showbtn">
     <%= link_to "Edit profile", edit_user_path(@user) , class: "btn btn-primary" %>
     <%= link_to "Delete user", user_path(@user), method: :delete , class: "btn btn-primary" , data: { confirm: "Are you sure you want to delete the user?" } %>

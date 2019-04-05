@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :companies do
     resources :shops do
       resources :employees
+      resources :shop_slots
     end
   end
 

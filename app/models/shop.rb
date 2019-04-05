@@ -4,6 +4,7 @@ class Shop < ApplicationRecord
   belongs_to :address, dependent: :delete
   belongs_to :company
   has_many :employees
+  has_many :shop_slots
 
   accepts_nested_attributes_for :address
 

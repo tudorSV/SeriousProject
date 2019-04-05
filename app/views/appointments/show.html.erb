@@ -1,0 +1,14 @@
+<h2 class = "h2-comp">
+  Appointment information:
+</h2>
+
+<div class= "show">
+  <ul>
+    <li>Date: <b><%= @appointment.date %></b>, total items <b><%= @appointment.item_number %> </b></li>
+    <li>Status of the appointment: <b><%= @appointment.status %></b></li>
+  </ul>
+</div>
+
+<div class="showbtn">
+  <%= link_to "Back to the user",  user_path(@user), class: "btn btn-primary" %>
+</div>

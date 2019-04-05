@@ -25,16 +25,16 @@ ActiveRecord::Schema.define(version: 2019_04_04_135622) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "appointments_data", force: :cascade do |t|
-    t.integer "day"
-    t.integer "max_appointments"
-    t.time "open"
-    t.time "close"
-    t.boolean "closed", default: true
+  create_table "appointments", force: :cascade do |t|
+    t.date "date"
+    t.integer "item_number"
+    t.string "status", default: "Booked"
+    t.bigint "user_id"
     t.bigint "shop_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["shop_id"], name: "index_appointments_data_on_shop_id"
+    t.index ["shop_id"], name: "index_appointments_on_shop_id"
+    t.index ["user_id"], name: "index_appointments_on_user_id"
   end
 
   create_table "companies", force: :cascade do |t|
@@ -59,6 +59,18 @@ ActiveRecord::Schema.define(version: 2019_04_04_135622) do
     t.index ["user_id"], name: "index_employees_on_user_id"
   end
 
+  create_table "shop_slots", force: :cascade do |t|
+    t.integer "day"
+    t.integer "max_appointments"
+    t.time "open"
+    t.time "close"
+    t.boolean "closed", default: true
+    t.bigint "shop_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["shop_id"], name: "index_shop_slots_on_shop_id"
+  end
+
   create_table "shops", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -69,18 +81,6 @@ ActiveRecord::Schema.define(version: 2019_04_04_135622) do
     t.datetime "updated_at", null: false
     t.index ["address_id"], name: "index_shops_on_address_id"
     t.index ["company_id"], name: "index_shops_on_company_id"
-  end
-
-  create_table "appointments", force: :cascade do |t|
-    t.date "date"
-    t.integer "item_number"
-    t.string "status"
-    t.bigint "user_id"
-    t.bigint "shop_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["shop_id"], name: "index_appointments_on_shop_id"
-    t.index ["user_id"], name: "index_appointments_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

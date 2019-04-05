@@ -9,8 +9,6 @@ class ShopsController < ApplicationController
   def create
     @shop = Shop.new(shop_params.merge(address_params).merge(company_id: @company.id))
     if @shop.save
-
-
       flash[:success] = 'The shop has been created!'
       redirect_to company_shop_path(@company, @shop)
     else
