@@ -3,7 +3,7 @@ class Company < ApplicationRecord
 
   has_many :shops
   has_many :employees
-  has_many :appointment_data
+  has_many :shop_losts
 
   validates :name, presence: true, length: { maximum: 20 },
                    uniqueness: true

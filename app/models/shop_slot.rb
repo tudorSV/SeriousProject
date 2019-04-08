@@ -1,12 +1,30 @@
 class ShopSlot < ApplicationRecord
   belongs_to :shop
-  belongs_to :company
 
   validates :day, presence: true,
-                  numericality: { only_integer: true, less_than_or_equal_to: 7 }
+                  uniqueness: { scope: :shop_id }
   validates :max_appointments, presence: true,
-                               numericality: { less_than_or_equal_to: 0 }
+                               numericality: { less_than_or_equal_to: 10 }
   validates :open, presence: true
   validates :close, presence: true
   validates :closed, presence: true
+
+  def week_day
+    case day
+    when 0
+      'Sunday'
+    when 1
+      'Monday'
+    when 2
+      'Tuesday'
+    when 3
+      'Wednesday'
+    when 4
+      'Thursday'
+    when 5
+      'Friday'
+    when 6
+      'Saturday'
+    end
+  end
 end

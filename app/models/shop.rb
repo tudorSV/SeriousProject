@@ -13,4 +13,12 @@ class Shop < ApplicationRecord
   validates :email, presence: true,
                     format: { with: EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
+
+  def programmed_days
+    if shop_slots.count != 6
+      true
+    else
+      false
+    end
+  end
 end

@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   end
 
   resources :users do
-    resources :appointments
+    resources :appointments, except: [:delete]
   end
 
   resources :sessions
