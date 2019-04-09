@@ -14,7 +14,6 @@
       <%= appointment_form.label :shop_id %>
       <%= appointment_form.collection_select(:shop_id, Shop.all, :id, :name )%>
 
-
       <div class="more">
         <div class="button save"><%= appointment_form.submit "Add a new appointment", class: "btn btn-primary" %></div>
         <div class="button back"><%= link_to "Back", user_path(@user), class: "btn btn-primary"  %></div>

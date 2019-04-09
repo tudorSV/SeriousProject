@@ -4,6 +4,8 @@ Rails.application.routes.draw do
     resources :shops do
       resources :employees
       resources :shop_slots
+      get :index_appointment
+      put :change_status
     end
   end
 

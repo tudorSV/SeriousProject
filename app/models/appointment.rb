@@ -1,5 +1,5 @@
 class Appointment < ApplicationRecord
-  has_many :shops, inverse_of: :appointments
+  belongs_to :shop
   belongs_to :user
 
   validates :date, presence: true
@@ -11,5 +11,9 @@ class Appointment < ApplicationRecord
     if date.present? && date.past?
       errors.add(:appointment_date, "cannot be in the past")
     end
+  end
+
+  def available_appointments
+    Appointments.where(shop_id, date.wday).sum(:item_number)
   end
 end

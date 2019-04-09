@@ -27,6 +27,9 @@ class AppointmentsController < ApplicationController
     @user = User.find(params[:user_id])
   end
 
+  def index
+  end
+
   def edit
     @appointment = Appointment.find(params[:id])
     @user = User.find(params[:user_id])

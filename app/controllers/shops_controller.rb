@@ -44,6 +44,17 @@ class ShopsController < ApplicationController
   def index
   end
 
+  def index_appointment
+    @company = Company.find(params[:company_id])
+    @shop = Shop.find(params[:shop_id])
+    @appointments = Appointment.where(shop_id: @shop.id)
+  end
+
+  def change_status
+    binding.pry
+    @appointment = Appointment.find(params[:appoint])
+  end
+
   private
 
   def shop_params

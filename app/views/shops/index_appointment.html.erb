@@ -1,0 +1,22 @@
+<h2 class = "h2-comp">
+  All the appointments that belong to <%= @shop.name %>
+</h2>
+
+<div class="show">
+  <ul>
+    <% @appointments.each do |appointment| %>
+      <li>
+        Appointment from <%= appointment.date %>,
+        containing <%= pluralize(appointment.item_number, 'item') %>,
+        with status of <b><%= appointment.status -%></b>.
+        <% if appointment.status == 'Booked' %>
+          Change status to ready for pickup
+          <%= link_to "Change status",
+                       company_shop_change_status_path(@company, @shop, appointment: appointment.id, status: 'ready'),
+                       method: :put,
+                       class: "btn btn-primary" %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</div>
