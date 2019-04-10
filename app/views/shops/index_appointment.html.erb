@@ -8,15 +8,24 @@
       <li>
         Appointment from <%= appointment.date %>,
         containing <%= pluralize(appointment.item_number, 'item') %>,
-        with status of <b><%= appointment.status -%></b>.
+        has the status of <b><%= appointment.status -%></b>.
         <% if appointment.status == 'Booked' %>
-          Change status to ready for pickup
-          <%= link_to "Change status",
+          <%= link_to "Change to Ready for pickup",
                        company_shop_change_status_path(@company, @shop, appointment: appointment.id, status: 'ready'),
                        method: :put,
-                       class: "btn btn-primary" %>
+                       class: "btn btn-primary",
+                       data: { confirm: "Are you sure you want to change the status?" } %>
+        <% elsif  appointment.status == 'Ready for pickup'  %>
+          <%= link_to "Change to finished ",
+                       company_shop_change_status_path(@company, @shop, appointment: appointment.id, status: 'ready'),
+                       method: :put,
+                       class: "btn btn-primary",
+                       data: { confirm: "Are you sure you want to change the status?" } %>
         <% end %>
       </li>
     <% end %>
   </ul>
+  <div class="showbtn">
+    <%= link_to "Back to the shop" , company_shop_path(@company, @shop), class: "btn btn-primary" %>
+  </div>
 </div>

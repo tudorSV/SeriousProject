@@ -5,6 +5,7 @@ class ShopSlot < ApplicationRecord
                   uniqueness: { scope: :shop_id }
   validates :max_appointments, presence: true,
                                numericality: { less_than_or_equal_to: 10 }
+
   validates :open, presence: true
   validates :close, presence: true
   validates :closed, presence: true
