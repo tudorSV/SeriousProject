@@ -7,9 +7,9 @@
     <li>Date: <b><%= @appointment.date %></b>, total items <b><%= @appointment.item_number %> </b></li>
     <li>Status of the appointment: <b><%= @appointment.status %></b></li>
   </ul>
-</div>
 
-<div class="showbtn">
-  <%= link_to "Edit the appointment", edit_user_appointment_path(@user, @appointment) , class: "btn btn-primary"%>
-  <%= link_to "Back to the user",  user_path(@user), class: "btn btn-primary" %>
+  <div class="showbtn">
+    <%= link_to "Edit the appointment", edit_user_appointment_path(@user, @appointment) , class: "btn btn-primary"%>
+    <%= link_to "Back to the user",  user_path(@user), class: "btn btn-primary" %>
+  </div>
 </div>

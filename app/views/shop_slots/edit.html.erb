@@ -16,7 +16,7 @@
       <%= shop_slot_form.time_select :close, ampm: true, default: { hour: 18, minute: 0 }, discard_minute: true %>
 
       <div class="more">
-        <div class="button save"><%= shop_slot_form.submit "Save the appointment data for the shop", class: "btn btn-primary" %></div>
+        <div class="button save"><%= shop_slot_form.submit "Change shop slot", class: "btn btn-primary" %></div>
         <div class="button back"><%= link_to "Back", company_shop_path(@company,@shop), class: "btn btn-primary"  %></div>
       </div>
     <% end %>

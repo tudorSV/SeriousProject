@@ -1,5 +1,8 @@
 class ShopSlot < ApplicationRecord
   belongs_to :shop
+  belongs_to :company
+
+  delegate :company, to: :shop
 
   validates :day, presence: true,
                   uniqueness: { scope: :shop_id }

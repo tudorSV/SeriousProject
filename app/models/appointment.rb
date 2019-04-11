@@ -10,7 +10,7 @@ class Appointment < ApplicationRecord
 
   def appointment_date
     if date.present? && date.past?
-      errors.add(:appointment_date, "cannot be in the past")
+      errors.add(:appointment_date, 'cannot be in the past')
     end
   end
 
@@ -24,7 +24,7 @@ class Appointment < ApplicationRecord
                             total_appointments += appoint.item_number
                           end
                         }
-    total_appointments+= item_number
+    total_appointments += item_number
     if total_appointments > slot.max_appointments
       errors.add(:available_date, 'Date is full, please choose another one')
     end
