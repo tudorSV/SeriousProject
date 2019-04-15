@@ -15,18 +15,22 @@ class Appointment < ApplicationRecord
   end
 
   def available_date
-    shop = self.shop
-    slot = shop.shop_slots[self.date.wday]
-    appointments = shop.appointments.where(date: self.date)
-    total_appointments = 0
-    appointments.select { |appoint|
-                          if appoint.date.wday == self.date.wday
-                            total_appointments += appoint.item_number
-                          end
-                        }
-    total_appointments += item_number
-    if total_appointments > slot.max_appointments
+    unless date.present?
       errors.add(:available_date, 'Date is full, please choose another one')
+    else
+      shop = self.shop
+      slot = shop.shop_slots[self.date.wday]
+      appointments = shop.appointments.where(date: self.date)
+      total_appointments = 0
+      appointments.select do |appoint|
+                            if appoint.date.wday == self.date.wday
+                              total_appointments += appoint.item_number
+                            end
+      end
+      total_appointments += item_number
+      if total_appointments > slot.max_appointments
+        errors.add(:available_date, 'Date is full, please choose another one')
+      end
     end
   end
 end

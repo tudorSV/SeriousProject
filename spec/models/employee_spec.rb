@@ -1,6 +1,7 @@
 require 'rails_helper'
+require 'pry'
 
-describe 'Employee model'  do
+describe 'Employee model' do
   let(:employee) { FactoryBot.create(:employee) }
   let(:employee2) { FactoryBot.create(:employee) }
 
@@ -34,6 +35,7 @@ describe 'Employee model'  do
     describe 'when the user ID is not unique' do
       before { employee2.user_id = employee.user_id }
       it 'should be unique' do
+        binding.pry
         expect(employee2).to_not be_valid
       end
     end

@@ -7,7 +7,7 @@ class ShopSlotsController < ApplicationController
   end
 
   def create
-    @shop_slot = ShopSlot.new(shop_slots_params.merge(shop_id: @shop.id))
+    @shop_slot = ShopSlot.new(shop_slot_params.merge(shop_id: @shop.id))
     if @shop_slot.save
       flash[:success] = 'Shop appointment data has been created!'
       redirect_to company_shop_path(@company, @shop)
@@ -21,7 +21,7 @@ class ShopSlotsController < ApplicationController
   end
 
   def update
-    if @shop_slot.update(shop_slots_params)
+    if @shop_slot.update(shop_slot_params)
       flash[:success] = 'The shop slot has been updated!'
       redirect_to company_shop_path(@company, @shop)
     else
@@ -32,7 +32,7 @@ class ShopSlotsController < ApplicationController
 
   private
 
-  def shop_slots_params
+  def shop_slot_params
     params.require(:shop_slot).permit(:day, :max_appointments, :open, :close,
                                       :closed, :shop_id)
   end
