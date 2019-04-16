@@ -18,7 +18,7 @@ class ShopsController < ApplicationController
   end
 
   def show
-    @slots = @shop.shop_slots.order('day ASC').all
+    @slots = @shop.shop_slots.order('day ASC')
     return redirect_to company_shops_path if @shop.blank?
   end
 
@@ -46,14 +46,10 @@ class ShopsController < ApplicationController
   end
 
   def index_appointment
-    @company = Company.find(params[:company_id])
-    @shop = Shop.find(params[:shop_id])
     @appointments = Appointment.where(shop_id: @shop.id)
   end
 
   def change_status
-    @company = Company.find(params[:company_id])
-    @shop = Shop.find(params[:shop_id])
     @appointment = Appointment.find(params[:appointment])
     if @appointment.status == 'Booked'
       @appointment.update(status: 'Ready for pickup')

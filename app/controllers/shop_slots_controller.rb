@@ -34,6 +34,6 @@ class ShopSlotsController < ApplicationController
 
   def shop_slot_params
     params.require(:shop_slot).permit(:day, :max_appointments, :open, :close,
-                                      :closed, :shop_id)
+                                      :shop_id)
   end
 end

@@ -28,6 +28,7 @@ class AppointmentsController < ApplicationController
   def update
     if @appointment.update(appointment_params)
       flash[:success] = 'The appointment has been updated!'
+      NotifierMailer.sample_email(@user).deliver_now
       return redirect_to user_appointment_path(@user, @appointment)
     else
       flash[:failure] = "The appointment couldn't be updated!"
@@ -38,7 +39,6 @@ class AppointmentsController < ApplicationController
   private
 
   def appointment_params
-    params.require(:appointment).permit(:date, :item_number, :status,
-                                        :user_id, :shop_id)
+    params.require(:appointment).permit(:date, :item_number, :status)
   end
 end
