@@ -1,15 +1,9 @@
 require 'rails_helper'
+require 'pry'
 
 describe 'Appointments' do
   let(:user) { FactoryBot.create(:user) }
-  let(:shop) { FactoryBot.create(:shop) }
-  let(:shop_slot1) { FactoryBot.create(:shop_slot, shop: shop) }
-  let(:shop_slot2) { FactoryBot.create(:shop_slot, shop: shop) }
-  let(:shop_slot3) { FactoryBot.create(:shop_slot, shop: shop) }
-  let(:shop_slot4) { FactoryBot.create(:shop_slot, shop: shop) }
-  let(:shop_slot5) { FactoryBot.create(:shop_slot, shop: shop) }
-  let(:shop_slot6) { FactoryBot.create(:shop_slot, shop: shop) }
-  let(:shop_slot7) { FactoryBot.create(:shop_slot, shop: shop) }
+  let(:shop) { FactoryBot.create(:shop_with_shop_slots) }
   let(:appointment) { FactoryBot.create(:appointment, shop: shop, user: user) }
 
   before do
@@ -17,13 +11,6 @@ describe 'Appointments' do
     fill_in 'Username', with: user.username
     fill_in 'Password', with: user.password
     click_button 'Login'
-    shop_slot1
-    shop_slot2
-    shop_slot3
-    shop_slot4
-    shop_slot5
-    shop_slot6
-    shop_slot7
   end
 
   describe 'create' do
@@ -49,8 +36,11 @@ describe 'Appointments' do
     it 'should have content' do
       user
       appointment
-      visit edit_user_appointment_path(appointment.user, appointment)
+      visit edit_user_appointment_path(user, appointment)
       expect(page).to have_selector('h1', text: 'Edit the appointment')
+      expect(page).to have_field('Change the appointment date:')
+      fill_in 'Change the appointment date:', with: edit_date
+      fill_in 'Change the number of items:', with: edit_number_of_items
       click_button 'Edit the appointment'
       expect(page).to have_selector('h2', text: 'Appointment information:')
       expect(page).to have_selector('li', text: 'Date')

@@ -35,6 +35,18 @@ class AppointmentsController < ApplicationController
     end
   end
 
+  def destroy
+    binding.pry
+    if @appointment.status == 'Booked'
+      flash[:success] = 'The appointment has been destroyed!'
+      @appointment.destroy
+      return redirect_to user_path(@user)
+    else
+      flash[:failure] = "The appointment couldn't be destroyed!"
+      render 'show'
+    end
+  end
+
   private
 
   def appointment_params

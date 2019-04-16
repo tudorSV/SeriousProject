@@ -4,7 +4,7 @@
   <div class="col-md-6 col-md-offset-3">
     <%= form_for [@company, @shop, @shop_slot],
             url:company_shop_shop_slots_path(@company, @shop),
-            method: :post  do |shop_slot_form | %>
+            method: :post  do |shop_slot_form| %>
       <%= render 'shared/error_messages', object: shop_slot_form.object %>
       <%= shop_slot_form.label "Day of the week" %>
       <%= shop_slot_form.select :day, options_for_select([["Sunday", "0"],["Monday", "1"],["Tuesday", "2"],["Wednesday", "3"],["Thursday", "4"],["Friday", "5"],["Saturday", "6"] ]) %>
@@ -13,14 +13,14 @@
       <%= shop_slot_form.text_field :max_appointments %>
 
       <%= shop_slot_form.label 'Opening hour' %>
-      <%= shop_slot_form.time_select :open, ampm: true, default: { hour: 8, minute: 0 }, discard_minute: true %>
+      <%= shop_slot_form.time_select :open_hour, ampm: true, default: { hour: 8, minute: 0 }, discard_minute: true %>
 
       <%= shop_slot_form.label 'Closing hour' %>
-      <%= shop_slot_form.time_select :close, ampm: true, default: { hour: 18, minute: 0 }, discard_minute: true %>
+      <%= shop_slot_form.time_select :close_hour, ampm: true, default: { hour: 18, minute: 0 }, discard_minute: true %>
 
       <div class="more">
         <div class="button save"><%= shop_slot_form.submit "Add appointment data to the shop", class: "btn btn-primary" %></div>
-        <div class="button back"><%= link_to "Back", company_shop_path(@company,@shop), class: "btn btn-primary"  %></div>
+        <div class="button back"><%= link_to "Back", company_shop_path(@company,@shop), class: "btn btn-primary" %></div>
       </div>
     <% end %>
   </div>

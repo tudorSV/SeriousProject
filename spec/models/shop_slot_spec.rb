@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'pry'
 
 describe 'ShopSlot model' do
   let(:shop_slot) { FactoryBot.create(:shop_slot) }
@@ -14,21 +13,10 @@ describe 'ShopSlot model' do
     end
   end
 
-  describe 'associations' do
-    describe 'company' do
-      assoc = ShopSlot.reflect_on_association(:company).macro
-      subject { assoc }
-      it 'should belong_to' do
-        expect(subject).to eq(:belongs_to)
-      end
-    end
-  end
-
   describe 'validations' do
     describe 'control test' do
       it 'shop slot should be valid' do
         shop_slot
-        # binding.pry
         expect(shop_slot).to be_valid
       end
     end
@@ -41,21 +29,21 @@ describe 'ShopSlot model' do
     end
 
     describe 'verifiy opening hour' do
-      before { shop_slot.open = '' }
+      before { shop_slot.open_hour = '' }
       it 'should be present' do
         expect(shop_slot).to_not be_valid
       end
     end
 
     describe 'verifiy closing hour' do
-      before { shop_slot.close = '' }
+      before { shop_slot.close_hour = '' }
       it 'should be present' do
         expect(shop_slot).to_not be_valid
       end
     end
 
     describe 'verifiy number of appointments' do
-      before { shop_slot.max_appointments = 11 }
+      before { shop_slot.max_appointments = 51 }
       it 'should be present' do
         expect(shop_slot).to_not be_valid
       end

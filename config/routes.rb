@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   end
 
   resources :users do
-    resources :appointments, except: [:delete, :index]
+    resources :appointments, except: [ :index]
   end
 
   resources :sessions

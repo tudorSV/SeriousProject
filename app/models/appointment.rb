@@ -18,12 +18,11 @@ class Appointment < ApplicationRecord
     unless date.present?
       errors.add(:available_date, 'Date is full, please choose another one')
     else
-      shop = self.shop
-      slot = shop.shop_slots[self.date.wday]
-      appointments = shop.appointments.where(date: self.date)
+      slot = shop.shop_slots[date.wday]
+      appointments = shop.appointments.where(date: date)
       total_appointments = 0
       appointments.select do |appoint|
-                            if appoint.date.wday == self.date.wday
+                            if appoint.date.wday == date.wday
                               total_appointments += appoint.item_number
                             end
       end

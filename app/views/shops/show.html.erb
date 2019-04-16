@@ -21,7 +21,7 @@
       <li>
         <%= shop_slot.week_day.humanize %> working hours:
         </br>
-        Shop opens at <%= shop_slot.open.strftime("%H:%M") %> and closes at <%= shop_slot.close.strftime("%H:%M") %>.
+        Shop opens at <%= shop_slot.open_hour.strftime("%H:%M") %> and closes at <%= shop_slot.close_hour.strftime("%H:%M") %>.
         Maximum slots available: <%= shop_slot.max_appointments %>
         <div class=""><%= link_to "Edit #{shop_slot.week_day.humanize} slot", edit_company_shop_shop_slot_path(@company, @shop, shop_slot) , class: "btn btn-primary" %></div>
       </li>
