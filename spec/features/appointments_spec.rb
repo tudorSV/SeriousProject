@@ -39,7 +39,7 @@ describe 'Appointments' do
       appointment
       visit edit_user_appointment_path(user, appointment)
       expect(page).to have_selector('h1', text: 'Edit the appointment')
-      # expect(page).to have_field('Change the appointment date:')
+      expect(page).to have_field('Change the appointment date:')
       fill_in 'Change the appointment date:', with: edit_date
       fill_in 'Change the number of items:', with: edit_number_of_items
       click_button 'Edit the appointment'
