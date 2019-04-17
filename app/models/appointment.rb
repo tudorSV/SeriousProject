@@ -3,10 +3,11 @@ class Appointment < ApplicationRecord
   belongs_to :user
 
   validates :date, presence: true
-  validate :appointment_date
-  validate :available_date
   validates :item_number, presence: true
   validates :status, presence: true
+
+  validate :appointment_date
+  validate :available_date
 
   def appointment_date
     if date.present? && date.past?
@@ -16,19 +17,16 @@ class Appointment < ApplicationRecord
 
   def available_date
     unless date.present?
-      errors.add(:available_date, 'Date is full, please choose another one')
+      errors.add(:available_date, 'Date is null')
     else
       slot = shop.shop_slots[date.wday]
       appointments = shop.appointments.where(date: date)
-      total_appointments = 0
-      appointments.select do |appoint|
-                            if appoint.date.wday == date.wday
-                              total_appointments += appoint.item_number
-                            end
+      total_appointments = item_number
+      appointments.select do |appointment|
+        total_appointments += appointment.item_number
       end
-      total_appointments += item_number
       if total_appointments > slot.max_appointments
-        errors.add(:available_date, 'Date is full, please choose another one')
+        errors.add(:available_date, 'Date is taken, please choose another one')
       end
     end
   end

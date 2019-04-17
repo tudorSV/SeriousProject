@@ -15,10 +15,10 @@ describe 'Appointments' do
 
   describe 'create' do
     let(:new_date) { '2019-04-21' }
-    let(:new_item_number) { 4 }
+    let(:new_item_number) { 2 }
     it 'should have content' do
       user
-      appointment
+      shop
       visit new_user_appointment_path(user)
       expect(page).to have_selector('h1', text: 'Create a new appointment')
       expect(page).to have_field('Item number')
@@ -34,11 +34,12 @@ describe 'Appointments' do
     let(:edit_date) { Date.today + 15 }
     let(:edit_number_of_items) { 2 }
     it 'should have content' do
+      shop
       user
       appointment
       visit edit_user_appointment_path(user, appointment)
       expect(page).to have_selector('h1', text: 'Edit the appointment')
-      expect(page).to have_field('Change the appointment date:')
+      # expect(page).to have_field('Change the appointment date:')
       fill_in 'Change the appointment date:', with: edit_date
       fill_in 'Change the number of items:', with: edit_number_of_items
       click_button 'Edit the appointment'

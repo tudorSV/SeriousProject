@@ -8,7 +8,6 @@ class ShopSlotsController < ApplicationController
 
   def create
     @shop_slot = ShopSlot.new(shop_slot_params.merge(shop_id: @shop.id))
-    # binding.pry
     if @shop_slot.save
       flash[:success] = 'Shop appointment data has been created!'
       redirect_to company_shop_path(@company, @shop)
@@ -35,6 +34,6 @@ class ShopSlotsController < ApplicationController
 
   def shop_slot_params
     params.require(:shop_slot).permit(:day, :max_appointments, :open_hour,
-                                      :close_hour, :closed, :shop_id)
+                                      :close_hour)
   end
 end

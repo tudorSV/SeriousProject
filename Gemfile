@@ -37,9 +37,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'bcrypt', '3.1.12'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap-sass', '3.4.1'
-gem 'bootstrap_form', '4.2.0'
 gem 'cancancan', '2.3'
-gem "combined_time_select", "2.0.0"
 gem 'rubocop', '~> 0.66.0', require: false
 
 group :development, :test do

@@ -50,7 +50,7 @@ FactoryBot.define do
 
   factory :shop_slot do
     sequence(:day) { |n| n % 7 }
-    sequence(:max_appointments) { |n| (n + 1) % 50 }
+    sequence(:max_appointments) { |n| ( n % 48 ) + 2 }
     open_hour { DateTime.now + 1.hour }
     close_hour { DateTime.now + 8.hour }
     closed { false }
