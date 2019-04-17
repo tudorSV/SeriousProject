@@ -4,6 +4,7 @@ describe 'Shop Slots' do
   let(:company) { FactoryBot.create(:company) }
   let(:shop) { FactoryBot.create(:shop, company: company) }
   let(:user) { FactoryBot.create(:user) }
+  let(:shop_slot) { FactoryBot.create(:shop_slot) }
 
   before do
     visit new_session_path
@@ -36,7 +37,7 @@ describe 'Shop Slots' do
       fill_in "Max appointments", with: edit_max_appointmnets
       click_button 'Change shop slot'
       expect(page).to have_selector('h2', text: 'Working hours and avalilable slots:')
-      expect(page).to have_selector('li', text: 'Tuesday working hours:')
+      expect(page).to have_selector('li', text: "#{shop_slot.week_day.humanize} working hours:")
     end
   end
 end

@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'pry'
 
 describe 'Appointments' do
   let(:user) { FactoryBot.create(:user) }
@@ -7,6 +6,7 @@ describe 'Appointments' do
   let(:appointment) { FactoryBot.create(:appointment, shop: shop, user: user) }
 
   before do
+    shop
     visit new_session_path
     fill_in 'Username', with: user.username
     fill_in 'Password', with: user.password

@@ -7,7 +7,7 @@
             method: :post  do |shop_slot_form| %>
       <%= render 'shared/error_messages', object: shop_slot_form.object %>
       <%= shop_slot_form.label "Day of the week" %>
-      <%= shop_slot_form.select :day, options_for_select([["Sunday", "0"],["Monday", "1"],["Tuesday", "2"],["Wednesday", "3"],["Thursday", "4"],["Friday", "5"],["Saturday", "6"] ]) %>
+      <%= shop_slot_form.select :day, options_for_select(ShopSlot::WEEK) %>
 
       <%= shop_slot_form.label :max_appointments %>
       <%= shop_slot_form.text_field :max_appointments %>

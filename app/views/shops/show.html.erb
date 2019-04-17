@@ -1,7 +1,6 @@
 <h2 class="h2-comp">
   Information about <b><%= @shop.name %></b> which belongs to <b><%= @company.name %></b>
 </h2>
-
  <div class="show">
    <ul>
     <li>Shop name:<%= @shop.name %></li>
@@ -19,11 +18,11 @@
   <ul>
     <% @slots.each do |shop_slot| %>
       <li>
-        <%= shop_slot.week_day.humanize %> working hours:
+        <%= shop_slot.week_day(shop_slot.day) %> working hours:
         </br>
         Shop opens at <%= shop_slot.open_hour.strftime("%H:%M") %> and closes at <%= shop_slot.close_hour.strftime("%H:%M") %>.
         Maximum slots available: <%= shop_slot.max_appointments %>
-        <div class=""><%= link_to "Edit #{shop_slot.week_day.humanize} slot", edit_company_shop_shop_slot_path(@company, @shop, shop_slot) , class: "btn btn-primary" %></div>
+        <div class=""><%= link_to "Edit #{shop_slot.week_day} slot", edit_company_shop_shop_slot_path(@company, @shop, shop_slot) , class: "btn btn-primary" %></div>
       </li>
     <% end %>
   </ul>
