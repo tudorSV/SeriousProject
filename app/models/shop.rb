@@ -4,6 +4,8 @@ class Shop < ApplicationRecord
   belongs_to :address, dependent: :delete
   belongs_to :company
   has_many :employees
+  has_many :shop_slots
+  has_many :appointments
 
   accepts_nested_attributes_for :address
 
@@ -12,4 +14,12 @@ class Shop < ApplicationRecord
   validates :email, presence: true,
                     format: { with: EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
+
+  def fully_scheduled?
+    if shop_slots.count == 7
+      true
+    else
+      false
+    end
+  end
 end

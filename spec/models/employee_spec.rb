@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Employee model'  do
+describe 'Employee model' do
   let(:employee) { FactoryBot.create(:employee) }
   let(:employee2) { FactoryBot.create(:employee) }
 

@@ -20,6 +20,13 @@ FactoryBot.define do
     address
   end
 
+  factory :appointment do
+    sequence(:date) { '2019-04-20' }
+    sequence(:item_number) { |n| n % 5 }
+    user
+    shop
+  end
+
   factory :employee do
     sequence(:role) { |n| "Employee #{n}" }
     user
@@ -32,5 +39,21 @@ FactoryBot.define do
     sequence(:email) { |n| "Shop_#{n}@example.com" }
     address
     company
+    factory :shop_with_shop_slots do
+      after(:create) do |shop|
+        (0..6).map do |day|
+          FactoryBot.create(:shop_slot, shop: shop, day: day)
+        end
+      end
+    end
+  end
+
+  factory :shop_slot do
+    sequence(:day) { |n| n % 7 }
+    sequence(:max_appointments) { |n| ( n % 48 ) + 2 }
+    open_hour { DateTime.now + 1.hour }
+    close_hour { DateTime.now + 8.hour }
+    closed { false }
+    shop
   end
 end

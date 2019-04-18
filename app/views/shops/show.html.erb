@@ -1,7 +1,6 @@
 <h2 class="h2-comp">
   Information about <b><%= @shop.name %></b> which belongs to <b><%= @company.name %></b>
 </h2>
-
  <div class="show">
    <ul>
     <li>Shop name:<%= @shop.name %></li>
@@ -13,11 +12,28 @@
     <li>Zipcode:<%= @shop.address.zipcode %></li>
     <li>Country:<%= @shop.address.country %></li>
   </ul>
+  <h2 class="h2-comp">
+    Working hours and avalilable slots:
+  </h2>
+  <ul>
+    <% @slots.each do |shop_slot| %>
+      <li>
+        <%= shop_slot.week_day %> working hours:
+        </br>
+        Shop opens at <%= shop_slot.open_hour.strftime("%H:%M") %> and closes at <%= shop_slot.close_hour.strftime("%H:%M") %>.
+        Maximum slots available: <%= shop_slot.max_appointments %>
+        <div class=""><%= link_to "Edit #{shop_slot.week_day} slot", edit_company_shop_shop_slot_path(@company, @shop, shop_slot) , class: "btn btn-primary" %></div>
+      </li>
+    <% end %>
+  </ul>
+
   <div class="showbtn">
     <%= link_to "Edit shop", edit_company_shop_path(@company, @shop) , class: "btn btn-primary" %>
     <%= link_to "Delete shop", company_shop_path(@company, @shop), method: :delete , class: "btn btn-primary", data: { confirm: "Are you sure you want to delete the shop?" } %>
     <%= link_to "Add employee", new_company_shop_employee_path(@company, @shop), class: "btn btn-primary" %>
     <%= link_to "Show all employees", company_shop_employees_path(@company, @shop), class: "btn btn-primary" %>
+    <%= link_to "Show all appointments", company_shop_index_appointment_path(@company, @shop), class: "btn btn-primary" %>
+    <%= link_to "Add shop slots", new_company_shop_shop_slot_path(@company, @shop) , class: "btn btn-primary" unless @shop.fully_scheduled? %>
     <%= link_to "Back to shops" , company_shops_path, class: "btn btn-primary" %>
   </div>
 </div>

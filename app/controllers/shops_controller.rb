@@ -18,6 +18,7 @@ class ShopsController < ApplicationController
   end
 
   def show
+    @slots = @shop.shop_slots.order('day ASC')
     return redirect_to company_shops_path if @shop.blank?
   end
 
@@ -42,6 +43,33 @@ class ShopsController < ApplicationController
   end
 
   def index
+  end
+
+  def index_appointment
+    @company = Company.find(params[:company_id])
+    authorize! :show, @company
+    @shop = Shop.find(params[:shop_id])
+    authorize! :show, @shop
+    @appointments = Appointment.where(shop_id: @shop.id)
+  end
+
+  def change_status
+    @company = Company.find(params[:company_id])
+    authorize! :show, @company
+    @shop = Shop.find(params[:shop_id])
+    authorize! :show, @shop
+    @appointment = Appointment.find(params[:appointment])
+    if @appointment.status == 'Booked'
+      @appointment.update(status: 'Ready for pickup')
+      flash[:success] = 'The appointment has been updated to ready for pickup!'
+      return redirect_to company_shop_index_appointment_path(@company, @shop)
+    elsif @appointment.status == 'Ready for pickup'
+      @appointment.update(status: 'Finished')
+      flash[:success] = 'The appointment has been completed!'
+      return redirect_to company_shop_index_appointment_path(@company, @shop)
+    else
+      flash[:danger] = "The appointment couldn't updated!"
+    end
   end
 
   private

@@ -1,0 +1,18 @@
+<h2 class = "h2-comp">
+  Appointment information:
+</h2>
+
+<div class= "show">
+  <ul>
+    <li>Date: <b><%= @appointment.date %></b>, total items <b><%= @appointment.item_number %></b></li>
+    <li>Status of the appointment: <b><%= @appointment.status %></b></li>
+  </ul>
+
+  <div class="showbtn">
+    <%= link_to "Edit the appointment", edit_user_appointment_path(@user, @appointment), class: "btn btn-primary"%>
+    <% if @appointment.status == 'Booked' %>
+      <%= link_to "Delete the appointment", user_appointment_path(@user, @appointment), method: :delete, class: "btn btn-primary", data: { confirm: "Are you sure you want to delete the company?" } %>
+    <% end %>
+    <%= link_to "Back to the user",  user_path(@user), class: "btn btn-primary" %>
+  </div>
+</div>
