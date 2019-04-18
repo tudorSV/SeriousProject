@@ -1,6 +1,21 @@
 class Appointment < ApplicationRecord
+  include AASM
+
   belongs_to :shop
   belongs_to :user
+
+  aasm :column => 'status' do
+    state :booked, initial: true
+    state :ready_for_pickup, :finished
+
+    event :ready_for_pickup do
+      transitions from: :booked, to: :ready_for_pickup
+    end
+
+    event :finished do
+      transitions from: :ready_for_pickup, to: :finished
+    end
+  end
 
   validates :date, presence: true
   validates :status, presence: true

@@ -34,6 +34,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 # Reduces boot times through caching; required in config/boot.rb
+gem 'aasm', '5.0.2'
 gem 'bcrypt', '3.1.12'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap-sass', '3.4.1'
@@ -53,7 +54,7 @@ group :development do
   gem 'web-console', '>= 3.3.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'pry', '0.12.2'
-  gem 'spring'
+  gem 'spring', '~> 2.0', '>= 2.0.2'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 

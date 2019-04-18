@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 2019_04_04_135622) do
   create_table "appointments", force: :cascade do |t|
     t.date "date"
     t.integer "item_number"
-    t.string "status", default: "Booked"
+    t.string "status", default: "booked"
     t.bigint "user_id"
     t.bigint "shop_id"
     t.datetime "created_at", null: false
@@ -62,8 +62,8 @@ ActiveRecord::Schema.define(version: 2019_04_04_135622) do
   create_table "shop_slots", force: :cascade do |t|
     t.integer "day"
     t.integer "max_appointments"
-    t.time "open"
-    t.time "close"
+    t.time "open_hour"
+    t.time "close_hour"
     t.boolean "closed", default: true
     t.bigint "shop_id"
     t.datetime "created_at", null: false

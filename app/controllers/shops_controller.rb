@@ -55,13 +55,13 @@ class ShopsController < ApplicationController
     @appointment = Appointment.find(params[:appointment])
     @company = Company.find(params[:company_id])
     @shop = Shop.find(params[:shop_id])
-    if @appointment.status == 'Booked'
-      @appointment.update(status: 'Ready for pickup')
+    if @appointment.status == 'booked'
+      @appointment.update(status: 'ready for pickup')
       AppointmentMailer.status_email(@appointment).deliver_now
       flash[:success] = 'The appointment has been updated to ready for pickup!'
       return redirect_to company_shop_index_appointment_path(@company, @shop)
-    elsif @appointment.status == 'Ready for pickup'
-      @appointment.update(status: 'Finished')
+    elsif @appointment.status == 'ready for pickup'
+      @appointment.update(status: 'finished')
       AppointmentMailer.thank_you_email(@appointment).deliver_now
       flash[:success] = 'The appointment has been updated!'
       return redirect_to company_shop_index_appointment_path(@company, @shop)

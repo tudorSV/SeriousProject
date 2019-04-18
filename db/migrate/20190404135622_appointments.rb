@@ -3,8 +3,8 @@ class Appointments < ActiveRecord::Migration[5.2]
     create_table :shop_slots do |t|
       t.integer :day
       t.integer :max_appointments
-      t.time :open
-      t.time :close
+      t.time :open_hour
+      t.time :close_hour
       t.boolean :closed, default: true
       t.references :shop
 
@@ -14,7 +14,7 @@ class Appointments < ActiveRecord::Migration[5.2]
     create_table :appointments do |t|
       t.date :date
       t.integer :item_number
-      t.string :status, default: 'Booked'
+      t.string :status, default: 'booked'
 
       t.references :user
       t.references :shop

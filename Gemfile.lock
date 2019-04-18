@@ -1,6 +1,8 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    aasm (5.0.2)
+      concurrent-ruby (~> 1.0)
     actioncable (5.2.1)
       actionpack (= 5.2.1)
       nio4r (~> 2.0)
@@ -273,6 +275,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  aasm (= 5.0.2)
   bcrypt (= 3.1.12)
   bootsnap (>= 1.1.0)
   bootstrap-sass (= 3.4.1)
@@ -293,7 +296,7 @@ DEPENDENCIES
   rubocop (~> 0.66.0)
   sass-rails (~> 5.0)
   selenium-webdriver (~> 3.14.1)
-  spring
+  spring (~> 2.0, >= 2.0.2)
   spring-watcher-listen (~> 2.0.0)
   turbolinks (~> 5)
   tzinfo-data
