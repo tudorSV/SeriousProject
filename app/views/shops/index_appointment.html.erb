@@ -15,9 +15,9 @@
                        method: :put,
                        class: "btn btn-primary",
                        data: { confirm: "Are you sure you want to change the status?" } %>
-        <% elsif  appointment.status == 'Ready for pickup'  %>
+        <% elsif appointment.status == 'Ready for pickup'  %>
           <%= link_to "Change to finished ",
-                       company_shop_change_status_path(@company, @shop, appointment: appointment.id, status: 'ready'),
+                       company_shop_change_status_path(@company, @shop, appointment: appointment.id, status: 'finished'),
                        method: :put,
                        class: "btn btn-primary",
                        data: { confirm: "Are you sure you want to change the status?" } %>
@@ -26,6 +26,6 @@
     <% end %>
   </ul>
   <div class="showbtn">
-    <%= link_to "Back to the shop" , company_shop_path(@company, @shop), class: "btn btn-primary" %>
+    <%= link_to "Back to the shop", company_shop_path(@company, @shop), class: "btn btn-primary" %>
   </div>
 </div>

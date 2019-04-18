@@ -11,8 +11,8 @@ class ShopSlot < ApplicationRecord
   validates :open_hour, presence: true
   validates :close_hour, presence: true
 
-  WEEK = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday',
-          'Friday', 'Saturday'].freeze
+  WEEK = { 0 => 'Sunday', 1 => 'Monday', 2 => 'Tuesday', 3 => 'Wednesday', 4 =>
+          'Thursday', 5 => 'Friday', 6 => 'Saturday' }.freeze
 
   def week_day
     WEEK[day]

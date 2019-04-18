@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'pry'
 
 describe 'Shop Slots' do
   let(:company) { FactoryBot.create(:company) }
@@ -25,7 +24,6 @@ describe 'Shop Slots' do
       fill_in 'Max appointments', with: max_appointments
       click_button 'Add appointment data to the shop'
       expect(page).to have_selector('h2', text: 'Working hours and avalilable slots:')
-      # expect(page).to have_selector('li', text: "#{shop_slot.week_day.humanize} working hours:")
       expect(page).to have_link('Edit Sunday slot')
     end
   end
@@ -36,11 +34,10 @@ describe 'Shop Slots' do
       shop_slot
       visit edit_company_shop_shop_slot_path(shop_slot.shop.company, shop_slot.shop, shop_slot)
       expect(page).to have_selector('h1', text: 'Change the shop slot')
-      # expect(page).to have_field("#{shop_slot.week_day.humanize} Max appointments")
       fill_in "Max appointments", with: edit_max_appointmnets
       click_button 'Change shop slot'
       expect(page).to have_selector('h2', text: 'Working hours and avalilable slots:')
-      expect(page).to have_selector('li', text: 'Tuesday working hours:')
+      expect(page).to have_selector('li', text: "#{shop_slot.week_day.humanize} working hours:")
     end
   end
 end

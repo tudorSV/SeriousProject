@@ -1,27 +1,9 @@
 require 'rails_helper'
-require 'pry'
 
 describe 'Appointment model' do
   let(:user) { FactoryBot.create(:user) }
-  let(:shop) { FactoryBot.create(:shop) }
-  let(:shop_slot1) { FactoryBot.create(:shop_slot, shop: shop) }
-  let(:shop_slot2) { FactoryBot.create(:shop_slot, shop: shop) }
-  let(:shop_slot3) { FactoryBot.create(:shop_slot, shop: shop) }
-  let(:shop_slot4) { FactoryBot.create(:shop_slot, shop: shop) }
-  let(:shop_slot5) { FactoryBot.create(:shop_slot, shop: shop) }
-  let(:shop_slot6) { FactoryBot.create(:shop_slot, shop: shop) }
-  let(:shop_slot7) { FactoryBot.create(:shop_slot, shop: shop) }
+  let(:shop) { FactoryBot.create(:shop_with_shop_slots) }
   let(:appointment) { FactoryBot.create(:appointment, shop: shop, user: user) }
-
-  before do
-    shop_slot1
-    shop_slot2
-    shop_slot3
-    shop_slot4
-    shop_slot5
-    shop_slot6
-    shop_slot7
-  end
 
   describe 'associations' do
     describe 'user' do
