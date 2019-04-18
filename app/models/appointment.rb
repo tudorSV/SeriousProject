@@ -3,15 +3,10 @@ class Appointment < ApplicationRecord
   belongs_to :user
 
   validates :date, presence: true
-<<<<<<< HEAD
   validates :status, presence: true
   validates :item_number, presence: true
   validate :appointment_date
   validate :available_date
-=======
-  validates :item_number, presence: true
-  validates :status, presence: true
->>>>>>> development
 
   validate :appointment_date
   validate :available_date
