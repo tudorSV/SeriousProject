@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'pry'
 
 describe 'Appointments' do
   let(:user) { FactoryBot.create(:user) }
@@ -17,6 +18,7 @@ describe 'Appointments' do
     let(:new_date) { '2019-04-21' }
     let(:new_item_number) { 2 }
     it 'should have content' do
+      binding.pry
       user
       shop
       visit new_user_appointment_path(user)

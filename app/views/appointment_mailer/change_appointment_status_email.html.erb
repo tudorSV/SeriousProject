@@ -1,0 +1,13 @@
+<h1>Hi <%= @appointment.user.name %></h1>
+<p>
+  Your appointment at the shop <%= @appointment.shop.name %> has been updated!
+</p>
+<div class= "show">
+  <ul>
+    <p>
+      The updated appointment:
+    </p>
+    <li>Date: <b><%= @appointment.date %></b>, total <%= pluralize(@appointment.item_number, 'item') %> <b><%= @appointment.item_number %> </b></li>
+    <li>Status of the appointment: <b><%= @appointment.status %></b></li>
+  </ul>
+</div>

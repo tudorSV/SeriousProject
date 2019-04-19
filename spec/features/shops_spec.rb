@@ -3,7 +3,9 @@ require 'rails_helper'
 describe 'Shops' do
   let(:company) { FactoryBot.create(:company) }
   let(:user) { FactoryBot.create(:user) }
-  let(:shop) { FactoryBot.create(:shop, company: company) }
+  let(:shop) { FactoryBot.create(:shop_with_shop_slots) }
+  let(:appointment) { FactoryBot.create(:appointment, shop: shop, user: user) }
+
   let(:shop2) { FactoryBot.create(:shop, company: company) }
 
   before do
@@ -21,6 +23,15 @@ describe 'Shops' do
       expect(page).to have_content(shop.name)
       expect(page).to have_link('Create')
       expect(page).to have_link('Back to the company')
+    end
+  end
+
+  describe 'index appointmet' do
+    it 'should have content' do
+      user
+      company
+      shop
+      company_shop_index_appointment_path(company, shop)
     end
   end
 
