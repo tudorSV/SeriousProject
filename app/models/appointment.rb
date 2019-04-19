@@ -10,19 +10,22 @@ class Appointment < ApplicationRecord
 
     event :ready_for_pickup do
       transitions from: :booked, to: :ready_for_pickup
+      after do
+        send_update_email_to_user
+      end
     end
 
     event :finished do
       transitions from: :ready_for_pickup, to: :finished
+      after do
+        send_thank_you_email
+      end
     end
   end
 
   validates :date, presence: true
   validates :status, presence: true
   validates :item_number, presence: true
-  validate :appointment_date
-  validate :available_date
-
   validate :appointment_date
   validate :available_date
 
@@ -46,5 +49,15 @@ class Appointment < ApplicationRecord
         errors.add(:available_date, 'Date is taken, please choose another one')
       end
     end
+  end
+
+  private
+
+  def send_thank_you_email
+    AppointmentMailer.status_email(self).deliver_now
+  end
+
+  def send_update_email_to_user
+    AppointmentMailer.thank_you_email(self).deliver_now
   end
 end
