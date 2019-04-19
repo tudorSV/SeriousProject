@@ -57,7 +57,7 @@ class Appointment < ApplicationRecord
     AppointmentMailer.user_thank_you_email(self).deliver_now
   end
 
-  def change_appointment_status_email
+  def send_update_email_to_user
     AppointmentMailer.change_appointment_status_email(self).deliver_now
   end
 end

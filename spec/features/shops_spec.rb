@@ -1,9 +1,10 @@
 require 'rails_helper'
+require 'pry'
 
 describe 'Shops' do
   let(:company) { FactoryBot.create(:company) }
   let(:user) { FactoryBot.create(:user) }
-  let(:shop) { FactoryBot.create(:shop_with_shop_slots) }
+  let(:shop) { FactoryBot.create(:shop_with_shop_slots, company: company) }
   let(:appointment) { FactoryBot.create(:appointment, shop: shop, user: user) }
 
   let(:shop2) { FactoryBot.create(:shop, company: company) }
@@ -17,21 +18,13 @@ describe 'Shops' do
 
   describe 'index' do
     it 'should have content' do
+      company
       shop
       visit company_shops_path(company)
       expect(page).to have_selector('h1', text: "All the shops that belong to the company: #{company.name}")
       expect(page).to have_content(shop.name)
       expect(page).to have_link('Create')
       expect(page).to have_link('Back to the company')
-    end
-  end
-
-  describe 'index appointmet' do
-    it 'should have content' do
-      user
-      company
-      shop
-      company_shop_index_appointment_path(company, shop)
     end
   end
 
@@ -92,6 +85,7 @@ describe 'Shops' do
 
   describe 'delete' do
     it 'should have content' do
+      company
       shop
       shop2
       visit company_shop_path(company, shop)
