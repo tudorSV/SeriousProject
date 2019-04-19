@@ -9,9 +9,11 @@ class AppointmentsController < ApplicationController
   def create
     @shop = Shop.find(params[:appointment][:shop_id])
     @appointment = Appointment.new(appointment_params.merge(user_id: @user.id,
-                                                             shop_id: @shop.id))
+                                                            shop_id: @shop.id))
     if @appointment.save
       flash[:success] = 'The appointment has been added'
+      AppointmentMailer.user_appointment_confirmation_email(@appointment).deliver_now
+      AppointmentMailer.shop_appointment_confirmation_email(@appointment).deliver_now
       redirect_to user_path(@user)
     else
       flash[:danger] = "The appointment couldnt'be created!"

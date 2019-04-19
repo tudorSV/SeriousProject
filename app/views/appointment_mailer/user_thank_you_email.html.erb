@@ -1,0 +1,13 @@
+<h1>Hi <%= @appointment.user.name %></h1>
+<p>
+  The appointment has been completed succesfully!
+</p>
+<div class= "show">
+  <ul>
+    <li>Date: <b><%= @appointment.date %></b>, total items <b><%= @appointment.item_number %> </b></li>
+    <li>Status of the appointment: <b><%= @appointment.status %></b></li>
+  </ul>
+</div>
+<p>
+  Thank you for using our services!
+</p>

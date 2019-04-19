@@ -54,6 +54,7 @@ class ShopsController < ApplicationController
   end
 
   def change_status
+    @appointment = Appointment.find(params[:appointment])
     @company = Company.find(params[:company_id])
     authorize! :show, @company
     @shop = Shop.find(params[:shop_id])
@@ -61,11 +62,13 @@ class ShopsController < ApplicationController
     @appointment = Appointment.find(params[:appointment])
     if @appointment.status == 'Booked'
       @appointment.update(status: 'Ready for pickup')
+      AppointmentMailer.change_appointment_status_email(@appointment).deliver_now
       flash[:success] = 'The appointment has been updated to ready for pickup!'
       return redirect_to company_shop_index_appointment_path(@company, @shop)
     elsif @appointment.status == 'Ready for pickup'
       @appointment.update(status: 'Finished')
-      flash[:success] = 'The appointment has been completed!'
+      AppointmentMailer.user_thank_you_email(@appointment).deliver_now
+      flash[:success] = 'The appointment is ready for pickup!'
       return redirect_to company_shop_index_appointment_path(@company, @shop)
     else
       flash[:danger] = "The appointment couldn't updated!"
