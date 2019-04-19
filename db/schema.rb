@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(version: 2019_04_04_135622) do
     t.integer "max_appointments"
     t.time "open_hour"
     t.time "close_hour"
-    t.boolean "closed", default: true
+    t.boolean "closed", default: false
     t.bigint "shop_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -3,9 +3,9 @@
   <div class="col-md-6 col-md-offset-3">
     <%= form_for [@user, @appointment],
             url:user_appointments_path(@user),
-            method: :post  do |appointment_form | %>
+            method: :post do |appointment_form| %>
       <%= render 'shared/error_messages', object: appointment_form.object %>
-      <%= appointment_form.label :date, 'Choose a date:  ' %>
+      <%= appointment_form.label :date, 'Choose a date:' %>
       <%= appointment_form.date_field :date %>
 
       <%= appointment_form.label :item_number %>
@@ -15,7 +15,7 @@
       <%= appointment_form.select :shop_id, @shops %>
       <div class="more">
         <div class="button save"><%= appointment_form.submit "Add a new appointment", class: "btn btn-primary" %></div>
-        <div class="button back"><%= link_to "Back", user_path(@user), class: "btn btn-primary"  %></div>
+        <div class="button back"><%= link_to "Back", user_path(@user), class: "btn btn-primary" %></div>
       </div>
     <% end %>
   </div>

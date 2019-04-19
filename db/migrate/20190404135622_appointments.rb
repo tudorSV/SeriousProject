@@ -5,7 +5,7 @@ class Appointments < ActiveRecord::Migration[5.2]
       t.integer :max_appointments
       t.time :open_hour
       t.time :close_hour
-      t.boolean :closed, default: true
+      t.boolean :closed, default: false
       t.references :shop
 
       t.timestamps

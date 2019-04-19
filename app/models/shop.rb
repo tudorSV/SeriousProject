@@ -15,8 +15,8 @@ class Shop < ApplicationRecord
                     format: { with: EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
 
-  def programmed_days
-    if shop_slots.count < 7
+  def fully_scheduled?
+    if shop_slots.count == 7
       true
     else
       false

@@ -17,6 +17,7 @@ class AppointmentsController < ApplicationController
       redirect_to user_path(@user)
     else
       flash[:danger] = "The appointment couldnt'be created!"
+      @shops = Shop.pluck(:name, :id)
       render 'new'
     end
   end
@@ -37,9 +38,20 @@ class AppointmentsController < ApplicationController
     end
   end
 
+  def destroy
+    if @appointment.status == 'Booked'
+      flash[:success] = 'The appointment has been destroyed!'
+      @appointment.destroy
+      return redirect_to user_path(@user)
+    else
+      flash[:failure] = "The appointment couldn't be destroyed!"
+      render 'show'
+    end
+  end
+
   private
 
   def appointment_params
-    params.require(:appointment).permit(:date, :item_number, :status)
+    params.require(:appointment).permit(:date, :item_number, :status, :shop_id)
   end
 end
