@@ -1,23 +1,21 @@
 class AppointmentMailer < ActionMailer::Base
-  default from: 'example@email.com'
-
-  def user_email(appointment)
+  def user_appointment_confirmation_email(appointment)
     @appointment = appointment
-    mail(to: @appointment.user.email, subject: 'Appointment created')
+    mail(to: @appointment.user.email, subject: "Your appointment on shop #{@appointment.shop.name} has been confirmed!")
   end
 
-  def shop_email(appointment)
+  def shop_appointment_confirmation_email(appointment)
     @appointment = appointment
-    mail(to: @appointment.shop.email, subject: 'Appointment created')
+    mail(to: @appointment.shop.email, subject: "Appointment on #{@appointment.date}, belonging to #{@appointment.user.name} has been confirmed.")
   end
 
-  def status_email(appointment)
+  def change_appointment_status_email(appointment)
     @appointment = appointment
-    mail(to: @appointment.user.email, subject: 'Appointment update')
+    mail(to: @appointment.user.email, subject: "The date of the appointment on shop #{@appointment.shop.name} has been changed to #{@appointment.date}.")
   end
 
-  def thank_you_email(appointment)
+  def user_thank_you_email(appointment)
     @appointment = appointment
-    mail(to: @appointment.user.email, subject: 'Appointment has been completed')
+    mail(to: @appointment.user.email, subject: "Thank you for using the services of #{@appointment.shop.name}")
   end
 end

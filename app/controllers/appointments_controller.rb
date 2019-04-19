@@ -12,8 +12,8 @@ class AppointmentsController < ApplicationController
                                                             shop_id: @shop.id))
     if @appointment.save
       flash[:success] = 'The appointment has been added'
-      AppointmentMailer.user_email(@appointment).deliver_now
-      AppointmentMailer.shop_email(@appointment).deliver_now
+      AppointmentMailer.user_appointment_confirmation_email(@appointment).deliver_now
+      AppointmentMailer.shop_appointment_confirmation_email(@appointment).deliver_now
       redirect_to user_path(@user)
     else
       flash[:danger] = "The appointment couldnt'be created!"

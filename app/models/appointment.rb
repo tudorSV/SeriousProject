@@ -8,9 +8,6 @@ class Appointment < ApplicationRecord
   validate :appointment_date
   validate :available_date
 
-  validate :appointment_date
-  validate :available_date
-
   def appointment_date
     if date.present? && date.past?
       errors.add(:appointment_date, 'cannot be in the past')
