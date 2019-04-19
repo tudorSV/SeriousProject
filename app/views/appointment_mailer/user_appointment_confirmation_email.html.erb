@@ -1,18 +1,13 @@
-<!DOCTYPE html>
-<html>
-  <body>
-    <h1>Hi <%= @appointment.user.name %></h1>
-    <p>
-      Your appointment at the shop <%= @appointment.shop.name %> has been created!
-    </p>
-    <p>
-      Information about your appointment:
-    </p>
-    <div class= "show">
-      <ul>
-        <li>Date: <b><%= @appointment.date %></b>, total <%= pluralize(@appointment.item_number, 'item') %> <%= @appointment.item_number %> </b></li>
-        <li>Status of the appointment: <b><%= @appointment.status %></b></li>
-      </ul>
-    </div>
-  </body>
-</html>
+<h1>Hi <%= @appointment.user.name %></h1>
+<p>
+  Your appointment at the shop <%= @appointment.shop.name %> has been created!
+</p>
+<p>
+  Information about your appointment:
+</p>
+<div class= "show">
+  <ul>
+    <li>Date: <b><%= @appointment.date %></b>, total <%= pluralize(@appointment.item_number, 'item') %> <%= @appointment.item_number %> </b></li>
+    <li>Status of the appointment: <b><%= @appointment.status %></b></li>
+  </ul>
+</div>
