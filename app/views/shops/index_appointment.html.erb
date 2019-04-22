@@ -15,7 +15,7 @@
                        method: :put,
                        class: "btn btn-primary",
                        data: { confirm: "Are you sure you want to change the status?" } %>
-        <% elsif  appointment.ready_for_pickup?  %>
+        <% elsif appointment.ready_for_pickup?  %>
           <%= link_to "Change to finished ",
                        company_shop_change_status_path(@company, @shop, appointment: appointment.id, status: 'finished'),
                        method: :put,

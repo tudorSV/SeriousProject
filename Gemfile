@@ -39,7 +39,6 @@ gem 'bcrypt', '3.1.12'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap-sass', '3.4.1'
 gem 'cancancan', '2.3'
-gem "letter_opener", '1.7.0', :group => :development
 gem 'rubocop', '~> 0.66.0', require: false
 
 group :development, :test do
@@ -52,10 +51,11 @@ end
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'listen', '>= 3.0.5', '< 3.2'
+  gem "letter_opener", '1.7.0'
   gem 'web-console', '>= 3.3.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'pry', '0.12.2'
-  gem 'spring', '~> 2.0', '>= 2.0.2'
+  gem 'spring', '>= 2.0.2'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 

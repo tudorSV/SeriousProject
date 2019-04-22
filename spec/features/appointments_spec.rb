@@ -61,7 +61,7 @@ describe 'Appointments' do
     end
   end
 
-  describe 'index appointmet' do
+  describe 'index appointment' do
     it 'should have content' do
       user
       shop

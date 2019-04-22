@@ -10,16 +10,12 @@ class Appointment < ApplicationRecord
 
     event :ready_for_pickup do
       transitions from: :booked, to: :ready_for_pickup
-      after do
-        send_update_email_to_user
-      end
+      after :send_update_email_to_user
     end
 
     event :finished do
       transitions from: :ready_for_pickup, to: :finished
-      after do
-        send_thank_you_email
-      end
+      after :send_thank_you_email
     end
   end
 
