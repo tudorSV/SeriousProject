@@ -90,6 +90,8 @@ ActiveRecord::Schema.define(version: 2019_04_04_135622) do
     t.boolean "admin", default: true
     t.string "email"
     t.string "phone_number"
+    t.boolean "blocked", default: false
+    t.boolean "active", default: false
     t.bigint "address_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

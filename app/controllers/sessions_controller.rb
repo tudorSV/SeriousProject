@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
 
   def create
     user = User.find_by_username(params[:username])
-    if user && user.authenticate(params[:password])
+    if user && user.authenticate(params[:password]) && user.active && !user.blocked
       session[:user_id] = user.id
       flash[:success] = 'The user logged in!'
       redirect_to users_path

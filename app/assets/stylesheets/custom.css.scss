@@ -61,6 +61,19 @@ body {
   width: 50%;
 }
 
+table {
+  width: 60%;
+  border: 1px solid black;
+  td {
+    padding-left: 10px;
+    padding-bottom: 10px;
+  }
+  th {
+    padding-left: 10px;
+  }
+}
+
+
 #active div{
   display: inline-block;
   width: 50px;

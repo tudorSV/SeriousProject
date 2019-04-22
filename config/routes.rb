@@ -10,11 +10,14 @@ Rails.application.routes.draw do
   end
 
   resources :users do
-    resources :appointments, except: [ :index]
+    resources :appointments, except: [:index]
+    put :change_status
+    put :block_user
   end
 
   resources :sessions
 
+  get 'users_list', to: 'users#index_admin', as: 'users_list'
   get 'signup',  to: 'users#new', as: 'signup'
   get 'signin',  to: 'sessions#new', as: 'login'
   get 'logout', to: 'sessions#destroy', as: 'logout'

@@ -18,4 +18,19 @@ class AppointmentMailer < ActionMailer::Base
     @appointment = appointment
     mail(to: @appointment.user.email, subject: "Thank you for using the services of #{@appointment.shop.name}")
   end
+
+  def user_creation_confirmation_email(user)
+    @user = user
+    mail(to: user, subject: "Bike shop account has been created")
+  end
+
+  def user_activation_email(user)
+    @user = user
+    mail(from: "contact@chinesebikes.com", to: user, subject: "User account on Bike Shop has been activateds")
+  end
+
+  def user_block_email(user)
+    @user = user
+    mail(from: "contact@chinesebikes.com", to: user, subject: "Your account has been blocked")
+  end
 end
