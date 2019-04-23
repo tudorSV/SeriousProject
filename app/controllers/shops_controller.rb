@@ -60,16 +60,25 @@ class ShopsController < ApplicationController
     @shop = Shop.find(params[:shop_id])
     authorize! :show, @shop
     @appointment = Appointment.find(params[:appointment])
-    if @appointment.booked
+    case params[:status]
+    when 'booked'
       @appointment.ready_for_pickup!
-      flash[:success] = 'The appointment has been updated to ready for pickup!'
-      return redirect_to company_shop_index_appointment_path(@company, @shop)
-    elsif @appointment.ready_for_pickup
+      if @appointment.valid?
+        flash[:success] = 'The appointment has been updated to ready for pickup!'
+        return redirect_to company_shop_index_appointment_path(@company, @shop)
+      else
+        flash[:danger] = "The appointment couldn't be updated!"
+      end
+    when 'ready_for_pickup'
       @appointment.finished!
-      flash[:success] = 'The appointment has been finalized!'
-      return redirect_to company_shop_index_appointment_path(@company, @shop)
+      if @appointment.valid?
+        flash[:success] = 'The appointment has been finalized!'
+        return redirect_to company_shop_index_appointment_path(@company, @shop)
+      else
+        flash[:danger] = "The appointment couldn't be updated!"
+      end
     else
-      flash[:danger] = "The appointment couldn't updated!"
+      flash[:danger] = "The appointment couldn't be updated!"
     end
   end
 
