@@ -14,7 +14,7 @@ class Appointments < ActiveRecord::Migration[5.2]
     create_table :appointments do |t|
       t.date :date
       t.integer :item_number
-      t.string :status, default: 'booked'
+      t.string :status, default: 'Booked'
 
       t.references :user
       t.references :shop
