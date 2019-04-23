@@ -11,7 +11,7 @@
         has the status of <b><%= appointment.status.humanize -%></b>.
         <% if appointment.booked? %>
           <%= link_to "Change to Ready for pickup",
-                       company_shop_change_status_path(@company, @shop, appointment: appointment.id, status: 'ready'),
+                       company_shop_change_status_path(@company, @shop, appointment: appointment.id, status: 'ready_for_pickup'),
                        method: :put,
                        class: "btn btn-primary",
                        data: { confirm: "Are you sure you want to change the status?" } %>
