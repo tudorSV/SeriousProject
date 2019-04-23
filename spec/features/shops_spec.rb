@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'Shops' do
   let(:company) { FactoryBot.create(:company) }
-  let(:user) { FactoryBot.create(:user) }
+  let(:user) { FactoryBot.create(:user, active: true) }
   let(:shop) { FactoryBot.create(:shop, company: company) }
   let(:shop2) { FactoryBot.create(:shop, company: company) }
 

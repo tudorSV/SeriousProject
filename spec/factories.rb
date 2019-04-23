@@ -21,7 +21,7 @@ FactoryBot.define do
   end
 
   factory :appointment do
-    sequence(:date) { '2019-04-20' }
+    sequence(:date) { '2019-07-20' }
     sequence(:item_number) { |n| n % 5 }
     user
     shop

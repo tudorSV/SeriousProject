@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'Companies' do
-  let(:user) { FactoryBot.create(:user) }
+  let(:user) { FactoryBot.create(:user, active: true) }
   let(:company) { FactoryBot.create(:company) }
   let(:company2) { FactoryBot.create(:company) }
 

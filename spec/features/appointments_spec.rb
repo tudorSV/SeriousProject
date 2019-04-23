@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'Appointments' do
-  let(:user) { FactoryBot.create(:user) }
+  let(:user) { FactoryBot.create(:user, active: true) }
   let(:shop) { FactoryBot.create(:shop_with_shop_slots) }
   let(:appointment) { FactoryBot.create(:appointment, shop: shop, user: user) }
 
@@ -14,7 +14,7 @@ describe 'Appointments' do
   end
 
   describe 'create' do
-    let(:new_date) { '2019-04-21' }
+    let(:new_date) { '2019-08-21' }
     let(:new_item_number) { 2 }
     it 'should have content' do
       user

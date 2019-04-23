@@ -62,14 +62,27 @@ body {
 }
 
 table {
-  width: 60%;
+  align: center;
+  width: 50%;
+
   border: 1px solid black;
+  align-content: center;
+  .user-list {
+    align-content: center;
+  }
   td {
     padding-left: 10px;
     padding-bottom: 10px;
+    width: 33%;
+    text-align: left;
   }
   th {
+    width: 33%;
+    text-align: left;
     padding-left: 10px;
+  }
+  .btn, .btn-primary{
+    width: 40%;
   }
 }
 
@@ -126,6 +139,9 @@ table {
 
 .show{
   margin-left: 20px;
+  .user-list {
+    align: center;
+  }
 }
 
 .edit{

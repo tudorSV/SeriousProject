@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 describe 'Users' do
-  let(:user) { FactoryBot.create(:user) }
-  let(:user2) { FactoryBot.create(:user) }
+  let(:user) { FactoryBot.create(:user, active: true) }
+  let(:user2) { FactoryBot.create(:user, active: false) }
 
   describe 'user is not logged in' do
     describe 'index' do
@@ -60,21 +60,6 @@ describe 'Users' do
         fill_in 'Zipcode',                with: new_zipcode
         fill_in 'Country',                with: new_country
         click_button 'Sign up'
-        visit new_session_path
-        fill_in 'Username', with: new_username
-        fill_in 'Password', with: password
-        click_button 'Login'
-        click_link new_name
-        expect(page).to have_selector('h2', text: 'This is your profile!')
-        expect(page).to have_selector('li', text: "Name: #{new_name}")
-        expect(page).to have_selector('li', text: "Email: #{new_email}")
-        expect(page).to have_selector('li', text: "Username: #{new_username}")
-        expect(page).to have_selector('li', text: 'Is admin? true')
-        expect(page).to have_selector('li', text: "Short address: #{new_short_address}")
-        expect(page).to have_selector('li', text: "Full address: #{new_full_address}")
-        expect(page).to have_selector('li', text: "City: #{new_city}")
-        expect(page).to have_selector('li', text: "Zipcode: #{new_zipcode}")
-        expect(page).to have_selector('li', text: "Country: #{new_country}")
       end
     end
   end
@@ -167,6 +152,46 @@ describe 'Users' do
         expect(page).to have_selector('li', text:  new_name)
         expect(page).to have_selector('li', text:  new_zipcode)
         expect(page).to have_selector('li', text:  new_country)
+      end
+    end
+
+    describe 'index admin' do
+      it 'should have content' do
+        visit users_list_path
+        expect(page).to have_selector('h2', text: 'Existing users')
+        within 'table' do
+          expect(page).to have_text 'Username'
+          expect(page).to have_text 'Status'
+          expect(page).to have_text 'Blocked'
+          expect(page).to have_text user.username
+          expect(page).to have_text 'Active'
+          expect(page).to have_text 'Not blocked'
+        end
+      end
+    end
+
+    describe 'activate user' do
+      it 'should have content' do
+        user2
+        visit users_list_path
+        expect(page).to have_selector('h2', text: 'Existing users')
+        expect(page).to have_text user.username
+        expect(page).to have_text 'Inactive'
+        expect(page).to have_link('Activate')
+        click_link('Activate')
+        expect(page).to have_text 'Active'
+      end
+    end
+
+    describe 'change active' do
+      it 'should have content' do
+        visit users_list_path
+        expect(page).to have_selector('h2', text: 'Existing users')
+        within 'table' do
+          expect(page).to have_link('Block the user')
+          click_link('Block')
+          expect(page).to have_text 'Blocked'
+        end
       end
     end
   end
