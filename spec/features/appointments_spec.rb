@@ -60,4 +60,17 @@ describe 'Appointments' do
       expect(page).to have_link('Back to the user')
     end
   end
+
+  describe 'index appointment' do
+    it 'should have content' do
+      user
+      shop
+      appointment
+      visit company_shop_index_appointment_path(shop.company, shop)
+      expect(page).to have_selector('h2', text: "All the appointments that belong to #{shop.name}")
+      expect(page).to have_selector('li', text: "Appointment from #{appointment.date}")
+      click_link 'Change to Ready for pickup'
+      expect(page).to have_selector('li', text: 'Ready for pickup')
+    end
+  end
 end
