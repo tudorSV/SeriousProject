@@ -97,4 +97,5 @@ ActiveRecord::Schema.define(version: 2019_04_23_083746) do
     t.datetime "updated_at", null: false
     t.index ["address_id"], name: "index_users_on_address_id"
   end
+
 end
