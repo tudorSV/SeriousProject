@@ -60,6 +60,7 @@ describe 'Users' do
         fill_in 'Zipcode',                with: new_zipcode
         fill_in 'Country',                with: new_country
         click_button 'Sign up'
+        expect(page).to have_text 'The user has been created!'
       end
     end
   end

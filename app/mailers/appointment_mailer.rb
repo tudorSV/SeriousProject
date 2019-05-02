@@ -1,22 +1,26 @@
 class AppointmentMailer < ActionMailer::Base
   def user_appointment_confirmation_email(appointment)
     @appointment = appointment
-    mail(to: @appointment.user.email, subject: "Your appointment on shop #{@appointment.shop.name} has been confirmed!")
+    mail(from: "contact@chinesebikes.com", to: @appointment.user.email,
+         subject: "Your appointment on shop #{@appointment.shop.name} has been confirmed!")
   end
 
   def shop_appointment_confirmation_email(appointment)
     @appointment = appointment
-    mail(to: @appointment.shop.email, subject: "Appointment on #{@appointment.date}, belonging to #{@appointment.user.name} has been confirmed.")
+    mail(from: "contact@chinesebikes.com", to: @appointment.shop.email,
+         subject: "Appointment on #{@appointment.date}, belonging to #{@appointment.user.name} has been confirmed.")
   end
 
   def change_appointment_status_email(appointment)
     @appointment = appointment
-    mail(to: @appointment.user.email, subject: "The date of the appointment on shop #{@appointment.shop.name} has been changed to #{@appointment.date}.")
+    mail(from: "contact@chinesebikes.com", to: @appointment.user.email,
+         subject: "The status of the appointment on shop #{@appointment.shop.name} has been changed to #{@appointment.date}.")
   end
 
   def user_thank_you_email(appointment)
     @appointment = appointment
-    mail(to: @appointment.user.email, subject: "Thank you for using the services of #{@appointment.shop.name}")
+    mail(from: "contact@chinesebikes.com", to: @appointment.user.email,
+         subject: "Thank you for using the services of #{@appointment.shop.name}")
   end
 
   def user_creation_confirmation_email(user)
@@ -26,11 +30,13 @@ class AppointmentMailer < ActionMailer::Base
 
   def user_activation_email(user)
     @user = user
-    mail(from: "contact@chinesebikes.com", to: user, subject: "User account on Bike Shop has been activateds")
+    mail(from: "contact@chinesebikes.com", to: user,
+         subject: "User account on Bike Shop has been activated")
   end
 
   def user_block_email(user)
     @user = user
-    mail(from: "contact@chinesebikes.com", to: user, subject: "Your account has been blocked")
+    mail(from: "contact@chinesebikes.com", to: user,
+         subject: "Your account has been blocked")
   end
 end

@@ -44,10 +44,6 @@ body {
   margin-top: 50px;
 }
 
-.h2-comp{
-  margin-left: 20px;
-}
-
 .h2-edit {
   margin-left: 150px;
 }
@@ -64,7 +60,6 @@ body {
 table {
   align: center;
   width: 50%;
-
   border: 1px solid black;
   align-content: center;
   .user-list {
@@ -85,7 +80,6 @@ table {
     width: 40%;
   }
 }
-
 
 #active div{
   display: inline-block;
@@ -180,7 +174,7 @@ input, textarea, select, .uneditable-input{
 
 h2 {
   font: 400 40px/1.5 Helvetica, Verdana, sans-serif;
-  margin: 0;
+  margin-left: 20px;
   padding: 0;
 }
 

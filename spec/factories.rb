@@ -21,7 +21,7 @@ FactoryBot.define do
   end
 
   factory :appointment do
-    sequence(:date) { '2019-07-20' }
+    sequence(:date) { Time.zone.now + 5.years }
     sequence(:item_number) { |n| n % 5 }
     user
     shop
@@ -50,7 +50,7 @@ FactoryBot.define do
 
   factory :shop_slot do
     sequence(:day) { |n| n % 7 }
-    sequence(:max_appointments) { |n| ( n % 48 ) + 2 }
+    sequence(:max_appointments) { |n| (n % 48) + 2 }
     open_hour { DateTime.now + 1.hour }
     close_hour { DateTime.now + 8.hour }
     closed { false }

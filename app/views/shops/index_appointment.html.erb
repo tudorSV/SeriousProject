@@ -1,4 +1,4 @@
-<h2 class = "h2-comp">
+<h2>
   All the appointments that belong to <%= @shop.name %>
 </h2>
 
@@ -8,14 +8,14 @@
       <li>
         Appointment from <%= appointment.date %>,
         containing <%= pluralize(appointment.item_number, 'item') %>,
-        has the status of <b><%= appointment.status -%></b>.
-        <% if appointment.status == 'Booked' %>
+        has the status of <b><%= appointment.status.humanize -%></b>.
+        <% if appointment.booked? %>
           <%= link_to "Change to Ready for pickup",
-                       company_shop_change_status_path(@company, @shop, appointment: appointment.id, status: 'ready'),
+                       company_shop_change_status_path(@company, @shop, appointment: appointment.id, status: 'ready_for_pickup'),
                        method: :put,
                        class: "btn btn-primary",
                        data: { confirm: "Are you sure you want to change the status?" } %>
-        <% elsif appointment.status == 'Ready for pickup'  %>
+        <% elsif appointment.ready_for_pickup?  %>
           <%= link_to "Change to finished ",
                        company_shop_change_status_path(@company, @shop, appointment: appointment.id, status: 'finished'),
                        method: :put,

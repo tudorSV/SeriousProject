@@ -14,7 +14,7 @@ describe 'Appointments' do
   end
 
   describe 'create' do
-    let(:new_date) { '2019-08-21' }
+    let(:new_date) { Time.zone.now + 8.years }
     let(:new_item_number) { 2 }
     it 'should have content' do
       user
@@ -26,7 +26,7 @@ describe 'Appointments' do
       fill_in 'Item number', with: new_item_number
       click_button 'Add a new appointment'
       expect(page).to have_selector('h3', text: 'User appointments:')
-      expect(page).to have_selector('li', text: "About appointment from #{new_date}, containing #{new_item_number} items, with status of #{appointment.status}")
+      expect(page).to have_selector('li', text: "About appointment from #{new_date.strftime("%Y-%m-%d")}, containing #{new_item_number} items, with status of #{appointment.status}")
     end
   end
 
@@ -58,6 +58,19 @@ describe 'Appointments' do
       expect(page).to have_selector('li', text: "Status of the appointment: #{appointment.status}")
       expect(page).to have_link('Edit the appointment')
       expect(page).to have_link('Back to the user')
+    end
+  end
+
+  describe 'index appointment' do
+    it 'should have content' do
+      user
+      shop
+      appointment
+      visit company_shop_index_appointment_path(shop.company, shop)
+      expect(page).to have_selector('h2', text: "All the appointments that belong to #{shop.name}")
+      expect(page).to have_selector('li', text: "Appointment from #{appointment.date}")
+      click_link 'Change to Ready for pickup'
+      expect(page).to have_selector('li', text: 'Ready for pickup')
     end
   end
 end

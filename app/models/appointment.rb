@@ -1,6 +1,23 @@
 class Appointment < ApplicationRecord
+  include AASM
+
   belongs_to :shop
   belongs_to :user
+
+  aasm :column => 'status' do
+    state :booked, initial: true
+    state :ready_for_pickup, :finished
+
+    event :ready_for_pickup do
+      transitions from: :booked, to: :ready_for_pickup
+      after :send_update_email_to_user
+    end
+
+    event :finished do
+      transitions from: :ready_for_pickup, to: :finished
+      after :send_thank_you_email
+    end
+  end
 
   validates :date, presence: true
   validates :status, presence: true
@@ -28,5 +45,15 @@ class Appointment < ApplicationRecord
         errors.add(:available_date, 'Date is taken, please choose another one')
       end
     end
+  end
+
+  private
+
+  def send_thank_you_email
+    AppointmentMailer.user_thank_you_email(self).deliver_now
+  end
+
+  def send_update_email_to_user
+    AppointmentMailer.change_appointment_status_email(self).deliver_now
   end
 end

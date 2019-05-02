@@ -7,8 +7,6 @@ class UsersAndEmployees < ActiveRecord::Migration[5.2]
       t.boolean :admin, default: :false
       t.string :email
       t.string :phone_number
-      t.boolean :blocked, default: false
-      t.boolean :active, default: false
 
       t.references :address
       t.timestamps

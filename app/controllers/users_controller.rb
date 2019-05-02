@@ -54,30 +54,41 @@ class UsersController < ApplicationController
   end
 
   def index_admin
-    @users = User.all
+    authorize! :block_user, @user
+    @users = User.order(created_at: :asc).all
   end
 
   def change_status
     @user = User.find(params[:user])
+    authorize! :change_status, @user
     if !@user.active
       @user.update_attribute(:active, true)
       AppointmentMailer.user_activation_email(@user).deliver_now
       flash[:success] = 'The user is now active!'
       redirect_to users_list_path
+    else
+      flash[:danger] = 'The user cannot be updated'
     end
   end
 
   def block_user
     @user = User.find(params[:user])
+    authorize! :block_user, @user
     if !@user.blocked
-      @user.update_attribute(:blocked, true)
-      AppointmentMailer.user_block_email(@user).deliver_now
-      flash[:success] = 'The user has been banned!'
-      redirect_to users_list_path
+      if @user.update_attribute(:blocked, true)
+        AppointmentMailer.user_block_email(@user).deliver_now
+        flash[:success] = 'The user has been banned!'
+        redirect_to users_list_path
+      else
+        flash[:danger] = 'The user cannot be updated'
+      end
     elsif @user.blocked
-      @user.update_attribute(:blocked, false)
-      flash[:success] = 'The ban on the user has been lifted!'
-      redirect_to users_list_path
+      if @user.update_attribute(:blocked, false)
+        flash[:success] = 'The ban on the user has been lifted!'
+        redirect_to users_list_path
+      else
+        flash[:danger] = 'The user cannot be updated'
+      end
     else
       flash[:danger] = "The action couldn't be done"
     end

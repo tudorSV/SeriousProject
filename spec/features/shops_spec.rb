@@ -15,6 +15,7 @@ describe 'Shops' do
 
   describe 'index' do
     it 'should have content' do
+      company
       shop
       visit company_shops_path(company)
       expect(page).to have_selector('h1', text: "All the shops that belong to the company: #{company.name}")
@@ -81,6 +82,7 @@ describe 'Shops' do
 
   describe 'delete' do
     it 'should have content' do
+      company
       shop
       shop2
       visit company_shop_path(company, shop)
