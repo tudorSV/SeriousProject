@@ -35,7 +35,6 @@
 
   <div class="showbtn">
 
-
     <%= link_to "Edit shop", edit_company_shop_path(@company, @shop) , class: "btn btn-primary" %>
     <%= link_to "Add employee", new_company_shop_employee_path(@company, @shop), class: "btn btn-primary" %>
     <%= link_to "Show all employees", company_shop_employees_path(@company, @shop), class: "btn btn-primary" %>
@@ -45,36 +44,28 @@
   </div>
 </div>
 
+<button class="modal-trigger">Click here to trigger the modal!</button>
 
-<div class="card-footer">
-      <!-- Delete Button showing the modal -->
-     <button type="button" class="btn btn-outline-danger"
-            data-toggle="modal" data-target="#exampleModal<%= @shop.name %>">
-        Delete
-      </button>
+<div class="show-modal">
+  <%= render 'common/confirm_modal' %>
+</div>
+
+
+<button class="btn btn-default" id="btn-confirm">Confirm</button>
+
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="mi-modal">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Confirmar</h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" id="modal-btn-si">Si</button>
+        <button type="button" class="btn btn-primary" id="modal-btn-no">No</button>
+      </div>
     </div>
+  </div>
+</div>
 
-    <div class="modal fade" id="exampleModal<%= @shop.name %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-       <div class="modal-dialog" role="document">
-         <div class="modal-content">
-
-           <div class="modal-header">
-             <h5 class="modal-title" id="exampleModalLabel">Delete Confirmation</h5>
-             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-             <span aria-hidden="true">&times;</span>
-             </button>
-           </div>
-
-           <div class="modal-body">
-             Are you sure?
-           </div>
-
-           <!-- Delete button in the footer -->
-           <div class="modal-footer">
-             <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
-             <%= link_to 'Delete shop', company_shops_path(@company, @shop), method: :delete, class: 'btn btn-outline-danger' %>
-           </div>
-
-       </div>
-     </div>
-   </div>
+<div class="alert" role="alert" id="result"></div>
