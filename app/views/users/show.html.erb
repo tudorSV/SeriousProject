@@ -1,4 +1,4 @@
-<h2 class="h2-comp">
+<h2>
   This is your profile!
 </h2>
 
@@ -7,7 +7,9 @@
     <li>Name: <%= @user.name %></li>
     <li>Email: <%= @user.email %></li>
     <li>Username: <%= @user.username %></li>
-    <li>Is admin? <%= @user.admin %></li>
+    <% if @user.admin %>
+      <li>Is admin? <%= @user.admin %></li>
+    <% end %>
     <li>Short address: <%= @user.address.short_address %></li>
     <li>Full address: <%= @user.address.full_address %></li>
     <li>City: <%= @user.address.city %></li>

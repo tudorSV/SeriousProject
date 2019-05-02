@@ -21,6 +21,8 @@ class Ability
 
   def employee(current_user)
     can :manage, User, id: current_user.id
+    cannot :change_status, User
+    cannot :block_user, User
     can :manage, Company, employees: { user_id: current_user.id }
     can :manage, Shop, employees: { user_id: current_user.id }
     can :manage, Employee, user_id: current_user.id

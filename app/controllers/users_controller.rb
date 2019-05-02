@@ -14,6 +14,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params.merge(address_params))
     if @user.save
       flash[:success] = 'The user has been created!'
+      AppointmentMailer.user_creation_confirmation_email(@user).deliver_now
       redirect_to login_path
     else
       flash[:danger] = "The user couldn't be updated!"
@@ -52,10 +53,52 @@ class UsersController < ApplicationController
   def recoverPassword
   end
 
+  def index_admin
+    authorize! :block_user, @user
+    @users = User.order(created_at: :asc).all
+  end
+
+  def change_status
+    @user = User.find(params[:user])
+    authorize! :change_status, @user
+    if !@user.active
+      @user.update_attribute(:active, true)
+      AppointmentMailer.user_activation_email(@user).deliver_now
+      flash[:success] = 'The user is now active!'
+      redirect_to users_list_path
+    else
+      flash[:danger] = 'The user cannot be updated'
+    end
+  end
+
+  def block_user
+    @user = User.find(params[:user])
+    authorize! :block_user, @user
+    if !@user.blocked
+      if @user.update_attribute(:blocked, true)
+        AppointmentMailer.user_block_email(@user).deliver_now
+        flash[:success] = 'The user has been banned!'
+        redirect_to users_list_path
+      else
+        flash[:danger] = 'The user cannot be updated'
+      end
+    elsif @user.blocked
+      if @user.update_attribute(:blocked, false)
+        flash[:success] = 'The ban on the user has been lifted!'
+        redirect_to users_list_path
+      else
+        flash[:danger] = 'The user cannot be updated'
+      end
+    else
+      flash[:danger] = "The action couldn't be done"
+    end
+  end
+
   private
 
   def user_params
-    params.require(:user).permit(:name, :username, :email, :admin, :password, :password_confirmation)
+    params.require(:user).permit(:name, :username, :email, :admin, :password,
+                                 :password_confirmation, :active, :blocked)
   end
 
   def address_params

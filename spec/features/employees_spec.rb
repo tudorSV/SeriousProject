@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'Employees' do
   let(:company) { FactoryBot.create(:company) }
   let(:shop) { FactoryBot.create(:shop, company: company) }
-  let(:user) { FactoryBot.create(:user) }
+  let(:user) { FactoryBot.create(:user, active: true) }
   let(:employee) { FactoryBot.create(:employee, shop: shop, company: company) }
   let(:employee2) { FactoryBot.create(:employee, shop: shop, company: company) }
 

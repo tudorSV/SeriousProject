@@ -44,10 +44,6 @@ body {
   margin-top: 50px;
 }
 
-.h2-comp{
-  margin-left: 20px;
-}
-
 .h2-edit {
   margin-left: 150px;
 }
@@ -59,6 +55,30 @@ body {
 .form {
  margin: 0 auto;
   width: 50%;
+}
+
+table {
+  align: center;
+  width: 50%;
+  border: 1px solid black;
+  align-content: center;
+  .user-list {
+    align-content: center;
+  }
+  td {
+    padding-left: 10px;
+    padding-bottom: 10px;
+    width: 33%;
+    text-align: left;
+  }
+  th {
+    width: 33%;
+    text-align: left;
+    padding-left: 10px;
+  }
+  .btn, .btn-primary{
+    width: 40%;
+  }
 }
 
 #active div{
@@ -113,6 +133,9 @@ body {
 
 .show{
   margin-left: 20px;
+  .user-list {
+    align: center;
+  }
 }
 
 .edit{
@@ -151,7 +174,7 @@ input, textarea, select, .uneditable-input{
 
 h2 {
   font: 400 40px/1.5 Helvetica, Verdana, sans-serif;
-  margin: 0;
+  margin-left: 20px;
   padding: 0;
 }
 

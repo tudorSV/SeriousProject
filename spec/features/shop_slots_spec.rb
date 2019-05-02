@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'Shop Slots' do
   let(:company) { FactoryBot.create(:company) }
   let(:shop) { FactoryBot.create(:shop, company: company) }
-  let(:user) { FactoryBot.create(:user) }
+  let(:user) { FactoryBot.create(:user, active: true) }
   let(:shop_slot) { FactoryBot.create(:shop_slot) }
 
   before do

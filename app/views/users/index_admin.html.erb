@@ -1,0 +1,50 @@
+<h2>
+  Existing users
+</h2>
+
+<div class="show">
+  <ul>
+    <% @users.each do |user| %>
+      <li>
+        <table class="user-list">
+          <tr>
+            <th>Username</th>
+            <th>Status</th>
+            <th>Blocked</th>
+          </tr>
+          <tr>
+            <td><%= user.username %></td>
+            <td>
+              <span><%= user.active? ? "Active" : "Inactive" %></span>
+              <br>
+              <% if !user.active %>
+                <%= link_to "Activate",
+                             user_change_status_path(user, user: user.id, status: 'Active'),
+                             method: :put,
+                             class: "btn btn-primary",
+                             data: { confirm: "Are you sure you want to activate the user?" } %>
+              <% end %>
+            </td>
+            <td>
+              <span><%= user.blocked? ? "Blocked" : "Not blocked" %></span>
+              <br>
+              <% if user.blocked == false %>
+                <%= link_to "Block the user",
+                             user_block_user_path(user, user: user.id, status: 'Block user'),
+                             method: :put,
+                             class: "btn btn-primary",
+                             data: { confirm: "Are you sure you want to block the user?" } %>
+              <% else %>
+                <%= link_to "Lift the ban",
+                             user_block_user_path(user, user: user.id, status: 'Unblock user'),
+                             method: :put,
+                             class: "btn btn-primary",
+                             data: { confirm: "Are you sure you want to lift the ban?" } %>
+              <% end %>
+            </td>
+          </tr>
+        </table>
+      </li>
+    <% end %>
+  </ul>
+</div>
