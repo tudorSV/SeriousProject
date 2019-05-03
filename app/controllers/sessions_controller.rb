@@ -9,14 +9,14 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       flash[:success] = 'The user logged in!'
       return redirect_to users_path
-    elsif user && !user.active
-      flash[:danger] = 'The user is inactive! Please contact the administrator'
     elsif params[:username] == ''
       flash[:danger] = 'Username is blank'
     elsif params[:password] == ''
       flash[:danger] = 'Password is blank'
     elsif user && user.blocked
       flash[:danger] = 'The user is blocked!'
+    elsif user && !user.active
+      flash[:danger] = 'The user is inactive! Please contact the administrator'
     else
       flash[:danger] = 'The username/password is incorrect!'
     end

@@ -13,6 +13,17 @@
 
       <%= user_form.label :email %>
       <%= user_form.text_field :email %>
+
+      <% if !current_user.admin? %>
+
+        <%= user_form.label :password %>
+        <%= user_form.password_field :password %>
+
+        <%= user_form.label :password_confirmation %>
+        <%= user_form.password_field :password_confirmation %>
+
+      <% end %>
+
       <div id="active">
         <% if @user.admin %>
           <div><%= user_form.label :admin %></div>

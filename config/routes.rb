@@ -22,4 +22,8 @@ Rails.application.routes.draw do
   get 'signin',  to: 'sessions#new', as: 'login'
   get 'logout', to: 'sessions#destroy', as: 'logout'
   get 'recoverPassword', to: 'users#recoverPassword'
+
+  %w( 404 422 500 503 ).each do |code|
+     get code, to: "errors#show", code: code
+  end
 end

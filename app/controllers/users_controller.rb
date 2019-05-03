@@ -17,7 +17,7 @@ class UsersController < ApplicationController
       AppointmentMailer.user_creation_confirmation_email(@user).deliver_now
       redirect_to login_path
     else
-      flash[:danger] = "The user couldn't be updated!"
+      flash[:danger] = "The user couldn't be created!"
       render 'new'
     end
   end
@@ -32,19 +32,27 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find_by(id: params[:id])
-    if @user.update(user_params.merge(address_params))
+    if current_user.admin? && update_admin_user_params
+      flash[:success] = "The user #{@user.name} has been updated!"
+      redirect_to user_path(@user)
+    elsif @user.update(user_params.merge(address_params))
       flash[:success] = 'The user has been updated!'
       redirect_to user_path(@user)
     else
-      flash[:danger] = "The user couldn't be created!"
-      render 'edit'
+      flash[:danger] = "The user couldn't be updated!"
+      redirect_to edit_user_path(@user)
     end
   end
 
   def destroy
-    @user.destroy
-    flash[:success] = 'The user has been deleted!'
-    redirect_to users_path
+    if @user == current_user
+      flash[:danger] = 'You cannot delete yourself!'
+      redirect_to user_path(@user)
+    else
+      @user.destroy
+      flash[:success] = 'The user has been deleted!'
+      redirect_to users_path
+    end
   end
 
   def index
@@ -97,11 +105,26 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :username, :email, :admin, :password,
-                                 :password_confirmation, :active, :blocked)
+    params.require(:user).permit(:name, :username, :email, :password,
+                                 :password_confirmation, :admin,
+                                 :active, :blocked)
+  end
+
+  def update_admin_user_params
+    params.require(:user).permit(:name, :username, :email)
+    params[:user].each do |key, value|
+      if key != "address_attributes"
+        @user.update_attribute(key, value)
+      else
+        params[:user][:address_attributes].each do |key_addr, value_addr|
+          @user.address.update_attribute(key_addr, value_addr)
+        end
+      end
+    end
   end
 
   def address_params
-    params.require(:user).permit(address_attributes: [:short_address, :full_address, :city, :zipcode, :country])
+    params.require(:user).permit(address_attributes: [:short_address,
+                   :full_address, :city, :zipcode, :country])
   end
 end
