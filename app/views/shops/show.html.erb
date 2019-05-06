@@ -3,10 +3,6 @@
 </h2>
 
 
-
-
-
-
  <div class="show">
    <ul>
     <li>Shop name:<%= @shop.name %></li>
@@ -44,28 +40,38 @@
   </div>
 </div>
 
-<button class="modal-trigger">Click here to trigger the modal!</button>
 
-<div class="show-modal">
-  <%= render 'common/confirm_modal' %>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<script>
+  $( function() {
+    $( "#dialog" ).dialog({
+      autoOpen: false,
+      draggable: false,
+      height: 300,
+      width: 600,
+      buttons: {
+        "Yes": function() {
+          $( this ).dialog( "close" );
+        },
+        No: function() {
+          $( this ).dialog( "close" );
+        }
+      }
+    });
+
+    $( "#opener" ).on( "click", function() {
+      $( "#dialog" ).dialog( "open" );
+    });
+  } );
+
+</script>
+
+<div id="dialog" title="Confirm Delete">
+  <p>Are you sure you want to delete the shop?
 </div>
 
-
-<button class="btn btn-default" id="btn-confirm">Confirm</button>
-
-<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="mi-modal">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Confirmar</h4>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" id="modal-btn-si">Si</button>
-        <button type="button" class="btn btn-primary" id="modal-btn-no">No</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="alert" role="alert" id="result"></div>
+<button id="opener">Delete shop</button>
