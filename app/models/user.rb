@@ -12,13 +12,7 @@ class User < ApplicationRecord
   validates :username, presence: true, length: { maximum: 20 }
   validates :password, presence: true, length: { minimum: 6 }
 
-  validate :pass_valid
-
   validates :email, presence: true,
                     format: { with: EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
-
-  def pass_valid
-    errors.add(:pass_valid, 'password and confirmation do not match') if password != password_confirmation
-  end
 end

@@ -5,7 +5,7 @@
     <%= form_for(@user) do |user_form| %>
       <%= render 'shared/error_messages', object: user_form.object %>
 
-      <%= user_form.label :name %>
+      <%= user_form.label :name, :error_html => { :class => 'cant_be_blank'}  %>
       <%= user_form.text_field :name %>
 
       <%= user_form.label :username %>
