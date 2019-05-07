@@ -46,32 +46,12 @@
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-<script>
-  $( function() {
-    $( "#dialog" ).dialog({
-      autoOpen: false,
-      draggable: false,
-      height: 300,
-      width: 600,
-      buttons: {
-        "Yes": function() {
-          $( this ).dialog( "close" );
-        },
-        No: function() {
-          $( this ).dialog( "close" );
-        }
-      }
-    });
+  <script type="text/javascript" src="modal.js"></script>
 
-    $( "#opener" ).on( "click", function() {
-      $( "#dialog" ).dialog( "open" );
-    });
-  } );
 
-</script>
+  <div id="dialog" title="Confirm Delete">
+    <p>Are you sure you want to delete the shop?
+  </div>
 
-<div id="dialog" title="Confirm Delete">
-  <p>Are you sure you want to delete the shop?
-</div>
+<button class="btn btn-primary" id="opener">Delete shop</button>
 
-<button id="opener">Delete shop</button>

@@ -1,4 +1,4 @@
-$( function() {
+$(document).ready( function() {
   $( "#dialog" ).dialog({
     autoOpen: false,
     draggable: false,
@@ -6,7 +6,7 @@ $( function() {
     width: 600,
     buttons: {
       "Yes": function() {
-        $( this ).dialog( "close" );
+        $( this ).dialog( "Pretend it deletes something" );
       },
       No: function() {
         $( this ).dialog( "close" );
