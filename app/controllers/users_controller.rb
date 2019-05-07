@@ -115,11 +115,10 @@ class UsersController < ApplicationController
     params[:user].each do |key, value|
       if key != "address_attributes"
         @user.update_attribute(key, value)
-      else
-        params[:user][:address_attributes].each do |key_addr, value_addr|
-          @user.address.update_attribute(key_addr, value_addr)
-        end
       end
+    end
+    params[:user][:address_attributes].each do |key_addr, value_addr|
+      @user.address.update_attribute(key_addr, value_addr)
     end
   end
 
