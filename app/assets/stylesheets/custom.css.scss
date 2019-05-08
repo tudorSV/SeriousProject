@@ -1,5 +1,7 @@
 @import "bootstrap";
 
+$grayMediumLight : #eaeaea;
+
 /* mixins, variables, etc */
 
 @mixin box_sizing {
@@ -20,10 +22,36 @@
   padding-top: 9px;
   font-weight: bold;
   line-height: 1;
+  text-decoration: none;
 
   &:hover{
     color: #fff;
     text-decoration: none;
+  }
+}
+
+/* footer */
+
+footer {
+  margin-top: 65px;
+  border-top: 1px solid $grayMediumLight;
+  position: static;
+  color: #fff;  a {
+    &:hover {
+      color: #fff;
+      text-decoration: none;
+    }
+  }
+  small {
+    float: left;
+  }
+  ul{
+    float: right;
+    list-style: none;
+    li {
+      float: left;
+      margin-left: 10px;
+    }
   }
 }
 
@@ -42,6 +70,7 @@
 
 body {
   margin-top: 50px;
+  margin-bottom: 50px;
 }
 
 .h2-edit {
@@ -209,4 +238,13 @@ li a {
   color: #000;
   display: block;
   width: 200px;
+}
+
+textarea {
+  resize: none;
+}
+
+.row {
+  height: 100%;
+  width: 100%;
 }

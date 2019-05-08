@@ -104,18 +104,7 @@ describe 'Users' do
         expect(page).to have_selector('li', text: "Zipcode: #{user.address.zipcode}")
         expect(page).to have_selector('li', text: "Country: #{user.address.country}")
         expect(page).to have_link('Edit profile')
-        expect(page).to have_link('Delete user')
         expect(page).to have_link('Back to users page')
-      end
-    end
-
-    describe 'delete' do
-      it 'should have content' do
-        visit user_path(user2)
-        click_link('Delete user')
-        expect(page).to have_selector('h1', text: 'Showing all users')
-        expect(page).to have_selector('li', text: user.name)
-        expect(page).to_not have_selector('li', text: user2.name)
       end
     end
 
@@ -123,7 +112,6 @@ describe 'Users' do
       let(:new_name) { 'User edit' }
       let(:new_email) { 'Useredit@example.com' }
       let(:new_username) { 'Username edit' }
-      let(:password) { 'password' }
       let(:new_short_address) { 'edit' }
       let(:new_full_address) { 'edit' }
       let(:new_city) { 'City edit' }
@@ -135,8 +123,6 @@ describe 'Users' do
         fill_in 'Name',                  with: new_name
         fill_in 'Email',                 with: new_email
         fill_in 'Username',              with: new_username
-        fill_in 'Password',              with: password
-        fill_in 'Password confirmation', with: password
         fill_in 'Short address',         with: new_short_address
         fill_in 'Full address',          with: new_full_address
         fill_in 'City',                  with: new_city
@@ -186,6 +172,7 @@ describe 'Users' do
 
     describe 'change active' do
       it 'should have content' do
+        user2
         visit users_list_path
         expect(page).to have_selector('h2', text: 'Existing users')
         within 'table' do

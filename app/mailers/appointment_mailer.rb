@@ -39,4 +39,10 @@ class AppointmentMailer < ActionMailer::Base
     mail(from: "contact@chinesebikes.com", to: user,
          subject: "Your account has been blocked")
   end
+
+  def message_creation_confirmation_email(contact)
+    @contact = contact
+    mail(from: "contact@chinesebikes.com", to: @contact.email,
+         subject: "Your message has been received")
+  end
 end

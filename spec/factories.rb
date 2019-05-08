@@ -56,4 +56,11 @@ FactoryBot.define do
     closed { false }
     shop
   end
+
+  factory :contact do
+    sequence(:name) { |n| "Name #{n}" }
+    sequence(:email) { |n| "Shop_#{n}@example.com" }
+    sequence(:phone_number) { |n| n * 111_111_111 }
+    sequence(:message) { |n| "Lorem #{n}" }
+  end
 end
