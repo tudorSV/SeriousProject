@@ -4,7 +4,6 @@ class ContactsController < ApplicationController
   end
 
   def create
-    # binding.pry
     @contact = Contact.new(contact_params)
     if verify_recaptcha(model: @contact) && @contact.save
       flash[:success] = 'The message has been created!'
