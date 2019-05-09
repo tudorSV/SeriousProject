@@ -32,5 +32,6 @@ class Ability
 
   def guest(current_user)
     can :create, User
+    can :recoverPassword, User
   end
 end

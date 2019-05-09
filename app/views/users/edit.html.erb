@@ -5,20 +5,25 @@
     <%= form_for(@user) do |user_form| %>
       <%= render 'shared/error_messages', object: user_form.object %>
 
-      <%= user_form.label :name %>
+      <%= user_form.label :name, :error_html => { :class => 'cant_be_blank'}  %>
       <%= user_form.text_field :name %>
 
       <%= user_form.label :username %>
       <%= user_form.text_field :username %>
 
-      <%= user_form.label :password %>
-      <%= user_form.password_field :password %>
-
-      <%= user_form.label :password_confirmation %>
-      <%= user_form.password_field :password_confirmation %>
-
       <%= user_form.label :email %>
       <%= user_form.text_field :email %>
+
+      <% if !current_user.admin? %>
+
+        <%= user_form.label :password %>
+        <%= user_form.password_field :password %>
+
+        <%= user_form.label :password_confirmation %>
+        <%= user_form.password_field :password_confirmation %>
+
+      <% end %>
+
       <div id="active">
         <% if @user.admin %>
           <div><%= user_form.label :admin %></div>

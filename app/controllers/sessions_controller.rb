@@ -8,17 +8,19 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:password]) && user.active && !user.blocked
       session[:user_id] = user.id
       flash[:success] = 'The user logged in!'
-      redirect_to users_path
+      return redirect_to users_path
+    elsif params[:username] == ''
+      flash[:danger] = 'Username is blank'
+    elsif params[:password] == ''
+      flash[:danger] = 'Password is blank'
+    elsif user && user.blocked
+      flash[:danger] = 'The user is blocked!'
+    elsif user && !user.active
+      flash[:danger] = 'The user is inactive! Please contact the administrator'
     else
-      if user && !user.active
-        flash[:danger] = 'The user is inactive! Please contact the administrator'
-      elsif user && user.blocked
-        flash[:danger] = 'The user is blocked!'
-      else
-        flash[:danger] = 'The username/password is incorrect!'
-      end
-      render 'new'
+      flash[:danger] = 'The username/password is incorrect!'
     end
+    redirect_to new_session_path
   end
 
   def destroy
