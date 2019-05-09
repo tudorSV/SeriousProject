@@ -4,6 +4,12 @@ describe 'Contact model' do
   let(:contact) { FactoryBot.create(:contact) }
 
   describe 'validations' do
+    describe 'the object created by the factory' do
+      it 'should be valid' do
+        expect(contact).to be_valid
+      end
+    end
+
     describe 'when the name is not present' do
       before { contact.name = '' }
       it 'should require a name' do

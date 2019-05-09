@@ -10,7 +10,7 @@ describe 'Contacts' do
       let(:new_email) { 'NewUser@example.com' }
       let(:new_message) { 'This is a stub' }
       it 'should sent annonymous' do
-        visit create_message_url
+        visit new_contact_message_url
         expect(page).to have_content('Name')
         expect(page).to have_content('Email')
         expect(page).to have_content('Message')
@@ -18,7 +18,7 @@ describe 'Contacts' do
         fill_in 'Email',      with: new_email
         fill_in 'Message',    with: new_message
         click_button 'Submit message'
-        expect(page).to have_text 'The message has been created!'
+        expect(page).to have_text 'The feedback has been received. Thank you!'
       end
     end
   end
@@ -33,16 +33,16 @@ describe 'Contacts' do
 
     describe 'sending message'
     let(:new_message) { 'This is a stub' }
-    it 'should sent annonymous' do
+    it 'should be sent with the current user' do
       user
-      visit create_message_url
+      visit new_contact_message_url
       expect(page).to have_content('Name')
       expect(page).to have_content('Email')
       expect(page).to have_content('Message')
       expect(page).to have_content('Phone number')
       fill_in 'Message', with: new_message
       click_button 'Submit message'
-      expect(page).to have_text 'The message has been created!'
+      expect(page).to have_text 'The feedback has been received. Thank you!'
     end
   end
 end

@@ -104,7 +104,18 @@ describe 'Users' do
         expect(page).to have_selector('li', text: "Zipcode: #{user.address.zipcode}")
         expect(page).to have_selector('li', text: "Country: #{user.address.country}")
         expect(page).to have_link('Edit profile')
+        expect(page).to have_link('Delete user')
         expect(page).to have_link('Back to users page')
+      end
+    end
+
+    describe 'delete' do
+      it 'should have content' do
+        visit user_path(user2)
+        click_link('Delete user')
+        expect(page).to have_selector('h1', text: 'Showing all users')
+        expect(page).to have_selector('li', text: user.name)
+        expect(page).to_not have_selector('li', text: user2.name)
       end
     end
 

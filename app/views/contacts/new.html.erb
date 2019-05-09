@@ -2,7 +2,7 @@
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-    <%= form_for @contact, url: create_message_path do |contact_form| %>
+    <%= form_for @contact, url: create_contact_message_path do |contact_form| %>
       <%= render 'shared/error_messages', object: contact_form.object %>
 
       <% if current_user %>
@@ -23,9 +23,11 @@
         <%= contact_form.text_field :email, placeholder: 'Enter your email' %>
       <% end %>
 
+      <%= contact_form.label :phone_number,"Phone number(Not mandatory):" %>
       <% if current_user %>
-        <%= contact_form.label :phone_number %>
         <%= contact_form.text_field :phone_number, value: current_user.phone_number %>
+      <% else %>
+        <%= contact_form.text_field :phone_number %>
       <% end %>
 
       <%= contact_form.label :message %>

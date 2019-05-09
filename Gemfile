@@ -39,7 +39,6 @@ gem 'bcrypt', '3.1.12'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap-sass', '3.4.1'
 gem 'cancancan', '2.3'
-gem 'client_side_validations'
 gem "recaptcha", '4.14.0', require: "recaptcha/rails"
 gem 'rubocop', '~> 0.66.0', require: false
 
