@@ -1,5 +1,5 @@
 class CompaniesController < ApplicationController
-  load_and_authorize_resource
+  # load_and_authorize_resource
 
   def new
     @company = Company.new
@@ -43,6 +43,8 @@ class CompaniesController < ApplicationController
   end
 
   def index
+    @companies = Company.all
+    # render json: @companies, status: :ok
   end
 
   private

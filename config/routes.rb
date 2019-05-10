@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root to: 'welcome#index'
+
   resources :companies do
     resources :shops do
       resources :employees
@@ -22,4 +23,14 @@ Rails.application.routes.draw do
   get 'signin',  to: 'sessions#new', as: 'login'
   get 'logout', to: 'sessions#destroy', as: 'logout'
   get 'recoverPassword', to: 'users#recoverPassword'
+
+  scope module: 'api', path: 'api' do
+    resources :companies, only: [:index] do
+    get 'companies/:id/shops', to: 'shops#index'
+    end
+
+    resources :shops, only: [:index] do
+      get 'show/:wday', to: 'appointments#all_shops'
+    end
+  end
 end
