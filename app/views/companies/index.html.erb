@@ -7,8 +7,10 @@
         <%= link_to company.name, company_path(company) %>
       </li>
     <% end %>
-    <div class="showbtn">
-      <%= link_to "Create a new company" , new_company_path, class: "btn btn-primary" %>
-    </div>
+      <% if can? :create, @company %>
+        <div class="showbtn">
+          <%= link_to "Create a new company" , new_company_path, class: "btn btn-primary" %>
+        </div>
+      <% end %>
   </ul>
 </div>

@@ -1,0 +1,15 @@
+<h1>A feedback message has been received</h1>
+
+<div  align="center">
+  A user by the name of <b><%= @contact.name %></b> has graciously sent a
+  feedback message to our glorious company and you have been chosen to
+  decipher it:
+  <ul>
+    <li><%= @contact.name %></li>
+    <li><%= @contact.email %></li>
+    <% if @contact.phone_number.present?  %>
+      <li><%= @contact.phone_number %></li>
+    <% end %>
+    <li><%= @contact.message %></li>
+  </ul>
+</div>
