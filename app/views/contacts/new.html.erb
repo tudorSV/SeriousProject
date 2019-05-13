@@ -30,8 +30,11 @@
         <%= contact_form.text_field :phone_number %>
       <% end %>
 
-      <%= contact_form.label :message %>
-      <%= contact_form.text_area :message, size: "60x12", placeholder: 'Enter the feedback' %>
+
+      <div class="message-text">
+        <%= contact_form.label :message %>
+        <%= contact_form.text_area :message, placeholder: 'Enter the feedback' %>
+      </div>
 
       <%= recaptcha_tags text: 'Submit form' %>
       <br>

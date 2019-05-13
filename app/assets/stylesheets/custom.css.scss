@@ -192,7 +192,7 @@ h1 {
   text-align: center;
 }
 
-input, textarea, select, .uneditable-input{
+input,  select, .uneditable-input{
   border: 1px solid #bbb;
   width: 100%;
   padding: 10px;
@@ -243,7 +243,13 @@ li a {
 
 textarea {
   resize: none;
+  width: 100%;
 }
+
+.message-text textarea {
+  height: 100px;
+}
+
 
 .row {
   height: 100%;
