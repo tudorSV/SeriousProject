@@ -26,11 +26,14 @@ Rails.application.routes.draw do
 
   scope module: 'api', path: 'api' do
     resources :companies, only: [:index] do
-    get 'companies/:id/shops', to: 'shops#index'
     end
 
-    resources :shops, only: [:index] do
-      get 'show/:wday', to: 'appointments#all_shops'
-    end
+    get 'companies/:id/shops', to: 'shops#index'
+    get 'companies/shops', to: 'shops#all_shops'
+
+    get 'shops/:id/appointments/index', to: 'appointments#index'
+    get 'shops/:id/appointments/date/:date', to: 'appointments#date'
+
+    get 'shops/:id/shop_slots/index', to: 'shop_slots#index'
   end
 end

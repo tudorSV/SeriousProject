@@ -1,11 +1,15 @@
 module Api
   class AppointmentsController < ApplicationController
-    def show
-      # binding.pry
-      @shop = Shop.find(params[:shop_id])
-      # @appointments = Appointment.where("date.wday = ?", params[:wday] )
-      # binding.pry
-      # render json: @appointments
+    def index
+      @shop = Shop.find(params[:id])
+      @appointments = Appointment.where(shop_id: params[:id])
+      render json: @appointments
+    end
+
+    def date
+      @shop = Shop.find(params[:id])
+      @appointments = Appointment.where(shop_id: params[:id], date: params[:date])
+      render json: @appointments
     end
   end
 end
