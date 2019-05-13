@@ -1,0 +1,11 @@
+development:
+  default_sender: 'contact_dev@chinesebikes.com'
+  feedback_email: 'feedback@chinesebikes.com'
+
+test:
+  default_sender: 'contact_test@chinesebikes.com'
+  feedback_email: 'feedback@chinesebikes.com'
+
+production:
+  default_sender: 'contact@chinesebikes.com'
+  feedback_email: 'feedback@chinesebikes.com'

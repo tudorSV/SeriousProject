@@ -1,0 +1,47 @@
+<h2 align="center">Contact Us!</h2>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for @contact, url: create_contact_message_path do |contact_form| %>
+      <%= render 'shared/error_messages', object: contact_form.object %>
+
+      <% if current_user %>
+        <%= contact_form.hidden_field :user_id, value: current_user.id  %>
+      <% end %>
+
+      <%= contact_form.label :name %>
+      <% if current_user %>
+        <%= contact_form.text_field :name, value: current_user.name %>
+      <% else %>
+        <%= contact_form.text_field :name, placeholder: 'Enter your name' %>
+      <% end %>
+
+      <%= contact_form.label :email %>
+      <% if current_user %>
+        <%= contact_form.text_field :email, value: current_user.email %>
+      <% else %>
+        <%= contact_form.text_field :email, placeholder: 'Enter your email' %>
+      <% end %>
+
+      <%= contact_form.label :phone_number,"Phone number(Not mandatory):" %>
+      <% if current_user %>
+        <%= contact_form.text_field :phone_number, value: current_user.phone_number %>
+      <% else %>
+        <%= contact_form.text_field :phone_number %>
+      <% end %>
+
+
+      <div class="message-text">
+        <%= contact_form.label :message %>
+        <%= contact_form.text_area :message, placeholder: 'Enter the feedback' %>
+      </div>
+
+      <%= recaptcha_tags text: 'Submit form' %>
+      <br>
+      <div class="more">
+        <div class="button save" ><%= contact_form.submit "Submit message", class: "btn btn-primary" %></div>
+        <div class="button back"><%= link_to "Back", root_url, class: "btn btn-primary"  %></div>
+      </div>
+    <% end %>
+  </div>
+</div>

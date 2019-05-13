@@ -17,6 +17,9 @@ Rails.application.routes.draw do
 
   resources :sessions
 
+  get 'new_contact_message', to: 'contacts#new', as: 'new_contact_message'
+  post 'create_contact_message', to: 'contacts#create', as: 'create_contact_message'
+
   get 'users_list', to: 'users#index_admin', as: 'users_list'
   get 'signup',  to: 'users#new', as: 'signup'
   get 'signin',  to: 'sessions#new', as: 'login'
