@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'pry'
 
 describe 'Appointments' do
   let(:user) { FactoryBot.create(:user, active: true) }
@@ -71,6 +72,26 @@ describe 'Appointments' do
       expect(page).to have_selector('li', text: "Appointment from #{appointment.date}")
       click_link 'Change to Ready for pickup'
       expect(page).to have_selector('li', text: 'Ready for pickup')
+    end
+  end
+
+  describe 'JSON response' do
+    it 'should index appointments' do
+      user
+      shop
+      appointment
+      visit "/api/shops/#{shop.id}/appointments/index"
+      expect(page).to have_text "[{\"id\":#{appointment.id},\"date\":\"#{appointment.date}\",\"item_number\":#{appointment.item_number}"
+    end
+
+    let(:date) { Date.today + 5.years }
+    it 'should index appointments by date' do
+      user
+      shop
+      appointment
+      visit "/api/shops/#{shop.id}/appointments/date/#{date}"
+      # binding.pry
+      expect(page).to have_text "[{\"id\":#{appointment.id},\"date\":\"#{appointment.date}\",\"item_number\":#{appointment.item_number}"
     end
   end
 end

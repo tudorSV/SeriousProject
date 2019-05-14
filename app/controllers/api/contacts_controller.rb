@@ -1,11 +1,19 @@
 module Api
   class ContactsController < ApplicationController
+    skip_before_action :verify_authenticity_token
     def create
-      respond_to do |format|
-        format.json{
-          render json: Contact.create(contact: @contact), name: params[:name],
-                                                          email: params[:email]}
+      @contact = Contact.new(contact_params)
+      if @contact.save
+        render json: @contact
+      else
+        render json: @contact.errors
       end
+    end
+
+    private
+
+    def contact_params
+      params.permit(:name, :email, :phone_number, :message, :user_id)
     end
   end
 end

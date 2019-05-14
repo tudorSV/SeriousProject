@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'pry'
 
 describe 'Shops' do
   let(:company) { FactoryBot.create(:company) }
@@ -120,6 +121,24 @@ describe 'Shops' do
       expect(page).to have_selector('li', text:  new_name)
       expect(page).to have_selector('li', text:  new_zipcode)
       expect(page).to have_selector('li', text:  new_country)
+    end
+  end
+
+  describe 'JSON response' do
+    it 'should index from one company' do
+      shop
+      shop2
+      visit "/api/companies/#{company.id}/shops"
+      expect(page).to have_text "[{\"id\":#{shop.id},\"name\":\"#{shop.name}\",\"email\":\"#{shop.email}\""
+      expect(page).to have_text "{\"id\":#{shop2.id},\"name\":\"#{shop2.name}\",\"email\":\"#{shop2.email}\""
+    end
+
+    it 'should index from all companies' do
+      shop
+      shop2
+      visit "/api/companies/shops"
+      expect(page).to have_text "[{\"id\":#{shop.id},\"name\":\"#{shop.name}\",\"email\":\"#{shop.email}\""
+      expect(page).to have_text "{\"id\":#{shop2.id},\"name\":\"#{shop2.name}\",\"email\":\"#{shop2.email}\""
     end
   end
 end

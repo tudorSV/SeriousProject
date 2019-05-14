@@ -39,8 +39,6 @@ Rails.application.routes.draw do
 
     get 'shops/:id/shop_slots/index', to: 'shop_slots#index'
 
-    get 'new_contact_message', to: 'contacts#new'
-    post 'create_contact_message', to: 'contacts#create',
-         msg: { name: 'Tudor', email: 'example@email.com', message: '' }
+    post 'create_contact_message', to: 'contacts#create'
   end
 end

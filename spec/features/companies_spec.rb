@@ -79,4 +79,12 @@ describe 'Companies' do
       expect(page).to have_selector('li', text:  'Inactive')
     end
   end
+
+  describe 'JSON response' do
+    it 'should index companies' do
+      company
+      visit "api/companies"
+      expect(page).to have_text "[{\"id\":#{company.id},\"name\":\"#{company.name}\",\"email\":\"#{company.email}\""
+    end
+  end
 end
