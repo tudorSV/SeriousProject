@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'pry'
 
 describe 'Appointments' do
   let(:user) { FactoryBot.create(:user, active: true) }
@@ -90,7 +89,6 @@ describe 'Appointments' do
       shop
       appointment
       visit "/api/shops/#{shop.id}/appointments/date/#{date}"
-      # binding.pry
       expect(page).to have_text "[{\"id\":#{appointment.id},\"date\":\"#{appointment.date}\",\"item_number\":#{appointment.item_number}"
     end
   end

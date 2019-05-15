@@ -1,15 +1,20 @@
 require 'rails_helper'
+require 'pry'
 
 describe 'Contacts' do
   let(:user) { FactoryBot.create(:user, active: true) }
   let(:contact) { FactoryBot.create(:contact) }
 
   describe 'Json tests', type: :request do
-    it 'should succesfully post 'do
-      params = { contact: { name: 'test name', email: 'email@example,com',
-                            phone_number: '98731274', message: 'This is a stub' } }
-      post 'http://localhost:3000/api/create_contact_message'
-      assert_response :success
+    let(:params) do
+      {
+          name: "Fake Name",
+          email: "email@example.com",
+          message: "This is a stub"
+      }
+    end
+    it 'creates a new contact message' do
+      expect { post '/api/create_contact_message', params: params }.to change(Contact, :count).by(+1)
     end
   end
 
