@@ -23,6 +23,12 @@ class AppointmentsController < ApplicationController
   end
 
   def show
+    @notes = Note.all
+    @note = Note.new
+    respond_to do |format|
+      format.html # show.html.erb
+      format.js # show.js.erb
+    end
   end
 
   def edit
@@ -53,5 +59,9 @@ class AppointmentsController < ApplicationController
 
   def appointment_params
     params.require(:appointment).permit(:date, :item_number, :status, :shop_id)
+  end
+
+  def note_params
+    params.require(:note).permit(:message, :appointment_id)
   end
 end

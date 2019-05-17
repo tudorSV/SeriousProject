@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="col-md-4 ">
+    </br>
+    <%= form_with [@user, @appointment, @note],
+                  url: user_appointment_notes_path(@user, @appointment),
+                  method: :post do |note_form| %>
+      <%= render 'shared/error_messages', object: note_form.object %>
+
+      <div class="message-text">
+        <%= note_form.label :message %>
+        <%= note_form.text_area :message, placeholder: 'Add a note to the appointment' %>
+      </div>
+
+      <div class="more">
+      <div class="button save"><%= note_form.submit'Add appointment note', class: "btn btn-primary"  %></div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -8,6 +8,12 @@
     <li>Status of the appointment: <b><%= @appointment.status %></b></li>
   </ul>
 
+  <% if @appointment.booked? %>
+    <div id = "new-note">
+      <%= link_to "Add a note", new_user_appointment_note_path(@user, @appointment), class: "btn btn-primary", remote: true %>
+    </div>
+  <% end %>
+
   <div class="showbtn">
     <%= link_to "Edit the appointment", edit_user_appointment_path(@user, @appointment), class: "btn btn-primary"%>
     <% if @appointment.status == 'Booked' %>

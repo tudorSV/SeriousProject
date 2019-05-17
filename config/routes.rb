@@ -10,7 +10,9 @@ Rails.application.routes.draw do
   end
 
   resources :users do
-    resources :appointments, except: [:index]
+    resources :appointments, except: [:index] do
+      resources :notes
+    end
     put :change_status
     put :block_user
   end

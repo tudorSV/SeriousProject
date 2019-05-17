@@ -1,0 +1,12 @@
+<h1>
+  All notes are belong to this appointment.
+</h1>
+<div class="show">
+  <ul>
+    <% @notes.each do |note| %>
+      <li>
+        <%= note.message %>
+      </li>
+    <% end %>
+  </div>
+</ul>
