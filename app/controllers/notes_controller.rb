@@ -6,23 +6,21 @@ class NotesController < ApplicationController
   end
 
   def create
-    binding.pry
     @user = User.find(params[:user_id])
     @appointment = Appointment.find(params[:appointment_id])
-    @note = Note.new(note_params.merge(appointment_id: @appointment.id))
-    if @note.save
-      flash[:success] = 'Note has been created'
-      redirect_to user_appointment_index_note_path(@user, @appointment)
-    else
-      flash[:failure] = "The appointment couldn't be destroyed!"
-      render 'new'
-    end
+    @note = Note.create!(note_params.merge(appointment_id: @appointment.id))
+      respond_to do |format|
+        @notes = Note.where(appointment_id: @appointment.id)
+        format.html { redirect_to user_appointment_path(@user, @appointment) }
+        format.js
+      end
   end
 
-  def note
+  def index
     @appointment = Appointment.find(params[:appointment_id])
-    @notes = Note.all
+    @notes = Note.where(appointment_id: @appointment.id)
   end
+
   private
 
   def note_params

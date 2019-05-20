@@ -23,12 +23,7 @@ class AppointmentsController < ApplicationController
   end
 
   def show
-    @notes = Note.all
-    @note = Note.new
-    respond_to do |format|
-      format.html # show.html.erb
-      format.js # show.js.erb
-    end
+    @notes = Note.where(appointment_id: @appointment.id)
   end
 
   def edit
