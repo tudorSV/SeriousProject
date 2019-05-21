@@ -65,7 +65,7 @@ end
 group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15'
-  gem 'capybara-webkit', '1.15.1'
+  gem 'capybara-webkit', '1.15.1', github: 'thoughtbot/capybara-webkit', branch: 'master'
   gem 'geckodriver-helper'
   gem 'guard-rspec', '4.7.3'
   # Easy installation and use of chromedriver to run system tests with Chrome
