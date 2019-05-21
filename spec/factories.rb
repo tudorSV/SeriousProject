@@ -63,4 +63,9 @@ FactoryBot.define do
     sequence(:phone_number) { |n| n * 111_111_111 }
     sequence(:message) { |n| "Lorem #{n}" }
   end
+
+  factory :note do
+    appointment
+    sequence(:message) { |n| "Message number #{n}" }
+  end
 end
