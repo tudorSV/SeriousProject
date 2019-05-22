@@ -5,10 +5,13 @@ $(document).ready( function() {
     height: 300,
     width: 600,
     buttons: {
-      "Yes": function() {
-        $( this ).dialog( "Pretend it deletes something" );
+      "Yay": function() {
+        $.ajax({
+            type: "DELETE",
+            url: "/companies/1/shops/8"
+        })
       },
-      No: function() {
+      "Nay": function() {
         $( this ).dialog( "close" );
       }
     }
