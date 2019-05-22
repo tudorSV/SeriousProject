@@ -25,7 +25,18 @@ describe 'Notes' do
       expect(page).to have_text("Message")
       fill_in 'Message', with: new_message
       click_button('Add appointment note')
-      expect(page).to have_text(new_message)
+    end
+  end
+
+  describe 'index', js: true do
+    it 'should have content' do
+      user
+      shop
+      appointment
+      note
+      visit user_appointment_path(user, appointment)
+      expect(page).to have_selector('h1', text: 'All notes are belong to this appointment.')
+      expect(page).to have_selector('li', text: "#{note.message}")
     end
   end
 end

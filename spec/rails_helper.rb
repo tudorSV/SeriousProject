@@ -40,14 +40,14 @@ RSpec.configure do |config|
   # instead of true.
   config.use_transactional_fixtures = true
 
-  Capybara.register_driver :selenium do |app|
+  Capybara.register_driver :poltergeist do |app|
     client = Selenium::WebDriver::Remote::Http::Default.new
     client.timeout = 10
-    Capybara::Selenium::Driver.new(app, http_client: client, browser: :chrome)
+    Capybara::Poltergeist::Driver.new(app, :phantomjs => Phantomjs.path)
   end
 
-  Capybara.javascript_driver = :selenium
-  Capybara.default_driver = :selenium
+  Capybara.javascript_driver = :poltergeist
+  Capybara.default_driver = :poltergeist
   Capybara.default_host = ActionMailer::Base.asset_host
   Capybara.default_max_wait_time = 10
   Capybara.always_include_port = true
