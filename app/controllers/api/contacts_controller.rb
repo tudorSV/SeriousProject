@@ -10,6 +10,11 @@ module Api
       end
     end
 
+    def index
+      @contacts = Contact.all
+      render json: @contacts
+    end
+
     private
 
     def contact_params

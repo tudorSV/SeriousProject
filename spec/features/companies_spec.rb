@@ -83,8 +83,8 @@ describe 'Companies' do
   describe 'JSON response' do
     it 'should index companies' do
       company
-      visit "api/companies"
-      expect(page).to have_text "[{\"id\":#{company.id},\"name\":\"#{company.name}\",\"email\":\"#{company.email}\""
+      visit api_companies_path
+      expect(page).to have_text company.to_json
     end
   end
 end

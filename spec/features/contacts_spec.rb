@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'pry'
 
 describe 'Contacts' do
   let(:user) { FactoryBot.create(:user, active: true) }
@@ -14,7 +13,7 @@ describe 'Contacts' do
       }
     end
     it 'creates a new contact message' do
-      expect { post '/api/create_contact_message', params: params }.to change(Contact, :count).by(+1)
+      expect { post api_contacts_create_path, params: params }.to change(Contact, :count).by(+1)
     end
   end
 
@@ -57,6 +56,8 @@ describe 'Contacts' do
       fill_in 'Message', with: new_message
       click_button 'Submit message'
       expect(page).to have_text 'The feedback has been received. Thank you!'
+      visit 'api/index_contact_message'
+      expect(page).to have_text new_message.to_json
     end
   end
 end

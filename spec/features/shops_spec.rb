@@ -125,19 +125,20 @@ describe 'Shops' do
 
   describe 'JSON response' do
     it 'should index from one company' do
+      company
       shop
       shop2
-      visit "/api/companies/#{company.id}/shops"
-      expect(page).to have_text "[{\"id\":#{shop.id},\"name\":\"#{shop.name}\",\"email\":\"#{shop.email}\""
-      expect(page).to have_text "{\"id\":#{shop2.id},\"name\":\"#{shop2.name}\",\"email\":\"#{shop2.email}\""
+      visit api_company_shops_path(company)
+      expect(page).to have_text shop.to_json
+      expect(page).to have_text shop2.to_json
     end
 
     it 'should index from all companies' do
       shop
       shop2
-      visit "/api/companies/shops"
-      expect(page).to have_text "[{\"id\":#{shop.id},\"name\":\"#{shop.name}\",\"email\":\"#{shop.email}\""
-      expect(page).to have_text "{\"id\":#{shop2.id},\"name\":\"#{shop2.name}\",\"email\":\"#{shop2.email}\""
+      visit api_companies_shops_path
+      expect(page).to have_text shop.to_json
+      expect(page).to have_text shop2.to_json
     end
   end
 end

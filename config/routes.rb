@@ -28,17 +28,18 @@ Rails.application.routes.draw do
   get 'recoverPassword', to: 'users#recoverPassword'
 
   scope module: 'api', path: 'api' do
-    resources :companies, only: [:index] do
+    resources :companies, only: [:index], as: 'api_companies' do
     end
 
-    get 'companies/:id/shops', to: 'shops#index'
-    get 'companies/shops', to: 'shops#all_shops'
+    get 'companies/:id/shops', to: 'shops#index', as: 'api_company_shops'
+    get 'companies/shops', to: 'shops#all_shops', as: 'api_companies_shops'
 
-    get 'shops/:id/appointments/index', to: 'appointments#index'
-    get 'shops/:id/appointments/date/:date', to: 'appointments#date'
+    get 'shops/:id/appointments', to: 'appointments#index', as: 'api_appointments_index'
+    get 'shops/:id/appointments/date/:date', to: 'appointments#date', as: 'api_appointments_index_date'
 
-    get 'shops/:id/shop_slots/index', to: 'shop_slots#index'
+    get 'shops/:id/shop_slots', to: 'shop_slots#index'
 
-    post 'create_contact_message', to: 'contacts#create'
+    post 'create_contact_message', to: 'contacts#create', as: 'api_contacts_create'
+    get 'index_contact_message', to: 'contacts#index'
   end
 end

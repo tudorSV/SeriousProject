@@ -79,8 +79,8 @@ describe 'Appointments' do
       user
       shop
       appointment
-      visit "/api/shops/#{shop.id}/appointments/index"
-      expect(page).to have_text "[{\"id\":#{appointment.id},\"date\":\"#{appointment.date}\",\"item_number\":#{appointment.item_number}"
+      visit api_appointments_index_path(shop.id)
+      expect(page).to have_text appointment.to_json
     end
 
     let(:date) { Date.today + 5.years }
@@ -88,8 +88,8 @@ describe 'Appointments' do
       user
       shop
       appointment
-      visit "/api/shops/#{shop.id}/appointments/date/#{date}"
-      expect(page).to have_text "[{\"id\":#{appointment.id},\"date\":\"#{appointment.date}\",\"item_number\":#{appointment.item_number}"
+      visit api_appointments_index_date_path(shop.id, date)
+      expect(page).to have_text appointment.to_json
     end
   end
 end
