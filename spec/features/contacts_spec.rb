@@ -4,6 +4,19 @@ describe 'Contacts' do
   let(:user) { FactoryBot.create(:user, active: true) }
   let(:contact) { FactoryBot.create(:contact) }
 
+  describe 'Json tests', type: :request do
+    let(:params) do
+      {
+          name: "Fake Name",
+          email: "email@example.com",
+          message: "This is a stub"
+      }
+    end
+    it 'creates a new contact message' do
+      expect { post api_contacts_create_path, params: params }.to change(Contact, :count).by(+1)
+    end
+  end
+
   describe 'user is not logged in' do
     describe 'sending message' do
       let(:new_name) { 'New User' }
@@ -43,6 +56,8 @@ describe 'Contacts' do
       fill_in 'Message', with: new_message
       click_button 'Submit message'
       expect(page).to have_text 'The feedback has been received. Thank you!'
+      visit api_contacts_path
+      expect(page).to have_text new_message.to_json
     end
   end
 end

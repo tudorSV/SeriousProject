@@ -79,4 +79,12 @@ describe 'Companies' do
       expect(page).to have_selector('li', text:  'Inactive')
     end
   end
+
+  describe 'JSON response' do
+    it 'should index companies' do
+      company
+      visit api_companies_path
+      expect(page).to have_text company.to_json
+    end
+  end
 end
