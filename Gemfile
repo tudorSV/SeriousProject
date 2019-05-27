@@ -37,10 +37,13 @@ gem 'jbuilder', '~> 2.5'
 gem 'bcrypt', '3.1.12'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap-sass', '3.4.1'
+gem 'bootstrap3-rails', ' 3.2.0'
 gem 'cancancan', '2.3'
 gem 'jquery-rails'
 gem 'rails-ujs', '~> 0.1.0'
 gem 'rubocop', '~> 0.66.0', require: false
+gem 'rails-assets-sweetalert2', '~> 5.1.1', source: 'https://rails-assets.org'
+gem 'sweet-alert2-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

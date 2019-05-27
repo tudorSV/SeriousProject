@@ -31,25 +31,14 @@
 
   <div class="showbtn">
 
-    <%= link_to "Edit shop", edit_company_shop_path(@company, @shop) , class: "btn btn-primary" %>
+    <%= link_to "Edit shop", edit_company_shop_path(@company, @shop) , class: "btn btn-primary", id: "test" %>
     <%= link_to "Add employee", new_company_shop_employee_path(@company, @shop), class: "btn btn-primary" %>
     <%= link_to "Show all employees", company_shop_employees_path(@company, @shop), class: "btn btn-primary" %>
     <%= link_to "Show all appointments", company_shop_index_appointment_path(@company, @shop), class: "btn btn-primary" %>
     <%= link_to "Add shop slots", new_company_shop_shop_slot_path(@company, @shop) , class: "btn btn-primary" unless @shop.fully_scheduled? %>
+    <%= link_to "Delete", company_shop_path(@company, @shop), data: { confirm: 'Are you sure you want to delete the shop?' }, :method => :delete, class: 'btn btn-primary'%>
     <%= link_to "Back to shops" , company_shops_path, class: "btn btn-primary" %>
   </div>
 </div>
 
-
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
-  <script type="views/shops" src="modal.js"></script>
-
-
-  <div id="dialog" title="Confirm Delete">
-    <p>Are you sure you want to delete the shop?
-  </div>
-
-<button class="btn btn-primary" id="opener">Delete shop</button>
+<%= link_to "Test modal" , company_shops_path, class: "btn btn-primary", data: {confirm: 'Are you sure?'} %>
