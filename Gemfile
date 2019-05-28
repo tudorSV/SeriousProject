@@ -39,7 +39,7 @@ gem 'bcrypt', '3.1.12'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap-sass', '3.4.1'
 gem 'cancancan', '2.3'
-gem 'jquery-rails'
+gem 'jquery-rails', '4.3.3'
 gem "recaptcha", '4.14.0', require: "recaptcha/rails"
 gem 'rails-ujs', '~> 0.1.0'
 gem 'rubocop', '~> 0.66.0', require: false
@@ -65,14 +65,14 @@ end
 group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15'
-  gem 'capybara-webkit', '1.15.1', github: 'thoughtbot/capybara-webkit', branch: 'master'
-  gem 'geckodriver-helper'
+  gem 'capybara-webkit', '1.15.1'
+  gem 'geckodriver-helper', '0.23.0'
   gem 'guard-rspec', '4.7.3'
   # Easy installation and use of chromedriver to run system tests with Chrome
-  gem 'chromedriver-helper'
+  gem 'chromedriver-helper', '2.1.1'
+  gem 'phantomjs', '2.1.1.0', :require => 'phantomjs/poltergeist'
+  gem 'poltergeist', '1.18.1'
   gem 'selenium-webdriver', '~> 3.14.1'
-  gem 'poltergeist'
-  gem 'phantomjs', :require => 'phantomjs/poltergeist'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

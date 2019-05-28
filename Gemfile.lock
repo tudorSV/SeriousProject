@@ -1,12 +1,3 @@
-GIT
-  remote: https://github.com/thoughtbot/capybara-webkit.git
-  revision: 77fdac424cd6fdb5aa266b229a888cc58da8e95e
-  branch: master
-  specs:
-    capybara-webkit (1.15.1)
-      capybara (>= 2.3, < 4.0)
-      json
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -71,14 +62,17 @@ GEM
     builder (3.2.3)
     byebug (11.0.1)
     cancancan (2.3.0)
-    capybara (3.20.2)
+    capybara (3.21.0)
       addressable
       mini_mime (>= 0.1.3)
       nokogiri (~> 1.8)
       rack (>= 1.6.0)
       rack-test (>= 0.6.3)
-      regexp_parser (~> 1.2)
+      regexp_parser (~> 1.5)
       xpath (~> 3.2)
+    capybara-webkit (1.15.1)
+      capybara (>= 2.3, < 4.0)
+      json
     childprocess (0.9.0)
       ffi (~> 1.0, >= 1.0.11)
     chromedriver-helper (2.1.1)
@@ -176,7 +170,7 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
     psych (3.1.0)
-    public_suffix (3.0.3)
+    public_suffix (3.1.0)
     puma (3.12.1)
     rack (2.0.7)
     rack-test (1.1.0)
@@ -214,7 +208,7 @@ GEM
       ffi (~> 1.0)
     recaptcha (4.14.0)
       json
-    regexp_parser (1.5.0)
+    regexp_parser (1.5.1)
     rspec (3.8.0)
       rspec-core (~> 3.8.0)
       rspec-expectations (~> 3.8.0)
@@ -244,9 +238,9 @@ GEM
       rainbow (>= 2.2.2, < 4.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 1.6)
-    ruby-progressbar (1.10.0)
+    ruby-progressbar (1.10.1)
     ruby_dep (1.5.0)
-    rubyzip (1.2.2)
+    rubyzip (1.2.3)
     sass (3.7.4)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
@@ -310,19 +304,19 @@ DEPENDENCIES
   byebug
   cancancan (= 2.3)
   capybara (>= 2.15)
-  capybara-webkit (= 1.15.1)!
-  chromedriver-helper
+  capybara-webkit (= 1.15.1)
+  chromedriver-helper (= 2.1.1)
   coffee-rails (~> 4.2)
   factory_bot_rails (= 5.0.1)
-  geckodriver-helper
+  geckodriver-helper (= 0.23.0)
   guard-rspec (= 4.7.3)
   jbuilder (~> 2.5)
-  jquery-rails
+  jquery-rails (= 4.3.3)
   letter_opener (= 1.7.0)
   listen (>= 3.0.5, < 3.2)
   pg (= 1.1.3)
-  phantomjs
-  poltergeist
+  phantomjs (= 2.1.1.0)
+  poltergeist (= 1.18.1)
   pry (= 0.12.2)
   puma (~> 3.11)
   rails (= 5.2.1)

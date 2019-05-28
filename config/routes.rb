@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   resources :users do
     resources :appointments, except: [:index] do
-      resources :notes
+      resources :notes, only: [:new, :create]
     end
     put :change_status
     put :block_user

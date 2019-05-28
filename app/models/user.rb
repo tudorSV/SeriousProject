@@ -4,6 +4,7 @@ class User < ApplicationRecord
   belongs_to :address, dependent: :delete
   has_one :employee, inverse_of: :user
   has_many :appointments
+  has_many :notes
 
   has_secure_password
   accepts_nested_attributes_for :address

@@ -55,8 +55,4 @@ class AppointmentsController < ApplicationController
   def appointment_params
     params.require(:appointment).permit(:date, :item_number, :status, :shop_id)
   end
-
-  def note_params
-    params.require(:note).permit(:message, :appointment_id)
-  end
 end

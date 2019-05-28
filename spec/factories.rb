@@ -65,6 +65,7 @@ FactoryBot.define do
   end
 
   factory :note do
+    user
     appointment
     sequence(:message) { |n| "Message number #{n}" }
   end

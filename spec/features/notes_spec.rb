@@ -4,7 +4,7 @@ describe 'Notes' do
   let(:user) { FactoryBot.create(:user, active: true) }
   let(:shop) { FactoryBot.create(:shop_with_shop_slots) }
   let(:appointment) { FactoryBot.create(:appointment, shop: shop, user: user) }
-  let(:note) { FactoryBot.create(:note, appointment: appointment) }
+  let(:note) { FactoryBot.create(:note, appointment: appointment, user: user) }
 
   before do
     shop
@@ -25,6 +25,9 @@ describe 'Notes' do
       expect(page).to have_text("Message")
       fill_in 'Message', with: new_message
       click_button('Add appointment note')
+      visit user_appointment_path(user, appointment)
+      expect(page).to have_selector('h1', text: 'All notes are belong to this appointment')
+      expect(page).to have_selector('li', text: "#{note.message}")
     end
   end
 
