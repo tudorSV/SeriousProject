@@ -41,6 +41,10 @@ gem 'bootstrap-sass', '3.4.1'
 gem 'cancancan', '2.3'
 gem "recaptcha", '4.14.0', require: "recaptcha/rails"
 gem 'rubocop', '~> 0.66.0', require: false
+gem 'jquery-rails'
+gem 'popper_js'
+gem 'pusher'
+gem 'figaro'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

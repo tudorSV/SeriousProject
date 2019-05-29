@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  root to: 'welcome#index'
   resources :companies do
     resources :shops do
       resources :employees
@@ -16,6 +15,9 @@ Rails.application.routes.draw do
   end
 
   resources :sessions
+
+  resources :chats
+  root to: 'chats#index'
 
   get 'new_contact_message', to: 'contacts#new', as: 'new_contact_message'
   post 'create_contact_message', to: 'contacts#create', as: 'create_contact_message'
