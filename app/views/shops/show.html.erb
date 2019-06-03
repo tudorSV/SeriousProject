@@ -2,7 +2,6 @@
   Information about <b><%= @shop.name %></b> which belongs to <b><%= @company.name %></b>
 </h2>
 
-
  <div class="show">
    <ul>
     <li>Shop name:<%= @shop.name %></li>
@@ -40,5 +39,3 @@
     <%= link_to "Back to shops" , company_shops_path, class: "btn btn-primary" %>
   </div>
 </div>
-
-<%= link_to "Test modal" , company_shops_path, class: "btn btn-primary", data: {confirm: 'Are you sure?'} %>
