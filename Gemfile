@@ -37,14 +37,14 @@ gem 'jbuilder', '~> 2.5'
 gem 'aasm', '5.0.2'
 gem 'bcrypt', '3.1.12'
 gem 'bootsnap', '>= 1.1.0', require: false
-gem 'bootstrap-sass', '3.4.1'
+gem 'bootstrap', '4.1.0'
 gem 'cancancan', '2.3'
 gem "recaptcha", '4.14.0', require: "recaptcha/rails"
 gem 'rubocop', '~> 0.66.0', require: false
-gem 'jquery-rails'
-gem 'popper_js'
-gem 'pusher'
-gem 'figaro'
+gem 'jquery-rails', '4.3.3'
+gem 'popper_js', '1.14.5'
+gem 'pusher', '1.3.2'
+gem 'figaro', '1.1.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
