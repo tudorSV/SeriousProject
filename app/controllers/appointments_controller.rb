@@ -23,6 +23,7 @@ class AppointmentsController < ApplicationController
   end
 
   def show
+    @notes = Note.where(appointment_id: @appointment.id)
   end
 
   def edit

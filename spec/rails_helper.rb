@@ -40,6 +40,18 @@ RSpec.configure do |config|
   # instead of true.
   config.use_transactional_fixtures = true
 
+  Capybara.register_driver :poltergeist do |app|
+    client = Selenium::WebDriver::Remote::Http::Default.new
+    client.timeout = 10
+    Capybara::Poltergeist::Driver.new(app, :phantomjs => Phantomjs.path)
+  end
+
+  Capybara.javascript_driver = :poltergeist
+  Capybara.default_driver = :poltergeist
+  Capybara.default_host = ActionMailer::Base.asset_host
+  Capybara.default_max_wait_time = 10
+  Capybara.always_include_port = true
+
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and
   # `post` in specs under `spec/controllers`.
