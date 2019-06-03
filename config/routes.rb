@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   end
 
   resources :users do
-    resources :appointments, except: [:index]
+    resources :appointments, except: [:index] do
+      resources :notes, only: [:new, :create]
+    end
     put :change_status
     put :block_user
   end
@@ -27,4 +29,19 @@ Rails.application.routes.draw do
   get 'signin',  to: 'sessions#new', as: 'login'
   get 'logout', to: 'sessions#destroy', as: 'logout'
   get 'recoverPassword', to: 'users#recoverPassword'
+
+  scope module: 'api', path: 'api' do
+    resources :companies, only: [:index], as: 'api_companies'
+
+    get 'companies/:id/shops', to: 'shops#index', as: 'api_company_shops'
+    get 'companies/shops', to: 'shops#all_shops', as: 'api_companies_shops'
+
+    get 'shops/:id/appointments', to: 'appointments#index', as: 'api_appointments_index'
+    get 'shops/:id/appointments/date/:date', to: 'appointments#date', as: 'api_appointments_index_date'
+
+    get 'shops/:id/shop_slots', to: 'shop_slots#index'
+
+    post 'create_contact_message', to: 'contacts#create', as: 'api_contacts_create'
+    get 'index_contact_message', to: 'contacts#index', as: 'api_contacts'
+  end
 end

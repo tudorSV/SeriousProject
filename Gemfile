@@ -38,13 +38,18 @@ gem 'aasm', '5.0.2'
 gem 'bcrypt', '3.1.12'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap', '4.1.0'
+gem 'bootstrap-sass', '~> 3.3.6'
 gem 'cancancan', '2.3'
+gem 'jquery-rails', '4.3.3'
 gem "recaptcha", '4.14.0', require: "recaptcha/rails"
+gem 'rails-ujs', '~> 0.1.0'
 gem 'rubocop', '~> 0.66.0', require: false
 gem 'jquery-rails', '4.3.3'
 gem 'popper_js', '1.14.5'
 gem 'pusher', '1.3.2'
 gem 'figaro', '1.1.1'
+gem 'rails-assets-sweetalert2', '~> 5.1.1', source: 'https://rails-assets.org'
+gem 'sweet-alert2-rails','0.1.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -67,9 +72,13 @@ end
 group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15'
+  gem 'capybara-webkit', '1.15.1'
+  gem 'geckodriver-helper', '0.23.0'
   gem 'guard-rspec', '4.7.3'
   # Easy installation and use of chromedriver to run system tests with Chrome
-  gem 'chromedriver-helper'
+  gem 'chromedriver-helper', '2.1.1'
+  gem 'phantomjs', '2.1.1.0', :require => 'phantomjs/poltergeist'
+  gem 'poltergeist', '1.18.1'
   gem 'selenium-webdriver', '~> 3.14.1'
 end
 

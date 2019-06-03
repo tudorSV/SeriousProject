@@ -4,6 +4,8 @@ class Appointment < ApplicationRecord
   belongs_to :shop
   belongs_to :user
 
+  has_many :notes
+
   aasm :column => 'status' do
     state :booked, initial: true
     state :ready_for_pickup, :finished

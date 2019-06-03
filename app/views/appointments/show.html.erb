@@ -8,11 +8,21 @@
     <li>Status of the appointment: <b><%= @appointment.status %></b></li>
   </ul>
 
+  <% if @appointment.booked? %>
+    <div id = "new-note">
+      <%= link_to "Add a note", new_user_appointment_note_path(@user, @appointment), class: "btn btn-primary", remote: true %>
+    </div>
+  <% end %>
+
   <div class="showbtn">
     <%= link_to "Edit the appointment", edit_user_appointment_path(@user, @appointment), class: "btn btn-primary"%>
     <% if @appointment.status == 'Booked' %>
       <%= link_to "Delete the appointment", user_appointment_path(@user, @appointment), method: :delete, class: "btn btn-primary", data: { confirm: "Are you sure you want to delete the company?" } %>
     <% end %>
     <%= link_to "Back to the user",  user_path(@user), class: "btn btn-primary" %>
+  </div>
+
+  <div id="note-content">
+    <%= render 'notes/index' %>
   </div>
 </div>

@@ -73,4 +73,23 @@ describe 'Appointments' do
       expect(page).to have_selector('li', text: 'Ready for pickup')
     end
   end
+
+  describe 'JSON response' do
+    it 'should index appointments' do
+      user
+      shop
+      appointment
+      visit api_appointments_index_path(shop.id)
+      expect(page).to have_text appointment.to_json
+    end
+
+    let(:date) { Date.today + 5.years }
+    it 'should index appointments by date' do
+      user
+      shop
+      appointment
+      visit api_appointments_index_date_path(shop.id, date)
+      expect(page).to have_text appointment.to_json
+    end
+  end
 end

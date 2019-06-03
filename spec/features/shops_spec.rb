@@ -122,4 +122,23 @@ describe 'Shops' do
       expect(page).to have_selector('li', text:  new_country)
     end
   end
+
+  describe 'JSON response' do
+    it 'should index from one company' do
+      company
+      shop
+      shop2
+      visit api_company_shops_path(company)
+      expect(page).to have_text shop.to_json
+      expect(page).to have_text shop2.to_json
+    end
+
+    it 'should index from all companies' do
+      shop
+      shop2
+      visit api_companies_shops_path
+      expect(page).to have_text shop.to_json
+      expect(page).to have_text shop2.to_json
+    end
+  end
 end
