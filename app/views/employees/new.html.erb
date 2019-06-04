@@ -1,21 +1,19 @@
 <h1>Input info about the new employee</h1>
 
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <%= form_for [@company, @shop, @employee],
-            url:company_shop_employees_path(@company, @shop),
-            method: :post  do |employee_form | %>
-      <%= render 'shared/error_messages', object: employee_form.object %>
-      <%= employee_form.label :role %>
-      <%= employee_form.text_field :role %>
+<div class="form">
+  <%= form_for [@company, @shop, @employee],
+          url:company_shop_employees_path(@company, @shop),
+          method: :post  do |employee_form | %>
+    <%= render 'shared/error_messages', object: employee_form.object %>
+    <%= employee_form.label :role %>
+    <%= employee_form.text_field :role %>
 
-      <%= employee_form.label :user_id %>
-      <%= employee_form.collection_select(:user_id, User.all, :id, :name )%>
+    <%= employee_form.label :user_id %>
+    <%= employee_form.collection_select(:user_id, User.all, :id, :name )%>
 
-      <div class="more">
-        <div class="button save"><%= employee_form.submit "Add employee", class: "btn btn-primary" %></div>
-        <div class="button back"><%= link_to "Back", company_shop_path(@company,@shop), class: "btn btn-primary"  %></div>
-      </div>
-    <% end %>
-  </div>
+    <div class="more">
+      <div class="button save"><%= employee_form.submit "Add employee", class: "btn btn-primary" %></div>
+      <div class="button back"><%= link_to "Back", company_shop_path(@company,@shop), class: "btn btn-primary"  %></div>
+    </div>
+  <% end %>
 </div>

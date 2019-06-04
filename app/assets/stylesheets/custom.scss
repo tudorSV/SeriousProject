@@ -4,6 +4,43 @@ $grayMediumLight : #eaeaea;
 
 /* mixins, variables, etc */
 
+ body {
+  font-family: 'Josefin Sans', sans-serif;
+ }
+
+ .full-height {
+   height: 90vh;
+   overflow: visible;
+ }
+
+ input.form-control.sidebar-form {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  border: 0;
+  border-radius: 0;
+}
+
+.chat-box {
+  height: 85vh;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+.chat {
+  border-radius: 3px;
+  padding: 0rem 2rem 0 1rem;
+  right: 0;
+}
+
+.chat-usernamer {
+  font-size: 20px;
+}
+
+.chat-message {
+  font-size: 15px;
+}
+
 @mixin box_sizing {
   -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -12,14 +49,34 @@ $grayMediumLight : #eaeaea;
 
 /* Header */
 
+.navbar-top {
+  position: fixed;
+  right: 0;
+  left: 0;
+  z-index: 999;
+  padding: 10px 16px;
+  width: 100%;
+  height: 50px;
+  top: 0;
+  position: fixed;
+  overflow: hidden;
+  }
+
+.navbar-bottom {
+  width: 100%;
+  height: 50px;
+  bottom: 0;
+  position: fixed;
+}
+
 #logo{
   float: left;
   margin-right: 10px;
+  margin-bottom: 10px;
   font-size: 1.7em;
   color: #fff;
   text-transform: uppercase;
   letter-spacing: -1px;
-  padding-top: 9px;
   font-weight: bold;
   line-height: 1;
   text-decoration: none;
@@ -58,8 +115,20 @@ footer {
 
 #user{
   color: #ffffff;
+  position: absolute;
+  right: 0;
   font-size: 20px;
   margin-right: 10px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+#current-user{
+  color: #ffffff;
+  position: absolute;
+  right: 0;
+  font-size: 20px;
+  margin-right: 6%;
   font-weight: bold;
   text-decoration: none;
 }
@@ -122,18 +191,20 @@ table {
 
 .more {
   width: 70%;
-  display: block;
+  display: flex;
   margin-left: auto;
   margin-right: auto;
   padding-bottom: 15px;
   .button {
-    display: inline-block;
+    display: inline-flex;
+    padding-right: 5px;
   }
   .save {
     width: 70%;
   }
   .back {
     width: 20%;
+    height: 30%;
   }
 }
 
@@ -158,7 +229,8 @@ table {
 }
 
 .cont {
-  margin-left: 20px;
+  margin-left: 10px;
+  margin-bottom: 10px;
 }
 
 .show{
@@ -254,6 +326,8 @@ textarea {
 .row {
   height: 100%;
   width: 100%;
+}
+
 .modal {
   opacity: 0;
   visibility: hidden;

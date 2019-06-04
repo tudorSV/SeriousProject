@@ -1,13 +1,13 @@
-<header class="navbar navbar-fixed-top navbar-inverse">
+<header class="navbar-top navbar-sticky-top navbar-expand-md bg-dark">
   <div class="navbar-inner">
     <div class="cont">
       <%= link_to "Bike shop", root_url, id: "logo" %>
-        <div class="nav pull-right">
+        <div class="navbar-nav ml-auto">
           <% if current_user %>
             <%= link_to "User List", users_list_path, id: 'user' %>
-            <%= link_to "#{current_user.username}", user_path(current_user), id: "user" %>
+            <%= link_to "#{current_user.username}", user_path(current_user), id: "current-user" %>
           <% else %>
-            <%= link_to "sign in", new_session_path, id: "user" %>
+            <%= link_to "Sign in", new_session_path, id: "current-user" %>
           <% end %>
         </div>
     </div>

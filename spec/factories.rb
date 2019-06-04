@@ -1,4 +1,9 @@
 FactoryBot.define do
+  factory :chat do
+    message { "MyText" }
+    username { "MyString" }
+  end
+
   factory :company do
     sequence(:name) { |n| "Company #{n}" }
     sequence(:email) { |n| "Company_#{n}@example.com" }

@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html>
   <head>
+
     <title>FinalProject</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <% flash.each do |key, value| %>
       <div class="alert alert-<%= key %>"><%= value %></div>
     <% end %>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <script src="https://js.pusher.com/4.1/pusher.min.js"></script>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+
+    </head>
 
   <body>
     <%= render 'layouts/header' %>

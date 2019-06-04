@@ -2,8 +2,7 @@
   Sign up
 </h1>
 
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
+<div class="form">
     <%= form_for(@user) do |user_form| %>
       <%= render 'shared/error_messages', object: user_form.object %>
 
@@ -43,5 +42,4 @@
         <div class="button back"><%= link_to "Back", root_path, class: "btn btn-primary"  %></div>
       </div>
     <% end %>
-  </div>
 </div>
